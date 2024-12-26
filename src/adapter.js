@@ -2498,24 +2498,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   sendAndConfirmTransaction: () => (/* binding */ sendAndConfirmTransaction)
 /* harmony export */ });
 /* harmony import */ var buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js");
-/* harmony import */ var _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @noble/curves/ed25519 */ "./node_modules/@noble/curves/esm/ed25519.js");
+/* harmony import */ var _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @noble/curves/ed25519 */ "./node_modules/@noble/curves/esm/ed25519.js");
 /* harmony import */ var bn_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bn.js */ "./node_modules/bn.js/lib/bn.js");
 /* harmony import */ var bn_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bn_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var bs58__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bs58 */ "./node_modules/bs58/index.js");
 /* harmony import */ var bs58__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bs58__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @noble/hashes/sha256 */ "./node_modules/@noble/hashes/esm/sha256.js");
+/* harmony import */ var _noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @noble/hashes/sha256 */ "./node_modules/@noble/hashes/esm/sha256.js");
 /* harmony import */ var borsh__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! borsh */ "./node_modules/borsh/lib/index.js");
 /* harmony import */ var borsh__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(borsh__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @solana/buffer-layout */ "./node_modules/@solana/buffer-layout/lib/Layout.js");
 /* harmony import */ var bigint_buffer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bigint-buffer */ "./node_modules/bigint-buffer/dist/browser.js");
-/* harmony import */ var superstruct__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! superstruct */ "./node_modules/superstruct/lib/index.es.js");
+/* harmony import */ var superstruct__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! superstruct */ "./node_modules/superstruct/dist/index.mjs");
 /* harmony import */ var jayson_lib_client_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jayson/lib/client/browser */ "./node_modules/jayson/lib/client/browser/index.js");
 /* harmony import */ var jayson_lib_client_browser__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jayson_lib_client_browser__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var rpc_websockets_dist_lib_client__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rpc-websockets/dist/lib/client */ "./node_modules/rpc-websockets/dist/lib/client.js");
-/* harmony import */ var rpc_websockets_dist_lib_client_websocket_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rpc-websockets/dist/lib/client/websocket.browser */ "./node_modules/rpc-websockets/dist/lib/client/websocket.browser.js");
-/* harmony import */ var _noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @noble/hashes/sha3 */ "./node_modules/@noble/hashes/esm/sha3.js");
-/* harmony import */ var _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @noble/curves/secp256k1 */ "./node_modules/@noble/curves/esm/secp256k1.js");
-
+/* harmony import */ var rpc_websockets__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rpc-websockets */ "./node_modules/rpc-websockets/dist/index.browser.mjs");
+/* harmony import */ var _noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @noble/hashes/sha3 */ "./node_modules/@noble/hashes/esm/sha3.js");
+/* harmony import */ var _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @noble/curves/secp256k1 */ "./node_modules/@noble/curves/esm/secp256k1.js");
 
 
 
@@ -2541,9 +2539,9 @@ __webpack_require__.r(__webpack_exports__);
  * Ed25519 Keypair
  */
 
-const generatePrivateKey = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.utils.randomPrivateKey;
+const generatePrivateKey = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.utils.randomPrivateKey;
 const generateKeypair = () => {
-  const privateScalar = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.utils.randomPrivateKey();
+  const privateScalar = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.utils.randomPrivateKey();
   const publicKey = getPublicKey(privateScalar);
   const secretKey = new Uint8Array(64);
   secretKey.set(privateScalar);
@@ -2553,17 +2551,17 @@ const generateKeypair = () => {
     secretKey
   };
 };
-const getPublicKey = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.getPublicKey;
+const getPublicKey = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.getPublicKey;
 function isOnCurve(publicKey) {
   try {
-    _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.ExtendedPoint.fromHex(publicKey);
+    _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.ExtendedPoint.fromHex(publicKey);
     return true;
   } catch {
     return false;
   }
 }
-const sign = (message, secretKey) => _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.sign(message, secretKey.slice(0, 32));
-const verify = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_9__.ed25519.verify;
+const sign = (message, secretKey) => _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.sign(message, secretKey.slice(0, 32));
+const verify = _noble_curves_ed25519__WEBPACK_IMPORTED_MODULE_8__.ed25519.verify;
 
 const toBuffer = arr => {
   if (buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.isBuffer(arr)) {
@@ -2607,8 +2605,7 @@ class Enum extends Struct {
 }
 const SOLANA_SCHEMA = new Map();
 
-var _class;
-let _Symbol$toStringTag;
+var _PublicKey;
 
 /**
  * Maximum length of derived pubkey seed
@@ -2638,7 +2635,6 @@ let uniquePublicKeyCounter = 1;
 /**
  * A public key
  */
-_Symbol$toStringTag = Symbol.toStringTag;
 class PublicKey extends Struct {
   /**
    * Create a new PublicKey object
@@ -2718,7 +2714,7 @@ class PublicKey extends Struct {
     b.copy(zeroPad, 32 - b.length);
     return zeroPad;
   }
-  get [_Symbol$toStringTag]() {
+  get [Symbol.toStringTag]() {
     return `PublicKey(${this.toString()})`;
   }
 
@@ -2737,7 +2733,7 @@ class PublicKey extends Struct {
   /* eslint-disable require-await */
   static async createWithSeed(fromPublicKey, seed, programId) {
     const buffer = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.concat([fromPublicKey.toBuffer(), buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(seed), programId.toBuffer()]);
-    const publicKeyBytes = (0,_noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_10__.sha256)(buffer);
+    const publicKeyBytes = (0,_noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_9__.sha256)(buffer);
     return new PublicKey(publicKeyBytes);
   }
 
@@ -2754,7 +2750,7 @@ class PublicKey extends Struct {
       buffer = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.concat([buffer, toBuffer(seed)]);
     });
     buffer = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.concat([buffer, programId.toBuffer(), buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from('ProgramDerivedAddress')]);
-    const publicKeyBytes = (0,_noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_10__.sha256)(buffer);
+    const publicKeyBytes = (0,_noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_9__.sha256)(buffer);
     if (isOnCurve(publicKeyBytes)) {
       throw new Error(`Invalid seeds, address must fall off the curve`);
     }
@@ -2816,8 +2812,8 @@ class PublicKey extends Struct {
     return isOnCurve(pubkey.toBytes());
   }
 }
-_class = PublicKey;
-PublicKey.default = new _class('11111111111111111111111111111111');
+_PublicKey = PublicKey;
+PublicKey.default = new _PublicKey('11111111111111111111111111111111');
 SOLANA_SCHEMA.set(PublicKey, {
   kind: 'struct',
   fields: [['_bn', 'u256']]
@@ -3189,6 +3185,31 @@ class CompiledKeys {
   }
 }
 
+const END_OF_BUFFER_ERROR_MESSAGE = 'Reached end of buffer unexpectedly';
+
+/**
+ * Delegates to `Array#shift`, but throws if the array is zero-length.
+ */
+function guardedShift(byteArray) {
+  if (byteArray.length === 0) {
+    throw new Error(END_OF_BUFFER_ERROR_MESSAGE);
+  }
+  return byteArray.shift();
+}
+
+/**
+ * Delegates to `Array#splice`, but throws if the section being spliced out extends past the end of
+ * the array.
+ */
+function guardedSplice(byteArray, ...args) {
+  const [start] = args;
+  if (args.length === 2 // Implies that `deleteCount` was supplied
+  ? start + (args[1] ?? 0) > byteArray.length : start >= byteArray.length) {
+    throw new Error(END_OF_BUFFER_ERROR_MESSAGE);
+  }
+  return byteArray.splice(...args);
+}
+
 /**
  * An instruction to execute by a program
  *
@@ -3330,32 +3351,28 @@ class Message {
   static from(buffer) {
     // Slice up wire data
     let byteArray = [...buffer];
-    const numRequiredSignatures = byteArray.shift();
+    const numRequiredSignatures = guardedShift(byteArray);
     if (numRequiredSignatures !== (numRequiredSignatures & VERSION_PREFIX_MASK)) {
       throw new Error('Versioned messages must be deserialized with VersionedMessage.deserialize()');
     }
-    const numReadonlySignedAccounts = byteArray.shift();
-    const numReadonlyUnsignedAccounts = byteArray.shift();
+    const numReadonlySignedAccounts = guardedShift(byteArray);
+    const numReadonlyUnsignedAccounts = guardedShift(byteArray);
     const accountCount = decodeLength(byteArray);
     let accountKeys = [];
     for (let i = 0; i < accountCount; i++) {
-      const account = byteArray.slice(0, PUBLIC_KEY_LENGTH);
-      byteArray = byteArray.slice(PUBLIC_KEY_LENGTH);
+      const account = guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH);
       accountKeys.push(new PublicKey(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(account)));
     }
-    const recentBlockhash = byteArray.slice(0, PUBLIC_KEY_LENGTH);
-    byteArray = byteArray.slice(PUBLIC_KEY_LENGTH);
+    const recentBlockhash = guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH);
     const instructionCount = decodeLength(byteArray);
     let instructions = [];
     for (let i = 0; i < instructionCount; i++) {
-      const programIdIndex = byteArray.shift();
+      const programIdIndex = guardedShift(byteArray);
       const accountCount = decodeLength(byteArray);
-      const accounts = byteArray.slice(0, accountCount);
-      byteArray = byteArray.slice(accountCount);
+      const accounts = guardedSplice(byteArray, 0, accountCount);
       const dataLength = decodeLength(byteArray);
-      const dataSlice = byteArray.slice(0, dataLength);
+      const dataSlice = guardedSplice(byteArray, 0, dataLength);
       const data = bs58__WEBPACK_IMPORTED_MODULE_2___default().encode(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(dataSlice));
-      byteArray = byteArray.slice(dataLength);
       instructions.push({
         programIdIndex,
         accounts,
@@ -3560,30 +3577,30 @@ class MessageV0 {
   }
   static deserialize(serializedMessage) {
     let byteArray = [...serializedMessage];
-    const prefix = byteArray.shift();
+    const prefix = guardedShift(byteArray);
     const maskedPrefix = prefix & VERSION_PREFIX_MASK;
     assert(prefix !== maskedPrefix, `Expected versioned message but received legacy message`);
     const version = maskedPrefix;
     assert(version === 0, `Expected versioned message with version 0 but found version ${version}`);
     const header = {
-      numRequiredSignatures: byteArray.shift(),
-      numReadonlySignedAccounts: byteArray.shift(),
-      numReadonlyUnsignedAccounts: byteArray.shift()
+      numRequiredSignatures: guardedShift(byteArray),
+      numReadonlySignedAccounts: guardedShift(byteArray),
+      numReadonlyUnsignedAccounts: guardedShift(byteArray)
     };
     const staticAccountKeys = [];
     const staticAccountKeysLength = decodeLength(byteArray);
     for (let i = 0; i < staticAccountKeysLength; i++) {
-      staticAccountKeys.push(new PublicKey(byteArray.splice(0, PUBLIC_KEY_LENGTH)));
+      staticAccountKeys.push(new PublicKey(guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH)));
     }
-    const recentBlockhash = bs58__WEBPACK_IMPORTED_MODULE_2___default().encode(byteArray.splice(0, PUBLIC_KEY_LENGTH));
+    const recentBlockhash = bs58__WEBPACK_IMPORTED_MODULE_2___default().encode(guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH));
     const instructionCount = decodeLength(byteArray);
     const compiledInstructions = [];
     for (let i = 0; i < instructionCount; i++) {
-      const programIdIndex = byteArray.shift();
+      const programIdIndex = guardedShift(byteArray);
       const accountKeyIndexesLength = decodeLength(byteArray);
-      const accountKeyIndexes = byteArray.splice(0, accountKeyIndexesLength);
+      const accountKeyIndexes = guardedSplice(byteArray, 0, accountKeyIndexesLength);
       const dataLength = decodeLength(byteArray);
-      const data = new Uint8Array(byteArray.splice(0, dataLength));
+      const data = new Uint8Array(guardedSplice(byteArray, 0, dataLength));
       compiledInstructions.push({
         programIdIndex,
         accountKeyIndexes,
@@ -3593,11 +3610,11 @@ class MessageV0 {
     const addressTableLookupsCount = decodeLength(byteArray);
     const addressTableLookups = [];
     for (let i = 0; i < addressTableLookupsCount; i++) {
-      const accountKey = new PublicKey(byteArray.splice(0, PUBLIC_KEY_LENGTH));
+      const accountKey = new PublicKey(guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH));
       const writableIndexesLength = decodeLength(byteArray);
-      const writableIndexes = byteArray.splice(0, writableIndexesLength);
+      const writableIndexes = guardedSplice(byteArray, 0, writableIndexesLength);
       const readonlyIndexesLength = decodeLength(byteArray);
-      const readonlyIndexes = byteArray.splice(0, readonlyIndexesLength);
+      const readonlyIndexes = guardedSplice(byteArray, 0, readonlyIndexesLength);
       addressTableLookups.push({
         accountKey,
         writableIndexes,
@@ -4388,8 +4405,7 @@ class Transaction {
     const signatureCount = decodeLength(byteArray);
     let signatures = [];
     for (let i = 0; i < signatureCount; i++) {
-      const signature = byteArray.slice(0, SIGNATURE_LENGTH_IN_BYTES);
-      byteArray = byteArray.slice(SIGNATURE_LENGTH_IN_BYTES);
+      const signature = guardedSplice(byteArray, 0, SIGNATURE_LENGTH_IN_BYTES);
       signatures.push(bs58__WEBPACK_IMPORTED_MODULE_2___default().encode(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(signature)));
     }
     return Transaction.populate(Message.from(byteArray), signatures);
@@ -4564,7 +4580,7 @@ class VersionedTransaction {
     const signatures = [];
     const signaturesLength = decodeLength(byteArray);
     for (let i = 0; i < signaturesLength; i++) {
-      signatures.push(new Uint8Array(byteArray.splice(0, SIGNATURE_LENGTH_IN_BYTES)));
+      signatures.push(new Uint8Array(guardedSplice(byteArray, 0, SIGNATURE_LENGTH_IN_BYTES)));
     }
     const message = VersionedMessage.deserialize(new Uint8Array(byteArray));
     return new VersionedTransaction(message, signatures);
@@ -4620,6 +4636,104 @@ const SYSVAR_SLOT_HASHES_PUBKEY = new PublicKey('SysvarS1otHashes111111111111111
 const SYSVAR_SLOT_HISTORY_PUBKEY = new PublicKey('SysvarS1otHistory11111111111111111111111111');
 const SYSVAR_STAKE_HISTORY_PUBKEY = new PublicKey('SysvarStakeHistory1111111111111111111111111');
 
+class SendTransactionError extends Error {
+  constructor({
+    action,
+    signature,
+    transactionMessage,
+    logs
+  }) {
+    const maybeLogsOutput = logs ? `Logs: \n${JSON.stringify(logs.slice(-10), null, 2)}. ` : '';
+    const guideText = '\nCatch the `SendTransactionError` and call `getLogs()` on it for full details.';
+    let message;
+    switch (action) {
+      case 'send':
+        message = `Transaction ${signature} resulted in an error. \n` + `${transactionMessage}. ` + maybeLogsOutput + guideText;
+        break;
+      case 'simulate':
+        message = `Simulation failed. \nMessage: ${transactionMessage}. \n` + maybeLogsOutput + guideText;
+        break;
+      default:
+        {
+          message = `Unknown action '${(a => a)(action)}'`;
+        }
+    }
+    super(message);
+    this.signature = void 0;
+    this.transactionMessage = void 0;
+    this.transactionLogs = void 0;
+    this.signature = signature;
+    this.transactionMessage = transactionMessage;
+    this.transactionLogs = logs ? logs : undefined;
+  }
+  get transactionError() {
+    return {
+      message: this.transactionMessage,
+      logs: Array.isArray(this.transactionLogs) ? this.transactionLogs : undefined
+    };
+  }
+
+  /* @deprecated Use `await getLogs()` instead */
+  get logs() {
+    const cachedLogs = this.transactionLogs;
+    if (cachedLogs != null && typeof cachedLogs === 'object' && 'then' in cachedLogs) {
+      return undefined;
+    }
+    return cachedLogs;
+  }
+  async getLogs(connection) {
+    if (!Array.isArray(this.transactionLogs)) {
+      this.transactionLogs = new Promise((resolve, reject) => {
+        connection.getTransaction(this.signature).then(tx => {
+          if (tx && tx.meta && tx.meta.logMessages) {
+            const logs = tx.meta.logMessages;
+            this.transactionLogs = logs;
+            resolve(logs);
+          } else {
+            reject(new Error('Log messages not found'));
+          }
+        }).catch(reject);
+      });
+    }
+    return await this.transactionLogs;
+  }
+}
+
+// Keep in sync with client/src/rpc_custom_errors.rs
+// Typescript `enums` thwart tree-shaking. See https://bargsten.org/jsts/enums/
+const SolanaJSONRPCErrorCode = {
+  JSON_RPC_SERVER_ERROR_BLOCK_CLEANED_UP: -32001,
+  JSON_RPC_SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE: -32002,
+  JSON_RPC_SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE: -32003,
+  JSON_RPC_SERVER_ERROR_BLOCK_NOT_AVAILABLE: -32004,
+  JSON_RPC_SERVER_ERROR_NODE_UNHEALTHY: -32005,
+  JSON_RPC_SERVER_ERROR_TRANSACTION_PRECOMPILE_VERIFICATION_FAILURE: -32006,
+  JSON_RPC_SERVER_ERROR_SLOT_SKIPPED: -32007,
+  JSON_RPC_SERVER_ERROR_NO_SNAPSHOT: -32008,
+  JSON_RPC_SERVER_ERROR_LONG_TERM_STORAGE_SLOT_SKIPPED: -32009,
+  JSON_RPC_SERVER_ERROR_KEY_EXCLUDED_FROM_SECONDARY_INDEX: -32010,
+  JSON_RPC_SERVER_ERROR_TRANSACTION_HISTORY_NOT_AVAILABLE: -32011,
+  JSON_RPC_SCAN_ERROR: -32012,
+  JSON_RPC_SERVER_ERROR_TRANSACTION_SIGNATURE_LEN_MISMATCH: -32013,
+  JSON_RPC_SERVER_ERROR_BLOCK_STATUS_NOT_AVAILABLE_YET: -32014,
+  JSON_RPC_SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION: -32015,
+  JSON_RPC_SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED: -32016
+};
+class SolanaJSONRPCError extends Error {
+  constructor({
+    code,
+    message,
+    data
+  }, customMessage) {
+    super(customMessage != null ? `${customMessage}: ${message}` : message);
+    this.code = void 0;
+    this.data = void 0;
+    this.code = code;
+    this.data = data;
+    this.name = 'SolanaJSONRPCError';
+  }
+}
+
 /**
  * Sign, send and confirm a transaction.
  *
@@ -4666,6 +4780,13 @@ async function sendAndConfirmTransaction(connection, transaction, signers, optio
     status = (await connection.confirmTransaction(signature, options && options.commitment)).value;
   }
   if (status.err) {
+    if (signature != null) {
+      throw new SendTransactionError({
+        action: 'send',
+        signature: signature,
+        transactionMessage: `Status: (${JSON.stringify(status)})`
+      });
+    }
     throw new Error(`Transaction ${signature} failed (${JSON.stringify(status)})`);
   }
   return signature;
@@ -5326,7 +5447,7 @@ class SystemProgram {
       isSigner: false,
       isWritable: true
     }];
-    if (params.basePubkey != params.fromPubkey) {
+    if (!params.basePubkey.equals(params.fromPubkey)) {
       keys.push({
         pubkey: params.basePubkey,
         isSigner: true,
@@ -5763,81 +5884,90 @@ function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
-var objToString = Object.prototype.toString;
-var objKeys = Object.keys || function(obj) {
-		var keys = [];
-		for (var name in obj) {
-			keys.push(name);
-		}
-		return keys;
-	};
+var fastStableStringify$1;
+var hasRequiredFastStableStringify;
 
-function stringify(val, isArrayProp) {
-	var i, max, str, keys, key, propVal, toStr;
-	if (val === true) {
-		return "true";
-	}
-	if (val === false) {
-		return "false";
-	}
-	switch (typeof val) {
-		case "object":
-			if (val === null) {
-				return null;
-			} else if (val.toJSON && typeof val.toJSON === "function") {
-				return stringify(val.toJSON(), isArrayProp);
-			} else {
-				toStr = objToString.call(val);
-				if (toStr === "[object Array]") {
-					str = '[';
-					max = val.length - 1;
-					for(i = 0; i < max; i++) {
-						str += stringify(val[i], true) + ',';
-					}
-					if (max > -1) {
-						str += stringify(val[i], true);
-					}
-					return str + ']';
-				} else if (toStr === "[object Object]") {
-					// only object is left
-					keys = objKeys(val).sort();
-					max = keys.length;
-					str = "";
-					i = 0;
-					while (i < max) {
-						key = keys[i];
-						propVal = stringify(val[key], false);
-						if (propVal !== undefined) {
-							if (str) {
-								str += ',';
-							}
-							str += JSON.stringify(key) + ':' + propVal;
-						}
-						i++;
-					}
-					return '{' + str + '}';
-				} else {
-					return JSON.stringify(val);
-				}
+function requireFastStableStringify () {
+	if (hasRequiredFastStableStringify) return fastStableStringify$1;
+	hasRequiredFastStableStringify = 1;
+	var objToString = Object.prototype.toString;
+	var objKeys = Object.keys || function(obj) {
+			var keys = [];
+			for (var name in obj) {
+				keys.push(name);
 			}
-		case "function":
-		case "undefined":
-			return isArrayProp ? null : undefined;
-		case "string":
-			return JSON.stringify(val);
-		default:
-			return isFinite(val) ? val : null;
+			return keys;
+		};
+
+	function stringify(val, isArrayProp) {
+		var i, max, str, keys, key, propVal, toStr;
+		if (val === true) {
+			return "true";
+		}
+		if (val === false) {
+			return "false";
+		}
+		switch (typeof val) {
+			case "object":
+				if (val === null) {
+					return null;
+				} else if (val.toJSON && typeof val.toJSON === "function") {
+					return stringify(val.toJSON(), isArrayProp);
+				} else {
+					toStr = objToString.call(val);
+					if (toStr === "[object Array]") {
+						str = '[';
+						max = val.length - 1;
+						for(i = 0; i < max; i++) {
+							str += stringify(val[i], true) + ',';
+						}
+						if (max > -1) {
+							str += stringify(val[i], true);
+						}
+						return str + ']';
+					} else if (toStr === "[object Object]") {
+						// only object is left
+						keys = objKeys(val).sort();
+						max = keys.length;
+						str = "";
+						i = 0;
+						while (i < max) {
+							key = keys[i];
+							propVal = stringify(val[key], false);
+							if (propVal !== undefined) {
+								if (str) {
+									str += ',';
+								}
+								str += JSON.stringify(key) + ':' + propVal;
+							}
+							i++;
+						}
+						return '{' + str + '}';
+					} else {
+						return JSON.stringify(val);
+					}
+				}
+			case "function":
+			case "undefined":
+				return isArrayProp ? null : undefined;
+			case "string":
+				return JSON.stringify(val);
+			default:
+				return isFinite(val) ? val : null;
+		}
 	}
+
+	fastStableStringify$1 = function(val) {
+		var returnVal = stringify(val, false);
+		if (returnVal !== undefined) {
+			return ''+ returnVal;
+		}
+	};
+	return fastStableStringify$1;
 }
 
-var fastStableStringify = function(val) {
-	var returnVal = stringify(val, false);
-	if (returnVal !== undefined) {
-		return ''+ returnVal;
-	}
-};
-
-var fastStableStringify$1 = /*@__PURE__*/getDefaultExportFromCjs(fastStableStringify);
+var fastStableStringifyExports = /*@__PURE__*/ requireFastStableStringify();
+var fastStableStringify = /*@__PURE__*/getDefaultExportFromCjs(fastStableStringifyExports);
 
 const MINIMUM_SLOT_PER_EPOCH = 32;
 
@@ -5923,55 +6053,12 @@ class EpochSchedule {
   }
 }
 
-class SendTransactionError extends Error {
-  constructor(message, logs) {
-    super(message);
-    this.logs = void 0;
-    this.logs = logs;
-  }
-}
-
-// Keep in sync with client/src/rpc_custom_errors.rs
-// Typescript `enums` thwart tree-shaking. See https://bargsten.org/jsts/enums/
-const SolanaJSONRPCErrorCode = {
-  JSON_RPC_SERVER_ERROR_BLOCK_CLEANED_UP: -32001,
-  JSON_RPC_SERVER_ERROR_SEND_TRANSACTION_PREFLIGHT_FAILURE: -32002,
-  JSON_RPC_SERVER_ERROR_TRANSACTION_SIGNATURE_VERIFICATION_FAILURE: -32003,
-  JSON_RPC_SERVER_ERROR_BLOCK_NOT_AVAILABLE: -32004,
-  JSON_RPC_SERVER_ERROR_NODE_UNHEALTHY: -32005,
-  JSON_RPC_SERVER_ERROR_TRANSACTION_PRECOMPILE_VERIFICATION_FAILURE: -32006,
-  JSON_RPC_SERVER_ERROR_SLOT_SKIPPED: -32007,
-  JSON_RPC_SERVER_ERROR_NO_SNAPSHOT: -32008,
-  JSON_RPC_SERVER_ERROR_LONG_TERM_STORAGE_SLOT_SKIPPED: -32009,
-  JSON_RPC_SERVER_ERROR_KEY_EXCLUDED_FROM_SECONDARY_INDEX: -32010,
-  JSON_RPC_SERVER_ERROR_TRANSACTION_HISTORY_NOT_AVAILABLE: -32011,
-  JSON_RPC_SCAN_ERROR: -32012,
-  JSON_RPC_SERVER_ERROR_TRANSACTION_SIGNATURE_LEN_MISMATCH: -32013,
-  JSON_RPC_SERVER_ERROR_BLOCK_STATUS_NOT_AVAILABLE_YET: -32014,
-  JSON_RPC_SERVER_ERROR_UNSUPPORTED_TRANSACTION_VERSION: -32015,
-  JSON_RPC_SERVER_ERROR_MIN_CONTEXT_SLOT_NOT_REACHED: -32016
-};
-class SolanaJSONRPCError extends Error {
-  constructor({
-    code,
-    message,
-    data
-  }, customMessage) {
-    super(customMessage != null ? `${customMessage}: ${message}` : message);
-    this.code = void 0;
-    this.data = void 0;
-    this.code = code;
-    this.data = data;
-    this.name = 'SolanaJSONRPCError';
-  }
-}
-
 var fetchImpl = globalThis.fetch;
 
-class RpcWebSocketClient extends rpc_websockets_dist_lib_client__WEBPACK_IMPORTED_MODULE_7__["default"] {
+class RpcWebSocketClient extends rpc_websockets__WEBPACK_IMPORTED_MODULE_7__.CommonClient {
   constructor(address, options, generate_request_id) {
     const webSocketFactory = url => {
-      const rpc = (0,rpc_websockets_dist_lib_client_websocket_browser__WEBPACK_IMPORTED_MODULE_8__["default"])(url, {
+      const rpc = (0,rpc_websockets__WEBPACK_IMPORTED_MODULE_7__.WebSocket)(url, {
         autoconnect: true,
         max_reconnects: 5,
         reconnect: true,
@@ -6077,7 +6164,7 @@ function makeWebsocketUrl(endpoint) {
   const websocketPort =
   // Only shift the port by +1 as a convention for ws(s) only if given endpoint
   // is explicitly specifying the endpoint port (HTTP-based RPC), assuming
-  // we're directly trying to connect to solana-validator's ws listening port.
+  // we're directly trying to connect to agave-validator's ws listening port.
   // When the endpoint omits the port, we're connecting to the protocol
   // default ports: http(80) or https(443) and it's assumed we're behind a reverse
   // proxy which manages WebSocket upgrade and backend port redirection.
@@ -6085,9 +6172,9 @@ function makeWebsocketUrl(endpoint) {
   return `${protocol}//${hostish}${websocketPort}${rest}`;
 }
 
-const PublicKeyFromString = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.instance)(PublicKey), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(), value => new PublicKey(value));
-const RawAccountDataResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('base64')]);
-const BufferFromRawAccountData = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.instance)(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer), RawAccountDataResult, value => buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(value[0], 'base64'));
+const PublicKeyFromString = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.instance)(PublicKey), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(), value => new PublicKey(value));
+const RawAccountDataResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('base64')]);
+const BufferFromRawAccountData = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.instance)(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer), RawAccountDataResult, value => buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(value[0], 'base64'));
 
 /**
  * Attempt to use a recent blockhash for up to 30 seconds
@@ -6219,34 +6306,47 @@ function extractCommitmentFromConfig(commitmentOrConfig) {
 /**
  * @internal
  */
+function applyDefaultMemcmpEncodingToFilters(filters) {
+  return filters.map(filter => 'memcmp' in filter ? {
+    ...filter,
+    memcmp: {
+      ...filter.memcmp,
+      encoding: filter.memcmp.encoding ?? 'base58'
+    }
+  } : filter);
+}
+
+/**
+ * @internal
+ */
 function createRpcResult(result) {
-  return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    jsonrpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('2.0'),
-    id: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
+  return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    jsonrpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('2.0'),
+    id: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
     result
-  }), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    jsonrpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('2.0'),
-    id: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-    error: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      code: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.unknown)(),
-      message: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.any)())
+  }), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    jsonrpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('2.0'),
+    id: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+    error: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      code: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)(),
+      message: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.any)())
     })
   })]);
 }
-const UnknownRpcResult = createRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.unknown)());
+const UnknownRpcResult = createRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)());
 
 /**
  * @internal
  */
 function jsonRpcResult(schema) {
-  return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coerce)(createRpcResult(schema), UnknownRpcResult, value => {
+  return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.coerce)(createRpcResult(schema), UnknownRpcResult, value => {
     if ('error' in value) {
       return value;
     } else {
       return {
         ...value,
-        result: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(value.result, schema)
+        result: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(value.result, schema)
       };
     }
   });
@@ -6256,9 +6356,9 @@ function jsonRpcResult(schema) {
  * @internal
  */
 function jsonRpcResultAndContext(value) {
-  return jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    context: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  return jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    context: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
     }),
     value
   }));
@@ -6268,9 +6368,9 @@ function jsonRpcResultAndContext(value) {
  * @internal
  */
 function notificationResultAndContext(value) {
-  return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    context: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    context: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
     }),
     value
   });
@@ -6409,12 +6509,12 @@ function versionedMessageFromResponse(version, response) {
  * (see https://docs.solana.com/implemented-proposals/ed_overview)
  */
 
-const GetInflationGovernorResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  foundation: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  foundationTerm: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  initial: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  taper: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  terminal: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetInflationGovernorResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  foundation: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  foundationTerm: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  initial: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  taper: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  terminal: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
@@ -6424,12 +6524,12 @@ const GetInflationGovernorResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.
 /**
  * Expected JSON RPC response for the "getInflationReward" message
  */
-const GetInflationRewardResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  effectiveSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  postBalance: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()))
+const GetInflationRewardResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  effectiveSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  postBalance: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()))
 }))));
 
 /**
@@ -6439,38 +6539,38 @@ const GetInflationRewardResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_
 /**
  * Expected JSON RPC response for the "getRecentPrioritizationFees" message
  */
-const GetRecentPrioritizationFeesResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  prioritizationFee: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetRecentPrioritizationFeesResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  prioritizationFee: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 }));
 /**
  * Expected JSON RPC response for the "getInflationRate" message
  */
-const GetInflationRateResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  total: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  validator: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  foundation: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetInflationRateResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  total: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  validator: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  foundation: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
  * Information about the current epoch
  */
 
-const GetEpochInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  slotIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  slotsInEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  absoluteSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  transactionCount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const GetEpochInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  epoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  slotIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  slotsInEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  absoluteSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  transactionCount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
-const GetEpochScheduleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slotsPerEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  leaderScheduleSlotOffset: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  warmup: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
-  firstNormalEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  firstNormalSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetEpochScheduleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slotsPerEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  leaderScheduleSlotOffset: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  warmup: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
+  firstNormalEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  firstNormalSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
@@ -6478,54 +6578,68 @@ const GetEpochScheduleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type
  * (see https://docs.solana.com/terminology#leader-schedule)
  */
 
-const GetLeaderScheduleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.record)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+const GetLeaderScheduleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.record)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
 
 /**
  * Transaction error or null
  */
-const TransactionErrorResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()]));
+const TransactionErrorResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()]));
 
 /**
  * Signature status for a transaction
  */
-const SignatureStatusResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const SignatureStatusResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   err: TransactionErrorResult
 });
 
 /**
  * Transaction signature received notification
  */
-const SignatureReceivedResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('receivedSignature');
+const SignatureReceivedResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('receivedSignature');
 
 /**
  * Version info for a node
  */
 
-const VersionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  'solana-core': (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  'feature-set': (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const VersionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  'solana-core': (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  'feature-set': (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
-const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  err: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()])),
-  logs: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())),
-  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
-    owner: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const ParsedInstructionStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  programId: PublicKeyFromString,
+  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)()
+});
+const PartiallyDecodedInstructionStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  programId: PublicKeyFromString,
+  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString),
+  data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()
+});
+const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  err: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()])),
+  logs: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())),
+  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
+    owner: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
   }))))),
-  unitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  returnData: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-    data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('base64')])
-  })))
+  unitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  returnData: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+    data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('base64')])
+  }))),
+  innerInstructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    index: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([ParsedInstructionStruct, PartiallyDecodedInstructionStruct]))
+  }))))
 }));
 
 /**
  * Metadata for a parsed confirmed transaction on the ledger
  *
- * @deprecated Deprecated since Solana v1.8.0. Please use {@link ParsedTransactionMeta} instead.
+ * @deprecated Deprecated since RPC v1.8.0. Please use {@link ParsedTransactionMeta} instead.
  */
 
 /**
@@ -6555,7 +6669,7 @@ const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruc
 /**
  * A confirmed transaction on the ledger
  *
- * @deprecated Deprecated since Solana v1.8.0.
+ * @deprecated Deprecated since RPC v1.8.0.
  */
 
 /**
@@ -6585,7 +6699,7 @@ const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruc
 /**
  * A parsed and confirmed transaction on the ledger
  *
- * @deprecated Deprecated since Solana v1.8.0. Please use {@link ParsedTransactionWithMeta} instead.
+ * @deprecated Deprecated since RPC v1.8.0. Please use {@link ParsedTransactionWithMeta} instead.
  */
 
 /**
@@ -6631,7 +6745,7 @@ const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruc
 /**
  * A confirmed block on the ledger
  *
- * @deprecated Deprecated since Solana v1.8.0.
+ * @deprecated Deprecated since RPC v1.8.0.
  */
 
 /**
@@ -6645,11 +6759,11 @@ const SimulatedTransactionResponseStruct = jsonRpcResultAndContext((0,superstruc
 /**
  * Expected JSON RPC response for the "getBlockProduction" message
  */
-const BlockProductionResponseStruct = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  byIdentity: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.record)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())),
-  range: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    firstSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    lastSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const BlockProductionResponseStruct = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  byIdentity: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.record)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())),
+  range: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    firstSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    lastSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
   })
 }));
 
@@ -6788,7 +6902,7 @@ const GetLeaderScheduleRpcResult = jsonRpcResult(GetLeaderScheduleResult);
 /**
  * Expected JSON RPC response for the "minimumLedgerSlot" and "getFirstAvailableBlock" messages
  */
-const SlotRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)());
+const SlotRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)());
 
 /**
  * Supply
@@ -6797,11 +6911,11 @@ const SlotRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__
 /**
  * Expected JSON RPC response for the "getSupply" message
  */
-const GetSupplyRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  total: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  circulating: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  nonCirculating: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  nonCirculatingAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PublicKeyFromString)
+const GetSupplyRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  total: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  circulating: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  nonCirculating: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  nonCirculatingAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString)
 }));
 
 /**
@@ -6812,11 +6926,11 @@ const GetSupplyRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPOR
 /**
  * Expected JSON RPC structure for token amounts
  */
-const TokenAmountResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  uiAmount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  decimals: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  uiAmountString: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())
+const TokenAmountResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  uiAmount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  decimals: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  uiAmountString: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())
 });
 
 /**
@@ -6826,44 +6940,44 @@ const TokenAmountResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
 /**
  * Expected JSON RPC response for the "getTokenLargestAccounts" message
  */
-const GetTokenLargestAccountsResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetTokenLargestAccountsResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   address: PublicKeyFromString,
-  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  uiAmount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  decimals: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  uiAmountString: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())
+  amount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  uiAmount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  decimals: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  uiAmountString: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())
 })));
 
 /**
  * Expected JSON RPC response for the "getTokenAccountsByOwner" message
  */
-const GetTokenAccountsByOwner = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetTokenAccountsByOwner = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
-  account: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
+  account: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
     owner: PublicKeyFromString,
-    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
     data: BufferFromRawAccountData,
-    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
   })
 })));
-const ParsedAccountDataResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.unknown)(),
-  space: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const ParsedAccountDataResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)(),
+  space: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
  * Expected JSON RPC response for the "getTokenAccountsByOwner" message with parsed data
  */
-const GetParsedTokenAccountsByOwner = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetParsedTokenAccountsByOwner = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
-  account: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
+  account: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
     owner: PublicKeyFromString,
-    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+    lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
     data: ParsedAccountDataResult,
-    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+    rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
   })
 })));
 
@@ -6874,32 +6988,32 @@ const GetParsedTokenAccountsByOwner = jsonRpcResultAndContext((0,superstruct__WE
 /**
  * Expected JSON RPC response for the "getLargestAccounts" message
  */
-const GetLargestAccountsRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const GetLargestAccountsRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   address: PublicKeyFromString
 })));
 
 /**
  * @internal
  */
-const AccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
+const AccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
   owner: PublicKeyFromString,
-  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   data: BufferFromRawAccountData,
-  rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
  * @internal
  */
-const KeyedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const KeyedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
   account: AccountInfoResult
 });
-const ParsedOrRawAccountData = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.instance)(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer), ParsedAccountDataResult]), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([RawAccountDataResult, ParsedAccountDataResult]), value => {
+const ParsedOrRawAccountData = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.coerce)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.instance)(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer), ParsedAccountDataResult]), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([RawAccountDataResult, ParsedAccountDataResult]), value => {
   if (Array.isArray(value)) {
-    return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(value, BufferFromRawAccountData);
+    return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(value, BufferFromRawAccountData);
   } else {
     return value;
   }
@@ -6908,14 +7022,14 @@ const ParsedOrRawAccountData = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coer
 /**
  * @internal
  */
-const ParsedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
+const ParsedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  executable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
   owner: PublicKeyFromString,
-  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   data: ParsedOrRawAccountData,
-  rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  rentEpoch: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
-const KeyedParsedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const KeyedParsedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
   account: ParsedAccountInfoResult
 });
@@ -6923,47 +7037,47 @@ const KeyedParsedAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11_
 /**
  * @internal
  */
-const StakeActivationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  state: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('active'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('inactive'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('activating'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('deactivating')]),
-  active: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  inactive: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const StakeActivationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  state: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('active'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('inactive'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('activating'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('deactivating')]),
+  active: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  inactive: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
  * Expected JSON RPC response for the "getConfirmedSignaturesForAddress2" message
  */
 
-const GetConfirmedSignaturesForAddress2RpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const GetConfirmedSignaturesForAddress2RpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   err: TransactionErrorResult,
-  memo: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()))
+  memo: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()))
 })));
 
 /**
  * Expected JSON RPC response for the "getSignaturesForAddress" message
  */
-const GetSignaturesForAddressRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const GetSignaturesForAddressRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   err: TransactionErrorResult,
-  memo: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()))
+  memo: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()))
 })));
 
 /***
  * Expected JSON RPC response for the "accountNotification" message
  */
-const AccountNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const AccountNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   result: notificationResultAndContext(AccountInfoResult)
 });
 
 /**
  * @internal
  */
-const ProgramAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const ProgramAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
   account: AccountInfoResult
 });
@@ -6971,25 +7085,25 @@ const ProgramAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.ty
 /***
  * Expected JSON RPC response for the "programNotification" message
  */
-const ProgramAccountNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const ProgramAccountNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   result: notificationResultAndContext(ProgramAccountInfoResult)
 });
 
 /**
  * @internal
  */
-const SlotInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  parent: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  root: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const SlotInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  parent: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  root: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
  * Expected JSON RPC response for the "slotNotification" message
  */
-const SlotNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const SlotNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   result: SlotInfoResult
 });
 
@@ -7011,429 +7125,418 @@ const SlotNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type
 /**
  * @internal
  */
-const SlotUpdateResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('firstShredReceived'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('completed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('optimisticConfirmation'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('root')]),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
-}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('createdBank'),
-  parent: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
-}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('frozen'),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  stats: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    numTransactionEntries: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    numSuccessfulTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    numFailedTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    maxTransactionsPerEntry: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const SlotUpdateResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('firstShredReceived'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('completed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('optimisticConfirmation'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('root')]),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
+}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('createdBank'),
+  parent: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
+}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('frozen'),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  stats: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    numTransactionEntries: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    numSuccessfulTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    numFailedTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    maxTransactionsPerEntry: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
   })
-}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('dead'),
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  err: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()
+}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  type: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('dead'),
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  timestamp: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  err: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()
 })]);
 
 /**
  * Expected JSON RPC response for the "slotsUpdatesNotification" message
  */
-const SlotUpdateNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const SlotUpdateNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   result: SlotUpdateResult
 });
 
 /**
  * Expected JSON RPC response for the "signatureNotification" message
  */
-const SignatureNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  result: notificationResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([SignatureStatusResult, SignatureReceivedResult]))
+const SignatureNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  result: notificationResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([SignatureStatusResult, SignatureReceivedResult]))
 });
 
 /**
  * Expected JSON RPC response for the "rootNotification" message
  */
-const RootNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  result: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const RootNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  result: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
-const ContactInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  pubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  gossip: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  tpu: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  rpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())
+const ContactInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  pubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  gossip: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  tpu: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  rpc: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())
 });
-const VoteAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  votePubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  nodePubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  activatedStake: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  epochVoteAccount: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
-  epochCredits: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()])),
-  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  lastVote: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  rootSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const VoteAccountInfoResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  votePubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  nodePubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  activatedStake: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  epochVoteAccount: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
+  epochCredits: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.tuple)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()])),
+  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  lastVote: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  rootSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
 
 /**
  * Expected JSON RPC response for the "getVoteAccounts" message
  */
-const GetVoteAccounts = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  current: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(VoteAccountInfoResult),
-  delinquent: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(VoteAccountInfoResult)
+const GetVoteAccounts = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  current: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(VoteAccountInfoResult),
+  delinquent: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(VoteAccountInfoResult)
 }));
-const ConfirmationStatus = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('processed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('confirmed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('finalized')]);
-const SignatureStatusResponse = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  confirmations: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
+const ConfirmationStatus = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('processed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('confirmed'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('finalized')]);
+const SignatureStatusResponse = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  confirmations: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
   err: TransactionErrorResult,
-  confirmationStatus: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(ConfirmationStatus)
+  confirmationStatus: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(ConfirmationStatus)
 });
 
 /**
  * Expected JSON RPC response for the "getSignatureStatuses" message
  */
-const GetSignatureStatusesRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(SignatureStatusResponse)));
+const GetSignatureStatusesRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(SignatureStatusResponse)));
 
 /**
  * Expected JSON RPC response for the "getMinimumBalanceForRentExemption" message
  */
-const GetMinimumBalanceForRentExemptionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)());
-const AddressTableLookupStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetMinimumBalanceForRentExemptionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)());
+const AddressTableLookupStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   accountKey: PublicKeyFromString,
-  writableIndexes: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  readonlyIndexes: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  writableIndexes: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  readonlyIndexes: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
-const ConfirmedTransactionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  message: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-    header: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      numRequiredSignatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-      numReadonlySignedAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-      numReadonlyUnsignedAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const ConfirmedTransactionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  message: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+    header: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      numRequiredSignatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+      numReadonlySignedAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+      numReadonlyUnsignedAccounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
     }),
-    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-      programIdIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+      programIdIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
     })),
-    recentBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-    addressTableLookups: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(AddressTableLookupStruct))
+    recentBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+    addressTableLookups: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(AddressTableLookupStruct))
   })
 });
-const AnnotatedAccountKey = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const AnnotatedAccountKey = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   pubkey: PublicKeyFromString,
-  signer: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
-  writable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)(),
-  source: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('transaction'), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('lookupTable')]))
+  signer: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
+  writable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)(),
+  source: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('transaction'), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('lookupTable')]))
 });
-const ConfirmedTransactionAccountsModeResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(AnnotatedAccountKey),
-  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())
+const ConfirmedTransactionAccountsModeResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(AnnotatedAccountKey),
+  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())
 });
-const ParsedInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.unknown)(),
-  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
+const ParsedInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)(),
+  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
   programId: PublicKeyFromString
 });
-const RawInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PublicKeyFromString),
-  data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
+const RawInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString),
+  data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
   programId: PublicKeyFromString
 });
-const InstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([RawInstructionResult, ParsedInstructionResult]);
-const UnknownInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.unknown)(),
-  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()
-}), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()
+const InstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([RawInstructionResult, ParsedInstructionResult]);
+const UnknownInstructionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  parsed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.unknown)(),
+  program: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()
+}), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()
 })]);
-const ParsedOrRawInstruction = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.coerce)(InstructionResult, UnknownInstructionResult, value => {
+const ParsedOrRawInstruction = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.coerce)(InstructionResult, UnknownInstructionResult, value => {
   if ('accounts' in value) {
-    return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(value, RawInstructionResult);
+    return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(value, RawInstructionResult);
   } else {
-    return (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(value, ParsedInstructionResult);
+    return (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(value, ParsedInstructionResult);
   }
 });
 
 /**
  * @internal
  */
-const ParsedConfirmedTransactionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  message: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(AnnotatedAccountKey),
-    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(ParsedOrRawInstruction),
-    recentBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-    addressTableLookups: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(AddressTableLookupStruct)))
+const ParsedConfirmedTransactionResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  message: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    accountKeys: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(AnnotatedAccountKey),
+    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(ParsedOrRawInstruction),
+    recentBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+    addressTableLookups: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(AddressTableLookupStruct)))
   })
 });
-const TokenBalanceResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  accountIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  mint: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  owner: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
+const TokenBalanceResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  accountIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  mint: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  owner: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  programId: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
   uiTokenAmount: TokenAmountResult
 });
-const LoadedAddressesResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  writable: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PublicKeyFromString),
-  readonly: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PublicKeyFromString)
+const LoadedAddressesResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  writable: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString),
+  readonly: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString)
 });
 
 /**
  * @internal
  */
-const ConfirmedTransactionMetaResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const ConfirmedTransactionMetaResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   err: TransactionErrorResult,
-  fee: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  innerInstructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    index: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-      accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-      programIdIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  fee: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  innerInstructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    index: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+      accounts: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+      data: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+      programIdIndex: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
     }))
   })))),
-  preBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  postBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  logMessages: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()))),
-  preTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(TokenBalanceResult))),
-  postTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(TokenBalanceResult))),
-  loadedAddresses: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(LoadedAddressesResult),
-  computeUnitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  preBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  postBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  logMessages: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()))),
+  preTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(TokenBalanceResult))),
+  postTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(TokenBalanceResult))),
+  loadedAddresses: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(LoadedAddressesResult),
+  computeUnitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
 
 /**
  * @internal
  */
-const ParsedConfirmedTransactionMetaResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const ParsedConfirmedTransactionMetaResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   err: TransactionErrorResult,
-  fee: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  innerInstructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    index: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(ParsedOrRawInstruction)
+  fee: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  innerInstructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    index: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+    instructions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(ParsedOrRawInstruction)
   })))),
-  preBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  postBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  logMessages: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()))),
-  preTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(TokenBalanceResult))),
-  postTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(TokenBalanceResult))),
-  loadedAddresses: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(LoadedAddressesResult),
-  computeUnitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  preBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  postBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  logMessages: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()))),
+  preTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(TokenBalanceResult))),
+  postTokenBalances: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(TokenBalanceResult))),
+  loadedAddresses: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(LoadedAddressesResult),
+  computeUnitsConsumed: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 });
-const TransactionVersionStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)(0), (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.literal)('legacy')]);
+const TransactionVersionStruct = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.union)([(0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)(0), (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.literal)('legacy')]);
 
 /** @internal */
-const RewardsResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  pubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  postBalance: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  rewardType: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()))
+const RewardsResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  pubkey: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  lamports: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  postBalance: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  rewardType: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  commission: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()))
 });
 
 /**
  * Expected JSON RPC response for the "getBlock" message
  */
-const GetBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
     transaction: ConfirmedTransactionResult,
-    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ConfirmedTransactionMetaResult),
-    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ConfirmedTransactionMetaResult),
+    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
   })),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected JSON RPC response for the "getBlock" message when `transactionDetails` is `none`
  */
-const GetNoneModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const GetNoneModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected JSON RPC response for the "getBlock" message when `transactionDetails` is `accounts`
  */
-const GetAccountsModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetAccountsModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
     transaction: ConfirmedTransactionAccountsModeResult,
-    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ConfirmedTransactionMetaResult),
-    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ConfirmedTransactionMetaResult),
+    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
   })),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected parsed JSON RPC response for the "getBlock" message
  */
-const GetParsedBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetParsedBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
     transaction: ParsedConfirmedTransactionResult,
-    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ParsedConfirmedTransactionMetaResult),
-    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ParsedConfirmedTransactionMetaResult),
+    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
   })),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected parsed JSON RPC response for the "getBlock" message  when `transactionDetails` is `accounts`
  */
-const GetParsedAccountsModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetParsedAccountsModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
     transaction: ConfirmedTransactionAccountsModeResult,
-    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ParsedConfirmedTransactionMetaResult),
-    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ParsedConfirmedTransactionMetaResult),
+    version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
   })),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected parsed JSON RPC response for the "getBlock" message  when `transactionDetails` is `none`
  */
-const GetParsedNoneModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()),
-  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const GetParsedNoneModeBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()),
+  blockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected JSON RPC response for the "getConfirmedBlock" message
  *
- * @deprecated Deprecated since Solana v1.8.0. Please use {@link GetBlockRpcResult} instead.
+ * @deprecated Deprecated since RPC v1.8.0. Please use {@link GetBlockRpcResult} instead.
  */
-const GetConfirmedBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const GetConfirmedBlockRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  transactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
     transaction: ConfirmedTransactionResult,
-    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ConfirmedTransactionMetaResult)
+    meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ConfirmedTransactionMetaResult)
   })),
-  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(RewardsResult)),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+  rewards: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(RewardsResult)),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected JSON RPC response for the "getBlock" message
  */
-const GetBlockSignaturesRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())
+const GetBlockSignaturesRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  previousBlockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  parentSlot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  signatures: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())
 })));
 
 /**
  * Expected JSON RPC response for the "getTransaction" message
  */
-const GetTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ConfirmedTransactionMetaResult),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())),
+const GetTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ConfirmedTransactionMetaResult),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())),
   transaction: ConfirmedTransactionResult,
-  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
 })));
 
 /**
  * Expected parsed JSON RPC response for the "getTransaction" message
  */
-const GetParsedTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
+const GetParsedTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
   transaction: ParsedConfirmedTransactionResult,
-  meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ParsedConfirmedTransactionMetaResult),
-  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())),
-  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)(TransactionVersionStruct)
+  meta: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ParsedConfirmedTransactionMetaResult),
+  blockTime: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())),
+  version: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)(TransactionVersionStruct)
 })));
-
-/**
- * Expected JSON RPC response for the "getRecentBlockhash" message
- *
- * @deprecated Deprecated since Solana v1.8.0. Please use {@link GetLatestBlockhashRpcResult} instead.
- */
-const GetRecentBlockhashAndContextRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  feeCalculator: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    lamportsPerSignature: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
-  })
-}));
 
 /**
  * Expected JSON RPC response for the "getLatestBlockhash" message
  */
-const GetLatestBlockhashRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  lastValidBlockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetLatestBlockhashRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  blockhash: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  lastValidBlockHeight: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 }));
 
 /**
  * Expected JSON RPC response for the "isBlockhashValid" message
  */
-const IsBlockhashValidRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.boolean)());
-const PerfSampleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  numTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  numSlots: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)(),
-  samplePeriodSecs: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const IsBlockhashValidRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.boolean)());
+const PerfSampleResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  slot: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  numTransactions: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  numSlots: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)(),
+  samplePeriodSecs: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /*
  * Expected JSON RPC response for "getRecentPerformanceSamples" message
  */
-const GetRecentPerformanceSamplesRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PerfSampleResult));
+const GetRecentPerformanceSamplesRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PerfSampleResult));
 
 /**
  * Expected JSON RPC response for the "getFeeCalculatorForBlockhash" message
  */
-const GetFeeCalculatorRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  feeCalculator: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-    lamportsPerSignature: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+const GetFeeCalculatorRpcResult = jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  feeCalculator: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+    lamportsPerSignature: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
   })
 })));
 
 /**
  * Expected JSON RPC response for the "requestAirdrop" message
  */
-const RequestAirdropRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)());
+const RequestAirdropRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)());
 
 /**
  * Expected JSON RPC response for the "sendTransaction" message
  */
-const SendTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)());
+const SendTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)());
 
 /**
  * Information about the latest slot being processed by a node
@@ -7546,10 +7649,10 @@ const SendTransactionRpcResult = jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_
 /**
  * @internal
  */
-const LogsResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const LogsResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   err: TransactionErrorResult,
-  logs: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()
+  logs: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  signature: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()
 });
 
 /**
@@ -7559,9 +7662,9 @@ const LogsResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
 /**
  * Expected JSON RPC response for the "logsNotification" message.
  */
-const LogsNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
+const LogsNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
   result: notificationResultAndContext(LogsResult),
-  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()
+  subscription: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()
 });
 
 /**
@@ -7615,7 +7718,7 @@ const LogsNotificationResult = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type
 
 /** @internal */
 const COMMON_HTTP_HEADERS = {
-  'solana-client': `js/${"0.0.0-development" }`
+  'solana-client': `js/${"1.0.0-maintenance"}`
 };
 
 /**
@@ -7708,11 +7811,11 @@ class Connection {
           config
         } = extractCommitmentFromConfig(commitmentOrConfig);
         const args = this._buildArgs([], commitment, undefined /* encoding */, config);
-        const requestHash = fastStableStringify$1(args);
+        const requestHash = fastStableStringify(args);
         requestPromises[requestHash] = requestPromises[requestHash] ?? (async () => {
           try {
             const unsafeRes = await this._rpcRequest('getBlockHeight', args);
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
             if ('error' in res) {
               throw new SolanaJSONRPCError(res.error, 'failed to get block height information');
             }
@@ -7788,7 +7891,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([publicKey.toBase58()], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getBalance', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get balance for ${publicKey.toBase58()}`);
     }
@@ -7809,7 +7912,7 @@ class Connection {
    */
   async getBlockTime(slot) {
     const unsafeRes = await this._rpcRequest('getBlockTime', [slot]);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get block time for slot ${slot}`);
     }
@@ -7822,7 +7925,7 @@ class Connection {
    */
   async getMinimumLedgerSlot() {
     const unsafeRes = await this._rpcRequest('minimumLedgerSlot', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get minimum ledger slot');
     }
@@ -7834,7 +7937,7 @@ class Connection {
    */
   async getFirstAvailableBlock() {
     const unsafeRes = await this._rpcRequest('getFirstAvailableBlock', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, SlotRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, SlotRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get first available block');
     }
@@ -7861,7 +7964,7 @@ class Connection {
       };
     }
     const unsafeRes = await this._rpcRequest('getSupply', [configArg]);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetSupplyRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetSupplyRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get supply');
     }
@@ -7874,7 +7977,7 @@ class Connection {
   async getTokenSupply(tokenMintAddress, commitment) {
     const args = this._buildArgs([tokenMintAddress.toBase58()], commitment);
     const unsafeRes = await this._rpcRequest('getTokenSupply', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get token supply');
     }
@@ -7887,7 +7990,7 @@ class Connection {
   async getTokenAccountBalance(tokenAddress, commitment) {
     const args = this._buildArgs([tokenAddress.toBase58()], commitment);
     const unsafeRes = await this._rpcRequest('getTokenAccountBalance', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get token account balance');
     }
@@ -7916,7 +8019,7 @@ class Connection {
     }
     const args = this._buildArgs(_args, commitment, 'base64', config);
     const unsafeRes = await this._rpcRequest('getTokenAccountsByOwner', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetTokenAccountsByOwner);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetTokenAccountsByOwner);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
     }
@@ -7941,7 +8044,7 @@ class Connection {
     }
     const args = this._buildArgs(_args, commitment, 'jsonParsed');
     const unsafeRes = await this._rpcRequest('getTokenAccountsByOwner', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedTokenAccountsByOwner);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedTokenAccountsByOwner);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
     }
@@ -7958,7 +8061,7 @@ class Connection {
     };
     const args = arg.filter || arg.commitment ? [arg] : [];
     const unsafeRes = await this._rpcRequest('getLargestAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetLargestAccountsRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetLargestAccountsRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get largest accounts');
     }
@@ -7972,7 +8075,7 @@ class Connection {
   async getTokenLargestAccounts(mintAddress, commitment) {
     const args = this._buildArgs([mintAddress.toBase58()], commitment);
     const unsafeRes = await this._rpcRequest('getTokenLargestAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetTokenLargestAccountsResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetTokenLargestAccountsResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get token largest accounts');
     }
@@ -7989,7 +8092,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([publicKey.toBase58()], commitment, 'base64', config);
     const unsafeRes = await this._rpcRequest('getAccountInfo', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(AccountInfoResult)));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(AccountInfoResult)));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
     }
@@ -8006,7 +8109,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([publicKey.toBase58()], commitment, 'jsonParsed', config);
     const unsafeRes = await this._rpcRequest('getAccountInfo', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ParsedAccountInfoResult)));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ParsedAccountInfoResult)));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
     }
@@ -8036,7 +8139,7 @@ class Connection {
     const keys = publicKeys.map(key => key.toBase58());
     const args = this._buildArgs([keys], commitment, 'jsonParsed', config);
     const unsafeRes = await this._rpcRequest('getMultipleAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(ParsedAccountInfoResult))));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(ParsedAccountInfoResult))));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
     }
@@ -8054,7 +8157,7 @@ class Connection {
     const keys = publicKeys.map(key => key.toBase58());
     const args = this._buildArgs([keys], commitment, 'base64', config);
     const unsafeRes = await this._rpcRequest('getMultipleAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)(AccountInfoResult))));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)(AccountInfoResult))));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
     }
@@ -8071,6 +8174,8 @@ class Connection {
 
   /**
    * Returns epoch activation information for a stake account that has been delegated
+   *
+   * @deprecated Deprecated since RPC v1.18; will be removed in a future version.
    */
   async getStakeActivation(publicKey, commitmentOrConfig, epoch) {
     const {
@@ -8082,7 +8187,7 @@ class Connection {
       epoch: epoch != null ? epoch : config?.epoch
     });
     const unsafeRes = await this._rpcRequest('getStakeActivation', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult(StakeActivationResult));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult(StakeActivationResult));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get Stake Activation ${publicKey.toBase58()}`);
     }
@@ -8107,10 +8212,15 @@ class Connection {
       encoding,
       ...configWithoutEncoding
     } = config || {};
-    const args = this._buildArgs([programId.toBase58()], commitment, encoding || 'base64', configWithoutEncoding);
+    const args = this._buildArgs([programId.toBase58()], commitment, encoding || 'base64', {
+      ...configWithoutEncoding,
+      ...(configWithoutEncoding.filters ? {
+        filters: applyDefaultMemcmpEncodingToFilters(configWithoutEncoding.filters)
+      } : null)
+    });
     const unsafeRes = await this._rpcRequest('getProgramAccounts', args);
-    const baseSchema = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(KeyedAccountInfoResult);
-    const res = configWithoutEncoding.withContext === true ? (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext(baseSchema)) : (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult(baseSchema));
+    const baseSchema = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(KeyedAccountInfoResult);
+    const res = configWithoutEncoding.withContext === true ? (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext(baseSchema)) : (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult(baseSchema));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
     }
@@ -8129,7 +8239,7 @@ class Connection {
     } = extractCommitmentFromConfig(configOrCommitment);
     const args = this._buildArgs([programId.toBase58()], commitment, 'jsonParsed', config);
     const unsafeRes = await this._rpcRequest('getProgramAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(KeyedParsedAccountInfoResult)));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(KeyedParsedAccountInfoResult)));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
     }
@@ -8520,7 +8630,7 @@ class Connection {
    */
   async getClusterNodes() {
     const unsafeRes = await this._rpcRequest('getClusterNodes', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(ContactInfoResult)));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(ContactInfoResult)));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get cluster nodes');
     }
@@ -8533,7 +8643,7 @@ class Connection {
   async getVoteAccounts(commitment) {
     const args = this._buildArgs([], commitment);
     const unsafeRes = await this._rpcRequest('getVoteAccounts', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetVoteAccounts);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetVoteAccounts);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get vote accounts');
     }
@@ -8550,7 +8660,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getSlot', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get slot');
     }
@@ -8567,7 +8677,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getSlotLeader', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get slot leader');
     }
@@ -8583,7 +8693,7 @@ class Connection {
   async getSlotLeaders(startSlot, limit) {
     const args = [startSlot, limit];
     const unsafeRes = await this._rpcRequest('getSlotLeaders', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)(PublicKeyFromString)));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)(PublicKeyFromString)));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get slot leaders');
     }
@@ -8615,7 +8725,7 @@ class Connection {
       params.push(config);
     }
     const unsafeRes = await this._rpcRequest('getSignatureStatuses', params);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetSignatureStatusesRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetSignatureStatusesRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get signature status');
     }
@@ -8632,7 +8742,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getTransactionCount', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get transaction count');
     }
@@ -8642,7 +8752,7 @@ class Connection {
   /**
    * Fetch the current total currency supply of the cluster in lamports
    *
-   * @deprecated Deprecated since v1.2.8. Please use {@link getSupply} instead.
+   * @deprecated Deprecated since RPC v1.2.8. Please use {@link getSupply} instead.
    */
   async getTotalSupply(commitment) {
     const result = await this.getSupply({
@@ -8658,7 +8768,7 @@ class Connection {
   async getInflationGovernor(commitment) {
     const args = this._buildArgs([], commitment);
     const unsafeRes = await this._rpcRequest('getInflationGovernor', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetInflationGovernorRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetInflationGovernorRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get inflation');
     }
@@ -8678,7 +8788,7 @@ class Connection {
       epoch: epoch != null ? epoch : config?.epoch
     });
     const unsafeRes = await this._rpcRequest('getInflationReward', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetInflationRewardResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetInflationRewardResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get inflation reward');
     }
@@ -8690,7 +8800,7 @@ class Connection {
    */
   async getInflationRate() {
     const unsafeRes = await this._rpcRequest('getInflationRate', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetInflationRateRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetInflationRateRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get inflation rate');
     }
@@ -8707,7 +8817,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getEpochInfo', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetEpochInfoRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetEpochInfoRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get epoch info');
     }
@@ -8719,7 +8829,7 @@ class Connection {
    */
   async getEpochSchedule() {
     const unsafeRes = await this._rpcRequest('getEpochSchedule', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetEpochScheduleRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetEpochScheduleRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get epoch schedule');
     }
@@ -8733,7 +8843,7 @@ class Connection {
    */
   async getLeaderSchedule() {
     const unsafeRes = await this._rpcRequest('getLeaderSchedule', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetLeaderScheduleRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetLeaderScheduleRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get leader schedule');
     }
@@ -8747,7 +8857,7 @@ class Connection {
   async getMinimumBalanceForRentExemption(dataLength, commitment) {
     const args = this._buildArgs([dataLength], commitment);
     const unsafeRes = await this._rpcRequest('getMinimumBalanceForRentExemption', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetMinimumBalanceForRentExemptionRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetMinimumBalanceForRentExemptionRpcResult);
     if ('error' in res) {
       console.warn('Unable to fetch minimum balance for rent exemption');
       return 0;
@@ -8759,16 +8869,30 @@ class Connection {
    * Fetch a recent blockhash from the cluster, return with context
    * @return {Promise<RpcResponseAndContext<{blockhash: Blockhash, feeCalculator: FeeCalculator}>>}
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getLatestBlockhash} instead.
+   * @deprecated Deprecated since RPC v1.9.0. Please use {@link getLatestBlockhash} instead.
    */
   async getRecentBlockhashAndContext(commitment) {
-    const args = this._buildArgs([], commitment);
-    const unsafeRes = await this._rpcRequest('getRecentBlockhash', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetRecentBlockhashAndContextRpcResult);
-    if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get recent blockhash');
-    }
-    return res.result;
+    const {
+      context,
+      value: {
+        blockhash
+      }
+    } = await this.getLatestBlockhashAndContext(commitment);
+    const feeCalculator = {
+      get lamportsPerSignature() {
+        throw new Error('The capability to fetch `lamportsPerSignature` using the `getRecentBlockhash` API is ' + 'no longer offered by the network. Use the `getFeeForMessage` API to obtain the fee ' + 'for a given message.');
+      },
+      toJSON() {
+        return {};
+      }
+    };
+    return {
+      context,
+      value: {
+        blockhash,
+        feeCalculator
+      }
+    };
   }
 
   /**
@@ -8777,7 +8901,7 @@ class Connection {
    */
   async getRecentPerformanceSamples(limit) {
     const unsafeRes = await this._rpcRequest('getRecentPerformanceSamples', limit ? [limit] : []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetRecentPerformanceSamplesRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetRecentPerformanceSamplesRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get recent performance samples');
     }
@@ -8787,12 +8911,12 @@ class Connection {
   /**
    * Fetch the fee calculator for a recent blockhash from the cluster, return with context
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getFeeForMessage} instead.
+   * @deprecated Deprecated since RPC v1.9.0. Please use {@link getFeeForMessage} instead.
    */
   async getFeeCalculatorForBlockhash(blockhash, commitment) {
     const args = this._buildArgs([blockhash], commitment);
     const unsafeRes = await this._rpcRequest('getFeeCalculatorForBlockhash', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetFeeCalculatorRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetFeeCalculatorRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get fee calculator');
     }
@@ -8813,7 +8937,7 @@ class Connection {
     const wireMessage = toBuffer(message.serialize()).toString('base64');
     const args = this._buildArgs([wireMessage], commitment);
     const unsafeRes = await this._rpcRequest('getFeeForMessage', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.nullable)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get fee for message');
     }
@@ -8830,7 +8954,7 @@ class Connection {
     const accounts = config?.lockedWritableAccounts?.map(key => key.toBase58());
     const args = accounts?.length ? [accounts] : [];
     const unsafeRes = await this._rpcRequest('getRecentPrioritizationFees', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetRecentPrioritizationFeesRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetRecentPrioritizationFeesRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get recent prioritization fees');
     }
@@ -8840,7 +8964,7 @@ class Connection {
    * Fetch a recent blockhash from the cluster
    * @return {Promise<{blockhash: Blockhash, feeCalculator: FeeCalculator}>}
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getLatestBlockhash} instead.
+   * @deprecated Deprecated since RPC v1.8.0. Please use {@link getLatestBlockhash} instead.
    */
   async getRecentBlockhash(commitment) {
     try {
@@ -8875,7 +8999,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getLatestBlockhash', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetLatestBlockhashRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetLatestBlockhashRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get latest blockhash');
     }
@@ -8892,7 +9016,7 @@ class Connection {
     } = extractCommitmentFromConfig(rawConfig);
     const args = this._buildArgs([blockhash], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('isBlockhashValid', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, IsBlockhashValidRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, IsBlockhashValidRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to determine if the blockhash `' + blockhash + '`is valid');
     }
@@ -8904,7 +9028,7 @@ class Connection {
    */
   async getVersion() {
     const unsafeRes = await this._rpcRequest('getVersion', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult(VersionResult));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult(VersionResult));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get version');
     }
@@ -8916,7 +9040,7 @@ class Connection {
    */
   async getGenesisHash() {
     const unsafeRes = await this._rpcRequest('getGenesisHash', []);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get genesis hash');
     }
@@ -8966,7 +9090,7 @@ class Connection {
       switch (config?.transactionDetails) {
         case 'accounts':
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetAccountsModeBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetAccountsModeBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -8974,7 +9098,7 @@ class Connection {
           }
         case 'none':
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetNoneModeBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetNoneModeBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -8982,7 +9106,7 @@ class Connection {
           }
         default:
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -9031,7 +9155,7 @@ class Connection {
       switch (config?.transactionDetails) {
         case 'accounts':
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedAccountsModeBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedAccountsModeBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -9039,7 +9163,7 @@ class Connection {
           }
         case 'none':
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedNoneModeBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedNoneModeBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -9047,7 +9171,7 @@ class Connection {
           }
         default:
           {
-            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedBlockRpcResult);
+            const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedBlockRpcResult);
             if ('error' in res) {
               throw res.error;
             }
@@ -9076,7 +9200,7 @@ class Connection {
     }
     const args = this._buildArgs([], commitment, 'base64', extra);
     const unsafeRes = await this._rpcRequest('getBlockProduction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, BlockProductionResponseStruct);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, BlockProductionResponseStruct);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get block production information');
     }
@@ -9107,7 +9231,7 @@ class Connection {
     } = extractCommitmentFromConfig(rawConfig);
     const args = this._buildArgsAtLeastConfirmed([signature], commitment, undefined /* encoding */, config);
     const unsafeRes = await this._rpcRequest('getTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetTransactionRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetTransactionRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
@@ -9132,7 +9256,7 @@ class Connection {
     } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgsAtLeastConfirmed([signature], commitment, 'jsonParsed', config);
     const unsafeRes = await this._rpcRequest('getTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedTransactionRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedTransactionRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
@@ -9156,7 +9280,7 @@ class Connection {
     });
     const unsafeRes = await this._rpcBatchRequest(batch);
     const res = unsafeRes.map(unsafeRes => {
-      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedTransactionRpcResult);
+      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedTransactionRpcResult);
       if ('error' in res) {
         throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
       }
@@ -9201,7 +9325,7 @@ class Connection {
     });
     const unsafeRes = await this._rpcBatchRequest(batch);
     const res = unsafeRes.map(unsafeRes => {
-      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetTransactionRpcResult);
+      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetTransactionRpcResult);
       if ('error' in res) {
         throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
       }
@@ -9222,12 +9346,12 @@ class Connection {
    * Fetch a list of Transactions and transaction statuses from the cluster
    * for a confirmed block.
    *
-   * @deprecated Deprecated since v1.13.0. Please use {@link getBlock} instead.
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getBlock} instead.
    */
   async getConfirmedBlock(slot, commitment) {
     const args = this._buildArgsAtLeastConfirmed([slot], commitment);
-    const unsafeRes = await this._rpcRequest('getConfirmedBlock', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetConfirmedBlockRpcResult);
+    const unsafeRes = await this._rpcRequest('getBlock', args);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetConfirmedBlockRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
     }
@@ -9271,7 +9395,7 @@ class Connection {
   async getBlocks(startSlot, endSlot, commitment) {
     const args = this._buildArgsAtLeastConfirmed(endSlot !== undefined ? [startSlot, endSlot] : [startSlot], commitment);
     const unsafeRes = await this._rpcRequest('getBlocks', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)())));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResult((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.array)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)())));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get blocks');
     }
@@ -9287,7 +9411,7 @@ class Connection {
       rewards: false
     });
     const unsafeRes = await this._rpcRequest('getBlock', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetBlockSignaturesRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetBlockSignaturesRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get block');
     }
@@ -9301,15 +9425,15 @@ class Connection {
   /**
    * Fetch a list of Signatures from the cluster for a confirmed block, excluding rewards
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getBlockSignatures} instead.
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getBlockSignatures} instead.
    */
   async getConfirmedBlockSignatures(slot, commitment) {
     const args = this._buildArgsAtLeastConfirmed([slot], commitment, undefined, {
       transactionDetails: 'signatures',
       rewards: false
     });
-    const unsafeRes = await this._rpcRequest('getConfirmedBlock', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetBlockSignaturesRpcResult);
+    const unsafeRes = await this._rpcRequest('getBlock', args);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetBlockSignaturesRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
     }
@@ -9323,12 +9447,12 @@ class Connection {
   /**
    * Fetch a transaction details for a confirmed transaction
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getTransaction} instead.
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getTransaction} instead.
    */
   async getConfirmedTransaction(signature, commitment) {
     const args = this._buildArgsAtLeastConfirmed([signature], commitment);
-    const unsafeRes = await this._rpcRequest('getConfirmedTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetTransactionRpcResult);
+    const unsafeRes = await this._rpcRequest('getTransaction', args);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetTransactionRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
@@ -9345,12 +9469,12 @@ class Connection {
   /**
    * Fetch parsed transaction details for a confirmed transaction
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getParsedTransaction} instead.
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getParsedTransaction} instead.
    */
   async getParsedConfirmedTransaction(signature, commitment) {
     const args = this._buildArgsAtLeastConfirmed([signature], commitment, 'jsonParsed');
-    const unsafeRes = await this._rpcRequest('getConfirmedTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedTransactionRpcResult);
+    const unsafeRes = await this._rpcRequest('getTransaction', args);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedTransactionRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transaction');
     }
@@ -9360,19 +9484,19 @@ class Connection {
   /**
    * Fetch parsed transaction details for a batch of confirmed transactions
    *
-   * @deprecated Deprecated since Solana v1.8.0. Please use {@link getParsedTransactions} instead.
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getParsedTransactions} instead.
    */
   async getParsedConfirmedTransactions(signatures, commitment) {
     const batch = signatures.map(signature => {
       const args = this._buildArgsAtLeastConfirmed([signature], commitment, 'jsonParsed');
       return {
-        methodName: 'getConfirmedTransaction',
+        methodName: 'getTransaction',
         args
       };
     });
     const unsafeRes = await this._rpcBatchRequest(batch);
     const res = unsafeRes.map(unsafeRes => {
-      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetParsedTransactionRpcResult);
+      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetParsedTransactionRpcResult);
       if ('error' in res) {
         throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transactions');
       }
@@ -9385,7 +9509,7 @@ class Connection {
    * Fetch a list of all the confirmed signatures for transactions involving an address
    * within a specified slot range. Max range allowed is 10,000 slots.
    *
-   * @deprecated Deprecated since v1.3. Please use {@link getConfirmedSignaturesForAddress2} instead.
+   * @deprecated Deprecated since RPC v1.3. Please use {@link getConfirmedSignaturesForAddress2} instead.
    *
    * @param address queried address
    * @param startSlot start slot, inclusive
@@ -9439,14 +9563,12 @@ class Connection {
    * Returns confirmed signatures for transactions involving an
    * address backwards in time from the provided signature or most recent confirmed block
    *
-   *
-   * @param address queried address
-   * @param options
+   * @deprecated Deprecated since RPC v1.7.0. Please use {@link getSignaturesForAddress} instead.
    */
   async getConfirmedSignaturesForAddress2(address, options, commitment) {
     const args = this._buildArgsAtLeastConfirmed([address.toBase58()], commitment, undefined, options);
     const unsafeRes = await this._rpcRequest('getConfirmedSignaturesForAddress2', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetConfirmedSignaturesForAddress2RpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetConfirmedSignaturesForAddress2RpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get confirmed signatures for address');
     }
@@ -9464,7 +9586,7 @@ class Connection {
   async getSignaturesForAddress(address, options, commitment) {
     const args = this._buildArgsAtLeastConfirmed([address.toBase58()], commitment, undefined, options);
     const unsafeRes = await this._rpcRequest('getSignaturesForAddress', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, GetSignaturesForAddressRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, GetSignaturesForAddressRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, 'failed to get signatures for address');
     }
@@ -9531,7 +9653,7 @@ class Connection {
    */
   async requestAirdrop(to, lamports) {
     const unsafeRes = await this._rpcRequest('requestAirdrop', [to.toBase58(), lamports]);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, RequestAirdropRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, RequestAirdropRpcResult);
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `airdrop to ${to.toBase58()} failed`);
     }
@@ -9596,7 +9718,7 @@ class Connection {
     } = extractCommitmentFromConfig(config);
     const args = this._buildArgs([], commitment, 'base64', configArg);
     const unsafeRes = await this._rpcRequest('getStakeMinimumDelegation', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.number)()));
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, jsonRpcResultAndContext((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.number)()));
     if ('error' in res) {
       throw new SolanaJSONRPCError(res.error, `failed to get stake minimum delegation`);
     }
@@ -9632,9 +9754,12 @@ class Connection {
       if (!('commitment' in config)) {
         config.commitment = this.commitment;
       }
+      if (configOrSigners && typeof configOrSigners === 'object' && 'innerInstructions' in configOrSigners) {
+        config.innerInstructions = configOrSigners.innerInstructions;
+      }
       const args = [encodedTransaction, config];
       const unsafeRes = await this._rpcRequest('simulateTransaction', args);
-      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, SimulatedTransactionResponseStruct);
+      const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, SimulatedTransactionResponseStruct);
       if ('error' in res) {
         throw new Error('failed to simulate transaction: ' + res.error.message);
       }
@@ -9703,9 +9828,12 @@ class Connection {
     if (signers) {
       config.sigVerify = true;
     }
+    if (configOrSigners && typeof configOrSigners === 'object' && 'innerInstructions' in configOrSigners) {
+      config.innerInstructions = configOrSigners.innerInstructions;
+    }
     const args = [encodedTransaction, config];
     const unsafeRes = await this._rpcRequest('simulateTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, SimulatedTransactionResponseStruct);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, SimulatedTransactionResponseStruct);
     if ('error' in res) {
       let logs;
       if ('data' in res.error) {
@@ -9716,7 +9844,12 @@ class Connection {
           console.error(res.error.message, logTrace);
         }
       }
-      throw new SendTransactionError('failed to simulate transaction: ' + res.error.message, logs);
+      throw new SendTransactionError({
+        action: 'simulate',
+        signature: '',
+        transactionMessage: res.error.message,
+        logs: logs
+      });
     }
     return res.result;
   }
@@ -9799,7 +9932,8 @@ class Connection {
       encoding: 'base64'
     };
     const skipPreflight = options && options.skipPreflight;
-    const preflightCommitment = options && options.preflightCommitment || this.commitment;
+    const preflightCommitment = skipPreflight === true ? 'processed' // FIXME Remove when https://github.com/anza-xyz/agave/pull/483 is deployed.
+    : options && options.preflightCommitment || this.commitment;
     if (options && options.maxRetries != null) {
       config.maxRetries = options.maxRetries;
     }
@@ -9814,13 +9948,18 @@ class Connection {
     }
     const args = [encodedTransaction, config];
     const unsafeRes = await this._rpcRequest('sendTransaction', args);
-    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(unsafeRes, SendTransactionRpcResult);
+    const res = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(unsafeRes, SendTransactionRpcResult);
     if ('error' in res) {
-      let logs;
+      let logs = undefined;
       if ('data' in res.error) {
         logs = res.error.data.logs;
       }
-      throw new SendTransactionError('failed to send transaction: ' + res.error.message, logs);
+      throw new SendTransactionError({
+        action: skipPreflight ? 'send' : 'simulate',
+        signature: '',
+        transactionMessage: res.error.message,
+        logs: logs
+      });
     }
     return res.result;
   }
@@ -10005,9 +10144,10 @@ class Connection {
               this._subscriptionCallbacksByServerSubscriptionId[serverSubscriptionId] = subscription.callbacks;
               await this._updateSubscriptions();
             } catch (e) {
-              if (e instanceof Error) {
-                console.error(`${method} error for argument`, args, e.message);
-              }
+              console.error(`Received ${e instanceof Error ? '' : 'JSON-RPC '}error calling \`${method}\``, {
+                args,
+                error: e
+              });
               if (!isCurrentConnectionStillActive()) {
                 return;
               }
@@ -10109,7 +10249,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, AccountNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, AccountNotificationResult);
     this._handleServerNotification(subscription, [result.value, result.context]);
   }
 
@@ -10143,7 +10283,7 @@ class Connection {
    */
   args) {
     const clientSubscriptionId = this._nextClientSubscriptionId++;
-    const hash = fastStableStringify$1([subscriptionConfig.method, args], true /* isArrayProp */);
+    const hash = fastStableStringify([subscriptionConfig.method, args]);
     const existingSubscription = this._subscriptionsByHash[hash];
     if (existingSubscription === undefined) {
       this._subscriptionsByHash[hash] = {
@@ -10173,13 +10313,22 @@ class Connection {
    *
    * @param publicKey Public key of the account to monitor
    * @param callback Function to invoke whenever the account is changed
-   * @param commitment Specify the commitment level account changes must reach before notification
+   * @param config
    * @return subscription id
    */
-  onAccountChange(publicKey, callback, commitment) {
+
+  /** @deprecated Instead, pass in an {@link AccountSubscriptionConfig} */
+  // eslint-disable-next-line no-dupe-class-members
+
+  // eslint-disable-next-line no-dupe-class-members
+  onAccountChange(publicKey, callback, commitmentOrConfig) {
+    const {
+      commitment,
+      config
+    } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([publicKey.toBase58()], commitment || this._commitment || 'finalized',
     // Apply connection/server default.
-    'base64');
+    'base64', config);
     return this._makeSubscription({
       callback,
       method: 'accountSubscribe',
@@ -10190,7 +10339,7 @@ class Connection {
   /**
    * Deregister an account notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeAccountChangeListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'account change');
@@ -10203,7 +10352,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, ProgramAccountNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, ProgramAccountNotificationResult);
     this._handleServerNotification(subscription, [{
       accountId: result.value.pubkey,
       accountInfo: result.value.account
@@ -10216,15 +10365,23 @@ class Connection {
    *
    * @param programId Public key of the program to monitor
    * @param callback Function to invoke whenever the account is changed
-   * @param commitment Specify the commitment level account changes must reach before notification
-   * @param filters The program account filters to pass into the RPC method
+   * @param config
    * @return subscription id
    */
-  onProgramAccountChange(programId, callback, commitment, filters) {
+
+  /** @deprecated Instead, pass in a {@link ProgramAccountSubscriptionConfig} */
+  // eslint-disable-next-line no-dupe-class-members
+
+  // eslint-disable-next-line no-dupe-class-members
+  onProgramAccountChange(programId, callback, commitmentOrConfig, maybeFilters) {
+    const {
+      commitment,
+      config
+    } = extractCommitmentFromConfig(commitmentOrConfig);
     const args = this._buildArgs([programId.toBase58()], commitment || this._commitment || 'finalized',
     // Apply connection/server default.
-    'base64' /* encoding */, filters ? {
-      filters: filters
+    'base64' /* encoding */, config ? config : maybeFilters ? {
+      filters: applyDefaultMemcmpEncodingToFilters(maybeFilters)
     } : undefined /* extra */);
     return this._makeSubscription({
       callback,
@@ -10236,7 +10393,7 @@ class Connection {
   /**
    * Deregister an account notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeProgramAccountChangeListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'program account change');
@@ -10260,7 +10417,7 @@ class Connection {
   /**
    * Deregister a logs callback.
    *
-   * @param id client subscription id to deregister.
+   * @param clientSubscriptionId client subscription id to deregister.
    */
   async removeOnLogsListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'logs');
@@ -10273,7 +10430,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, LogsNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, LogsNotificationResult);
     this._handleServerNotification(subscription, [result.value, result.context]);
   }
 
@@ -10284,7 +10441,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, SlotNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, SlotNotificationResult);
     this._handleServerNotification(subscription, [result]);
   }
 
@@ -10305,7 +10462,7 @@ class Connection {
   /**
    * Deregister a slot notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeSlotChangeListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'slot change');
@@ -10318,7 +10475,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, SlotUpdateNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, SlotUpdateNotificationResult);
     this._handleServerNotification(subscription, [result]);
   }
 
@@ -10340,7 +10497,7 @@ class Connection {
   /**
    * Deregister a slot update notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeSlotUpdateListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'slot update');
@@ -10394,7 +10551,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, SignatureNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, SignatureNotificationResult);
     if (result.value !== 'receivedSignature') {
       /**
        * Special case.
@@ -10490,7 +10647,7 @@ class Connection {
   /**
    * Deregister a signature notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeSignatureListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'signature result');
@@ -10503,7 +10660,7 @@ class Connection {
     const {
       result,
       subscription
-    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.create)(notification, RootNotificationResult);
+    } = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.create)(notification, RootNotificationResult);
     this._handleServerNotification(subscription, [result]);
   }
 
@@ -10524,7 +10681,7 @@ class Connection {
   /**
    * Deregister a root notification callback
    *
-   * @param id client subscription id to deregister
+   * @param clientSubscriptionId client subscription id to deregister
    */
   async removeRootChangeListener(clientSubscriptionId) {
     await this._unsubscribeClientSubscription(clientSubscriptionId, 'root change');
@@ -11164,11 +11321,11 @@ class Ed25519Program {
 Ed25519Program.programId = new PublicKey('Ed25519SigVerify111111111111111111111111111');
 
 const ecdsaSign = (msgHash, privKey) => {
-  const signature = _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_12__.secp256k1.sign(msgHash, privKey);
+  const signature = _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_11__.secp256k1.sign(msgHash, privKey);
   return [signature.toCompactRawBytes(), signature.recovery];
 };
-_noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_12__.secp256k1.utils.isValidPrivateKey;
-const publicKeyCreate = _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_12__.secp256k1.getPublicKey;
+_noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_11__.secp256k1.utils.isValidPrivateKey;
+const publicKeyCreate = _noble_curves_secp256k1__WEBPACK_IMPORTED_MODULE_11__.secp256k1.getPublicKey;
 
 const PRIVATE_KEY_BYTES = 32;
 const ETHEREUM_ADDRESS_BYTES = 20;
@@ -11205,7 +11362,7 @@ class Secp256k1Program {
   static publicKeyToEthAddress(publicKey) {
     assert(publicKey.length === PUBLIC_KEY_BYTES, `Public key must be ${PUBLIC_KEY_BYTES} bytes but received ${publicKey.length} bytes`);
     try {
-      return buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from((0,_noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_13__.keccak_256)(toBuffer(publicKey))).slice(-ETHEREUM_ADDRESS_BYTES);
+      return buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from((0,_noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_12__.keccak_256)(toBuffer(publicKey))).slice(-ETHEREUM_ADDRESS_BYTES);
     } catch (error) {
       throw new Error(`Error constructing Ethereum address: ${error}`);
     }
@@ -11296,7 +11453,7 @@ class Secp256k1Program {
     try {
       const privateKey = toBuffer(pkey);
       const publicKey = publicKeyCreate(privateKey, false /* isCompressed */).slice(1); // throw away leading byte
-      const messageHash = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from((0,_noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_13__.keccak_256)(toBuffer(message)));
+      const messageHash = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from((0,_noble_hashes_sha3__WEBPACK_IMPORTED_MODULE_12__.keccak_256)(toBuffer(message)));
       const [signature, recoveryId] = ecdsaSign(messageHash, privateKey);
       return this.createInstructionWithPublicKey({
         publicKey,
@@ -11312,7 +11469,7 @@ class Secp256k1Program {
 }
 Secp256k1Program.programId = new PublicKey('KeccakSecp256k11111111111111111111111111111');
 
-var _class2;
+var _Lockup;
 
 /**
  * Address of the stake config account which configures the rate
@@ -11361,8 +11518,8 @@ class Lockup {
    * Default, inactive Lockup value
    */
 }
-_class2 = Lockup;
-Lockup.default = new _class2(0, 0, PublicKey.default);
+_Lockup = Lockup;
+Lockup.default = new _Lockup(0, 0, PublicKey.default);
 /**
  * Create stake account transaction params
  */
@@ -11925,12 +12082,14 @@ class StakeProgram {
   /**
    * Generate a Transaction that splits Stake tokens into another stake account
    */
-  static split(params) {
+  static split(params,
+  // Compute the cost of allocating the new stake account in lamports
+  rentExemptReserve) {
     const transaction = new Transaction();
     transaction.add(SystemProgram.createAccount({
       fromPubkey: params.authorizedPubkey,
       newAccountPubkey: params.splitStakePubkey,
-      lamports: 0,
+      lamports: rentExemptReserve,
       space: this.space,
       programId: this.programId
     }));
@@ -11941,7 +12100,9 @@ class StakeProgram {
    * Generate a Transaction that splits Stake tokens into another account
    * derived from a base public key and seed
    */
-  static splitWithSeed(params) {
+  static splitWithSeed(params,
+  // If this stake account is new, compute the cost of allocating it in lamports
+  rentExemptReserve) {
     const {
       stakePubkey,
       authorizedPubkey,
@@ -11958,6 +12119,13 @@ class StakeProgram {
       space: this.space,
       programId: this.programId
     }));
+    if (rentExemptReserve && rentExemptReserve > 0) {
+      transaction.add(SystemProgram.transfer({
+        fromPubkey: params.authorizedPubkey,
+        toPubkey: splitStakePubkey,
+        lamports: rentExemptReserve
+      }));
+    }
     return transaction.add(this.splitInstruction({
       stakePubkey,
       authorizedPubkey,
@@ -12088,8 +12256,8 @@ StakeProgram.programId = new PublicKey('Stake11111111111111111111111111111111111
  * Max space of a Stake account
  *
  * This is generated from the solana-stake-program StakeState struct as
- * `StakeState::size_of()`:
- * https://docs.rs/solana-stake-program/latest/solana_stake_program/stake_state/enum.StakeState.html
+ * `StakeStateV2::size_of()`:
+ * https://docs.rs/solana-stake-program/latest/solana_stake_program/stake_state/enum.StakeStateV2.html
  */
 StakeProgram.space = 200;
 
@@ -12129,6 +12297,10 @@ class VoteInit {
 
 /**
  * Withdraw from vote account transaction params
+ */
+
+/**
+ * Update validator identity (node pubkey) vote account instruction params.
  */
 
 /**
@@ -12276,6 +12448,10 @@ const VOTE_INSTRUCTION_LAYOUTS = Object.freeze({
   Withdraw: {
     index: 3,
     layout: _solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__.struct([_solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__.u32('instruction'), _solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__.ns64('lamports')])
+  },
+  UpdateValidatorIdentity: {
+    index: 4,
+    layout: _solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__.struct([_solana_buffer_layout__WEBPACK_IMPORTED_MODULE_4__.u32('instruction')])
   },
   AuthorizeWithSeed: {
     index: 10,
@@ -12494,9 +12670,40 @@ class VoteProgram {
    */
   static safeWithdraw(params, currentVoteAccountBalance, rentExemptMinimum) {
     if (params.lamports > currentVoteAccountBalance - rentExemptMinimum) {
-      throw new Error('Withdraw will leave vote account with insuffcient funds.');
+      throw new Error('Withdraw will leave vote account with insufficient funds.');
     }
     return VoteProgram.withdraw(params);
+  }
+
+  /**
+   * Generate a transaction to update the validator identity (node pubkey) of a Vote account.
+   */
+  static updateValidatorIdentity(params) {
+    const {
+      votePubkey,
+      authorizedWithdrawerPubkey,
+      nodePubkey
+    } = params;
+    const type = VOTE_INSTRUCTION_LAYOUTS.UpdateValidatorIdentity;
+    const data = encodeData(type);
+    const keys = [{
+      pubkey: votePubkey,
+      isSigner: false,
+      isWritable: true
+    }, {
+      pubkey: nodePubkey,
+      isSigner: true,
+      isWritable: false
+    }, {
+      pubkey: authorizedWithdrawerPubkey,
+      isSigner: true,
+      isWritable: false
+    }];
+    return new Transaction().add({
+      keys,
+      programId: this.programId,
+      data
+    });
   }
 }
 VoteProgram.programId = new PublicKey('Vote111111111111111111111111111111111111111');
@@ -12509,7 +12716,7 @@ VoteProgram.programId = new PublicKey('Vote1111111111111111111111111111111111111
  *
  * KEEP IN SYNC WITH `VoteState::size_of()` in https://github.com/solana-labs/solana/blob/a474cb24b9238f5edcc982f65c0b37d4a1046f7e/sdk/program/src/vote/state/mod.rs#L340-L342
  */
-VoteProgram.space = 3731;
+VoteProgram.space = 3762;
 
 const VALIDATOR_INFO_KEY = new PublicKey('Va1idator1nfo111111111111111111111111111111');
 
@@ -12521,11 +12728,12 @@ const VALIDATOR_INFO_KEY = new PublicKey('Va1idator1nfo1111111111111111111111111
  * Info used to identity validators.
  */
 
-const InfoString = (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.type)({
-  name: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)(),
-  website: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  details: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)()),
-  keybaseUsername: (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_11__.string)())
+const InfoString = (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.type)({
+  name: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)(),
+  website: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  details: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  iconUrl: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)()),
+  keybaseUsername: (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.optional)((0,superstruct__WEBPACK_IMPORTED_MODULE_10__.string)())
 });
 
 /**
@@ -12564,10 +12772,8 @@ class ValidatorInfo {
     if (configKeyCount !== 2) return null;
     const configKeys = [];
     for (let i = 0; i < 2; i++) {
-      const publicKey = new PublicKey(byteArray.slice(0, PUBLIC_KEY_LENGTH));
-      byteArray = byteArray.slice(PUBLIC_KEY_LENGTH);
-      const isSigner = byteArray.slice(0, 1)[0] === 1;
-      byteArray = byteArray.slice(1);
+      const publicKey = new PublicKey(guardedSplice(byteArray, 0, PUBLIC_KEY_LENGTH));
+      const isSigner = guardedShift(byteArray) === 1;
       configKeys.push({
         publicKey,
         isSigner
@@ -12577,7 +12783,7 @@ class ValidatorInfo {
       if (configKeys[1].isSigner) {
         const rawInfo = rustString().decode(buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(byteArray));
         const info = JSON.parse(rawInfo);
-        (0,superstruct__WEBPACK_IMPORTED_MODULE_11__.assert)(info, InfoString);
+        (0,superstruct__WEBPACK_IMPORTED_MODULE_10__.assert)(info, InfoString);
         return new ValidatorInfo(configKeys[1].publicKey, info);
       }
     }
@@ -12760,6 +12966,13 @@ async function sendAndConfirmRawTransaction(connection, rawTransaction, confirma
   const confirmationPromise = confirmationStrategy ? connection.confirmTransaction(confirmationStrategy, commitment) : connection.confirmTransaction(signature, commitment);
   const status = (await confirmationPromise).value;
   if (status.err) {
+    if (signature != null) {
+      throw new SendTransactionError({
+        action: sendOptions?.skipPreflight ? 'send' : 'simulate',
+        signature: signature,
+        transactionMessage: `Status: (${JSON.stringify(status)})`
+      });
+    }
     throw new Error(`Raw transaction ${signature} failed (${JSON.stringify(status)})`);
   }
   return signature;
@@ -19979,588 +20192,6 @@ module.exports = generateRequest;
 
 /***/ }),
 
-/***/ "./node_modules/rpc-websockets/dist/lib/client.js":
-/*!********************************************************!*\
-  !*** ./node_modules/rpc-websockets/dist/lib/client.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
-/**
- * "Client" wraps "ws" or a browser-implemented "WebSocket" library
- * according to the environment providing JSON RPC 2.0 support on top.
- * @module Client
- */
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js"));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-var _eventemitter = __webpack_require__(/*! eventemitter3 */ "./node_modules/eventemitter3/index.js");
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/rpc-websockets/dist/lib/utils.js");
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var __rest = void 0 && (void 0).__rest || function (s, e) {
-  var t = {};
-  for (var p in s) {
-    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  }
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-// @ts-ignore
-var CommonClient = /*#__PURE__*/function (_EventEmitter) {
-  (0, _inherits2["default"])(CommonClient, _EventEmitter);
-  var _super = _createSuper(CommonClient);
-  /**
-   * Instantiate a Client class.
-   * @constructor
-   * @param {webSocketFactory} webSocketFactory - factory method for WebSocket
-   * @param {String} address - url to a websocket server
-   * @param {Object} options - ws options object with reconnect parameters
-   * @param {Function} generate_request_id - custom generation request Id
-   * @param {DataPack} dataPack - data pack contains encoder and decoder
-   * @return {CommonClient}
-   */
-  function CommonClient(webSocketFactory) {
-    var _this;
-    var address = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "ws://localhost:8080";
-    var _a = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var generate_request_id = arguments.length > 3 ? arguments[3] : undefined;
-    var dataPack = arguments.length > 4 ? arguments[4] : undefined;
-    (0, _classCallCheck2["default"])(this, CommonClient);
-    var _a$autoconnect = _a.autoconnect,
-      autoconnect = _a$autoconnect === void 0 ? true : _a$autoconnect,
-      _a$reconnect = _a.reconnect,
-      reconnect = _a$reconnect === void 0 ? true : _a$reconnect,
-      _a$reconnect_interval = _a.reconnect_interval,
-      reconnect_interval = _a$reconnect_interval === void 0 ? 1000 : _a$reconnect_interval,
-      _a$max_reconnects = _a.max_reconnects,
-      max_reconnects = _a$max_reconnects === void 0 ? 5 : _a$max_reconnects,
-      rest_options = __rest(_a, ["autoconnect", "reconnect", "reconnect_interval", "max_reconnects"]);
-    _this = _super.call(this);
-    _this.webSocketFactory = webSocketFactory;
-    _this.queue = {};
-    _this.rpc_id = 0;
-    _this.address = address;
-    _this.autoconnect = autoconnect;
-    _this.ready = false;
-    _this.reconnect = reconnect;
-    _this.reconnect_timer_id = undefined;
-    _this.reconnect_interval = reconnect_interval;
-    _this.max_reconnects = max_reconnects;
-    _this.rest_options = rest_options;
-    _this.current_reconnects = 0;
-    _this.generate_request_id = generate_request_id || function () {
-      return ++_this.rpc_id;
-    };
-    if (!dataPack) _this.dataPack = new _utils.DefaultDataPack();else _this.dataPack = dataPack;
-    if (_this.autoconnect) _this._connect(_this.address, Object.assign({
-      autoconnect: _this.autoconnect,
-      reconnect: _this.reconnect,
-      reconnect_interval: _this.reconnect_interval,
-      max_reconnects: _this.max_reconnects
-    }, _this.rest_options));
-    return _this;
-  }
-  /**
-   * Connects to a defined server if not connected already.
-   * @method
-   * @return {Undefined}
-   */
-  (0, _createClass2["default"])(CommonClient, [{
-    key: "connect",
-    value: function connect() {
-      if (this.socket) return;
-      this._connect(this.address, Object.assign({
-        autoconnect: this.autoconnect,
-        reconnect: this.reconnect,
-        reconnect_interval: this.reconnect_interval,
-        max_reconnects: this.max_reconnects
-      }, this.rest_options));
-    }
-    /**
-     * Calls a registered RPC method on server.
-     * @method
-     * @param {String} method - RPC method name
-     * @param {Object|Array} params - optional method parameters
-     * @param {Number} timeout - RPC reply timeout value
-     * @param {Object} ws_opts - options passed to ws
-     * @return {Promise}
-     */
-  }, {
-    key: "call",
-    value: function call(method, params, timeout, ws_opts) {
-      var _this2 = this;
-      if (!ws_opts && "object" === (0, _typeof2["default"])(timeout)) {
-        ws_opts = timeout;
-        timeout = null;
-      }
-      return new Promise(function (resolve, reject) {
-        if (!_this2.ready) return reject(new Error("socket not ready"));
-        var rpc_id = _this2.generate_request_id(method, params);
-        var message = {
-          jsonrpc: "2.0",
-          method: method,
-          params: params || undefined,
-          id: rpc_id
-        };
-        _this2.socket.send(_this2.dataPack.encode(message), ws_opts, function (error) {
-          if (error) return reject(error);
-          _this2.queue[rpc_id] = {
-            promise: [resolve, reject]
-          };
-          if (timeout) {
-            _this2.queue[rpc_id].timeout = setTimeout(function () {
-              delete _this2.queue[rpc_id];
-              reject(new Error("reply timeout"));
-            }, timeout);
-          }
-        });
-      });
-    }
-    /**
-     * Logins with the other side of the connection.
-     * @method
-     * @param {Object} params - Login credentials object
-     * @return {Promise}
-     */
-  }, {
-    key: "login",
-    value: function () {
-      var _login = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(params) {
-        var resp;
-        return _regenerator["default"].wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.call("rpc.login", params);
-              case 2:
-                resp = _context.sent;
-                if (resp) {
-                  _context.next = 5;
-                  break;
-                }
-                throw new Error("authentication failed");
-              case 5:
-                return _context.abrupt("return", resp);
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-      function login(_x) {
-        return _login.apply(this, arguments);
-      }
-      return login;
-    }()
-    /**
-     * Fetches a list of client's methods registered on server.
-     * @method
-     * @return {Array}
-     */
-  }, {
-    key: "listMethods",
-    value: function () {
-      var _listMethods = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
-        return _regenerator["default"].wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return this.call("__listMethods");
-              case 2:
-                return _context2.abrupt("return", _context2.sent);
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-      function listMethods() {
-        return _listMethods.apply(this, arguments);
-      }
-      return listMethods;
-    }()
-    /**
-     * Sends a JSON-RPC 2.0 notification to server.
-     * @method
-     * @param {String} method - RPC method name
-     * @param {Object} params - optional method parameters
-     * @return {Promise}
-     */
-  }, {
-    key: "notify",
-    value: function notify(method, params) {
-      var _this3 = this;
-      return new Promise(function (resolve, reject) {
-        if (!_this3.ready) return reject(new Error("socket not ready"));
-        var message = {
-          jsonrpc: "2.0",
-          method: method,
-          params: params
-        };
-        _this3.socket.send(_this3.dataPack.encode(message), function (error) {
-          if (error) return reject(error);
-          resolve();
-        });
-      });
-    }
-    /**
-     * Subscribes for a defined event.
-     * @method
-     * @param {String|Array} event - event name
-     * @return {Undefined}
-     * @throws {Error}
-     */
-  }, {
-    key: "subscribe",
-    value: function () {
-      var _subscribe = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(event) {
-        var result;
-        return _regenerator["default"].wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                if (typeof event === "string") event = [event];
-                _context3.next = 3;
-                return this.call("rpc.on", event);
-              case 3:
-                result = _context3.sent;
-                if (!(typeof event === "string" && result[event] !== "ok")) {
-                  _context3.next = 6;
-                  break;
-                }
-                throw new Error("Failed subscribing to an event '" + event + "' with: " + result[event]);
-              case 6:
-                return _context3.abrupt("return", result);
-              case 7:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-      function subscribe(_x2) {
-        return _subscribe.apply(this, arguments);
-      }
-      return subscribe;
-    }()
-    /**
-     * Unsubscribes from a defined event.
-     * @method
-     * @param {String|Array} event - event name
-     * @return {Undefined}
-     * @throws {Error}
-     */
-  }, {
-    key: "unsubscribe",
-    value: function () {
-      var _unsubscribe = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(event) {
-        var result;
-        return _regenerator["default"].wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                if (typeof event === "string") event = [event];
-                _context4.next = 3;
-                return this.call("rpc.off", event);
-              case 3:
-                result = _context4.sent;
-                if (!(typeof event === "string" && result[event] !== "ok")) {
-                  _context4.next = 6;
-                  break;
-                }
-                throw new Error("Failed unsubscribing from an event with: " + result);
-              case 6:
-                return _context4.abrupt("return", result);
-              case 7:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-      function unsubscribe(_x3) {
-        return _unsubscribe.apply(this, arguments);
-      }
-      return unsubscribe;
-    }()
-    /**
-     * Closes a WebSocket connection gracefully.
-     * @method
-     * @param {Number} code - socket close code
-     * @param {String} data - optional data to be sent before closing
-     * @return {Undefined}
-     */
-  }, {
-    key: "close",
-    value: function close(code, data) {
-      this.socket.close(code || 1000, data);
-    }
-    /**
-     * Connection/Message handler.
-     * @method
-     * @private
-     * @param {String} address - WebSocket API address
-     * @param {Object} options - ws options object
-     * @return {Undefined}
-     */
-  }, {
-    key: "_connect",
-    value: function _connect(address, options) {
-      var _this4 = this;
-      clearTimeout(this.reconnect_timer_id);
-      this.socket = this.webSocketFactory(address, options);
-      this.socket.addEventListener("open", function () {
-        _this4.ready = true;
-        _this4.emit("open");
-        _this4.current_reconnects = 0;
-      });
-      this.socket.addEventListener("message", function (_ref) {
-        var message = _ref.data;
-        if (message instanceof ArrayBuffer) message = Buffer.from(message).toString();
-        try {
-          message = _this4.dataPack.decode(message);
-        } catch (error) {
-          return;
-        }
-        // check if any listeners are attached and forward event
-        if (message.notification && _this4.listeners(message.notification).length) {
-          if (!Object.keys(message.params).length) return _this4.emit(message.notification);
-          var args = [message.notification];
-          if (message.params.constructor === Object) args.push(message.params);else
-            // using for-loop instead of unshift/spread because performance is better
-            for (var i = 0; i < message.params.length; i++) {
-              args.push(message.params[i]);
-            }
-          // run as microtask so that pending queue messages are resolved first
-          // eslint-disable-next-line prefer-spread
-          return Promise.resolve().then(function () {
-            _this4.emit.apply(_this4, args);
-          });
-        }
-        if (!_this4.queue[message.id]) {
-          // general JSON RPC 2.0 events
-          if (message.method) {
-            // run as microtask so that pending queue messages are resolved first
-            return Promise.resolve().then(function () {
-              _this4.emit(message.method, message === null || message === void 0 ? void 0 : message.params);
-            });
-          }
-          return;
-        }
-        // reject early since server's response is invalid
-        if ("error" in message === "result" in message) _this4.queue[message.id].promise[1](new Error("Server response malformed. Response must include either \"result\"" + " or \"error\", but not both."));
-        if (_this4.queue[message.id].timeout) clearTimeout(_this4.queue[message.id].timeout);
-        if (message.error) _this4.queue[message.id].promise[1](message.error);else _this4.queue[message.id].promise[0](message.result);
-        delete _this4.queue[message.id];
-      });
-      this.socket.addEventListener("error", function (error) {
-        return _this4.emit("error", error);
-      });
-      this.socket.addEventListener("close", function (_ref2) {
-        var code = _ref2.code,
-          reason = _ref2.reason;
-        if (_this4.ready)
-          // Delay close event until internal state is updated
-          setTimeout(function () {
-            return _this4.emit("close", code, reason);
-          }, 0);
-        _this4.ready = false;
-        _this4.socket = undefined;
-        if (code === 1000) return;
-        _this4.current_reconnects++;
-        if (_this4.reconnect && (_this4.max_reconnects > _this4.current_reconnects || _this4.max_reconnects === 0)) _this4.reconnect_timer_id = setTimeout(function () {
-          return _this4._connect(address, options);
-        }, _this4.reconnect_interval);
-      });
-    }
-  }]);
-  return CommonClient;
-}(_eventemitter.EventEmitter);
-exports["default"] = CommonClient;
-
-/***/ }),
-
-/***/ "./node_modules/rpc-websockets/dist/lib/client/websocket.browser.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/rpc-websockets/dist/lib/client/websocket.browser.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/**
- * WebSocket implements a browser-side WebSocket specification.
- * @module Client
- */
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = _default;
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
-var _eventemitter = __webpack_require__(/*! eventemitter3 */ "./node_modules/eventemitter3/index.js");
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var WebSocketBrowserImpl = /*#__PURE__*/function (_EventEmitter) {
-  (0, _inherits2["default"])(WebSocketBrowserImpl, _EventEmitter);
-  var _super = _createSuper(WebSocketBrowserImpl);
-  /** Instantiate a WebSocket class
-   * @constructor
-   * @param {String} address - url to a websocket server
-   * @param {(Object)} options - websocket options
-   * @param {(String|Array)} protocols - a list of protocols
-   * @return {WebSocketBrowserImpl} - returns a WebSocket instance
-   */
-  function WebSocketBrowserImpl(address, options, protocols) {
-    var _this;
-    (0, _classCallCheck2["default"])(this, WebSocketBrowserImpl);
-    _this = _super.call(this);
-    _this.socket = new window.WebSocket(address, protocols);
-    _this.socket.onopen = function () {
-      return _this.emit("open");
-    };
-    _this.socket.onmessage = function (event) {
-      return _this.emit("message", event.data);
-    };
-    _this.socket.onerror = function (error) {
-      return _this.emit("error", error);
-    };
-    _this.socket.onclose = function (event) {
-      _this.emit("close", event.code, event.reason);
-    };
-    return _this;
-  }
-  /**
-   * Sends data through a websocket connection
-   * @method
-   * @param {(String|Object)} data - data to be sent via websocket
-   * @param {Object} optionsOrCallback - ws options
-   * @param {Function} callback - a callback called once the data is sent
-   * @return {Undefined}
-   */
-  (0, _createClass2["default"])(WebSocketBrowserImpl, [{
-    key: "send",
-    value: function send(data, optionsOrCallback, callback) {
-      var cb = callback || optionsOrCallback;
-      try {
-        this.socket.send(data);
-        cb();
-      } catch (error) {
-        cb(error);
-      }
-    }
-    /**
-     * Closes an underlying socket
-     * @method
-     * @param {Number} code - status code explaining why the connection is being closed
-     * @param {String} reason - a description why the connection is closing
-     * @return {Undefined}
-     * @throws {Error}
-     */
-  }, {
-    key: "close",
-    value: function close(code, reason) {
-      this.socket.close(code, reason);
-    }
-  }, {
-    key: "addEventListener",
-    value: function addEventListener(type, listener, options) {
-      this.socket.addEventListener(type, listener, options);
-    }
-  }]);
-  return WebSocketBrowserImpl;
-}(_eventemitter.EventEmitter);
-/**
- * factory method for common WebSocket instance
- * @method
- * @param {String} address - url to a websocket server
- * @param {(Object)} options - websocket options
- * @return {Undefined}
- */
-function _default(address, options) {
-  return new WebSocketBrowserImpl(address, options);
-}
-
-/***/ }),
-
-/***/ "./node_modules/rpc-websockets/dist/lib/utils.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/rpc-websockets/dist/lib/utils.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.DefaultDataPack = void 0;
-exports.createError = createError;
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
-var errors = new Map([[-32000, "Event not provided"], [-32600, "Invalid Request"], [-32601, "Method not found"], [-32602, "Invalid params"], [-32603, "Internal error"], [-32604, "Params not found"], [-32605, "Method forbidden"], [-32606, "Event forbidden"], [-32700, "Parse error"]]);
-var DefaultDataPack = /*#__PURE__*/function () {
-  function DefaultDataPack() {
-    (0, _classCallCheck2["default"])(this, DefaultDataPack);
-  }
-  (0, _createClass2["default"])(DefaultDataPack, [{
-    key: "encode",
-    value: function encode(value) {
-      return JSON.stringify(value);
-    }
-  }, {
-    key: "decode",
-    value: function decode(value) {
-      return JSON.parse(value);
-    }
-  }]);
-  return DefaultDataPack;
-}();
-/**
- * Creates a JSON-RPC 2.0-compliant error.
- * @param {Number} code - error code
- * @param {String} details - error details
- * @return {Object}
- */
-exports.DefaultDataPack = DefaultDataPack;
-function createError(code, details) {
-  var error = {
-    code: code,
-    message: errors.get(code) || "Internal Server Error"
-  };
-  if (details) error["data"] = details;
-  return error;
-}
-
-/***/ }),
-
 /***/ "./node_modules/safe-buffer/index.js":
 /*!*******************************************!*\
   !*** ./node_modules/safe-buffer/index.js ***!
@@ -22672,594 +22303,6 @@ function version(uuid) {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/***/ ((module) => {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \*****************************************************************/
-/***/ ((module) => {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ "./node_modules/@babel/runtime/helpers/toPropertyKey.js");
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
-  }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _getPrototypeOf(o);
-}
-module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/***/ ((module) => {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var _typeof = (__webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return assertThisInitialized(self);
-}
-module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/regeneratorRuntime.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
-  \*******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var _typeof = (__webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function _regeneratorRuntime() {
-  "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
-    return e;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  var t,
-    e = {},
-    r = Object.prototype,
-    n = r.hasOwnProperty,
-    o = Object.defineProperty || function (t, e, r) {
-      t[e] = r.value;
-    },
-    i = "function" == typeof Symbol ? Symbol : {},
-    a = i.iterator || "@@iterator",
-    c = i.asyncIterator || "@@asyncIterator",
-    u = i.toStringTag || "@@toStringTag";
-  function define(t, e, r) {
-    return Object.defineProperty(t, e, {
-      value: r,
-      enumerable: !0,
-      configurable: !0,
-      writable: !0
-    }), t[e];
-  }
-  try {
-    define({}, "");
-  } catch (t) {
-    define = function define(t, e, r) {
-      return t[e] = r;
-    };
-  }
-  function wrap(t, e, r, n) {
-    var i = e && e.prototype instanceof Generator ? e : Generator,
-      a = Object.create(i.prototype),
-      c = new Context(n || []);
-    return o(a, "_invoke", {
-      value: makeInvokeMethod(t, r, c)
-    }), a;
-  }
-  function tryCatch(t, e, r) {
-    try {
-      return {
-        type: "normal",
-        arg: t.call(e, r)
-      };
-    } catch (t) {
-      return {
-        type: "throw",
-        arg: t
-      };
-    }
-  }
-  e.wrap = wrap;
-  var h = "suspendedStart",
-    l = "suspendedYield",
-    f = "executing",
-    s = "completed",
-    y = {};
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-  var p = {};
-  define(p, a, function () {
-    return this;
-  });
-  var d = Object.getPrototypeOf,
-    v = d && d(d(values([])));
-  v && v !== r && n.call(v, a) && (p = v);
-  var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
-  function defineIteratorMethods(t) {
-    ["next", "throw", "return"].forEach(function (e) {
-      define(t, e, function (t) {
-        return this._invoke(e, t);
-      });
-    });
-  }
-  function AsyncIterator(t, e) {
-    function invoke(r, o, i, a) {
-      var c = tryCatch(t[r], t, o);
-      if ("throw" !== c.type) {
-        var u = c.arg,
-          h = u.value;
-        return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) {
-          invoke("next", t, i, a);
-        }, function (t) {
-          invoke("throw", t, i, a);
-        }) : e.resolve(h).then(function (t) {
-          u.value = t, i(u);
-        }, function (t) {
-          return invoke("throw", t, i, a);
-        });
-      }
-      a(c.arg);
-    }
-    var r;
-    o(this, "_invoke", {
-      value: function value(t, n) {
-        function callInvokeWithMethodAndArg() {
-          return new e(function (e, r) {
-            invoke(t, n, e, r);
-          });
-        }
-        return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-      }
-    });
-  }
-  function makeInvokeMethod(e, r, n) {
-    var o = h;
-    return function (i, a) {
-      if (o === f) throw new Error("Generator is already running");
-      if (o === s) {
-        if ("throw" === i) throw a;
-        return {
-          value: t,
-          done: !0
-        };
-      }
-      for (n.method = i, n.arg = a;;) {
-        var c = n.delegate;
-        if (c) {
-          var u = maybeInvokeDelegate(c, n);
-          if (u) {
-            if (u === y) continue;
-            return u;
-          }
-        }
-        if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
-          if (o === h) throw o = s, n.arg;
-          n.dispatchException(n.arg);
-        } else "return" === n.method && n.abrupt("return", n.arg);
-        o = f;
-        var p = tryCatch(e, r, n);
-        if ("normal" === p.type) {
-          if (o = n.done ? s : l, p.arg === y) continue;
-          return {
-            value: p.arg,
-            done: n.done
-          };
-        }
-        "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg);
-      }
-    };
-  }
-  function maybeInvokeDelegate(e, r) {
-    var n = r.method,
-      o = e.iterator[n];
-    if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y;
-    var i = tryCatch(o, e.iterator, r.arg);
-    if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y;
-    var a = i.arg;
-    return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y);
-  }
-  function pushTryEntry(t) {
-    var e = {
-      tryLoc: t[0]
-    };
-    1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e);
-  }
-  function resetTryEntry(t) {
-    var e = t.completion || {};
-    e.type = "normal", delete e.arg, t.completion = e;
-  }
-  function Context(t) {
-    this.tryEntries = [{
-      tryLoc: "root"
-    }], t.forEach(pushTryEntry, this), this.reset(!0);
-  }
-  function values(e) {
-    if (e || "" === e) {
-      var r = e[a];
-      if (r) return r.call(e);
-      if ("function" == typeof e.next) return e;
-      if (!isNaN(e.length)) {
-        var o = -1,
-          i = function next() {
-            for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next;
-            return next.value = t, next.done = !0, next;
-          };
-        return i.next = i;
-      }
-    }
-    throw new TypeError(_typeof(e) + " is not iterable");
-  }
-  return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
-    value: GeneratorFunctionPrototype,
-    configurable: !0
-  }), o(GeneratorFunctionPrototype, "constructor", {
-    value: GeneratorFunction,
-    configurable: !0
-  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) {
-    var e = "function" == typeof t && t.constructor;
-    return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name));
-  }, e.mark = function (t) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t;
-  }, e.awrap = function (t) {
-    return {
-      __await: t
-    };
-  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () {
-    return this;
-  }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) {
-    void 0 === i && (i = Promise);
-    var a = new AsyncIterator(wrap(t, r, n, o), i);
-    return e.isGeneratorFunction(r) ? a : a.next().then(function (t) {
-      return t.done ? t.value : a.next();
-    });
-  }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () {
-    return this;
-  }), define(g, "toString", function () {
-    return "[object Generator]";
-  }), e.keys = function (t) {
-    var e = Object(t),
-      r = [];
-    for (var n in e) r.push(n);
-    return r.reverse(), function next() {
-      for (; r.length;) {
-        var t = r.pop();
-        if (t in e) return next.value = t, next.done = !1, next;
-      }
-      return next.done = !0, next;
-    };
-  }, e.values = values, Context.prototype = {
-    constructor: Context,
-    reset: function reset(e) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t);
-    },
-    stop: function stop() {
-      this.done = !0;
-      var t = this.tryEntries[0].completion;
-      if ("throw" === t.type) throw t.arg;
-      return this.rval;
-    },
-    dispatchException: function dispatchException(e) {
-      if (this.done) throw e;
-      var r = this;
-      function handle(n, o) {
-        return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o;
-      }
-      for (var o = this.tryEntries.length - 1; o >= 0; --o) {
-        var i = this.tryEntries[o],
-          a = i.completion;
-        if ("root" === i.tryLoc) return handle("end");
-        if (i.tryLoc <= this.prev) {
-          var c = n.call(i, "catchLoc"),
-            u = n.call(i, "finallyLoc");
-          if (c && u) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          } else if (c) {
-            if (this.prev < i.catchLoc) return handle(i.catchLoc, !0);
-          } else {
-            if (!u) throw new Error("try statement without catch or finally");
-            if (this.prev < i.finallyLoc) return handle(i.finallyLoc);
-          }
-        }
-      }
-    },
-    abrupt: function abrupt(t, e) {
-      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
-        var o = this.tryEntries[r];
-        if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) {
-          var i = o;
-          break;
-        }
-      }
-      i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null);
-      var a = i ? i.completion : {};
-      return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a);
-    },
-    complete: function complete(t, e) {
-      if ("throw" === t.type) throw t.arg;
-      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y;
-    },
-    finish: function finish(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y;
-      }
-    },
-    "catch": function _catch(t) {
-      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
-        var r = this.tryEntries[e];
-        if (r.tryLoc === t) {
-          var n = r.completion;
-          if ("throw" === n.type) {
-            var o = n.arg;
-            resetTryEntry(r);
-          }
-          return o;
-        }
-      }
-      throw new Error("illegal catch attempt");
-    },
-    delegateYield: function delegateYield(e, r, n) {
-      return this.delegate = {
-        iterator: values(e),
-        resultName: r,
-        nextLoc: n
-      }, "next" === this.method && (this.arg = t), y;
-    }
-  }, e;
-}
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _setPrototypeOf(o, p);
-}
-module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/toPrimitive.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
-  \************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var _typeof = (__webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function toPrimitive(t, r) {
-  if ("object" != _typeof(t) || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r || "default");
-    if ("object" != _typeof(i)) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/toPropertyKey.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
-  \**************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var _typeof = (__webpack_require__(/*! ./typeof.js */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "./node_modules/@babel/runtime/helpers/toPrimitive.js");
-function toPropertyKey(t) {
-  var i = toPrimitive(t, "string");
-  return "symbol" == _typeof(i) ? i : String(i);
-}
-module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/***/ ((module) => {
-
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
-}
-module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/regenerator/index.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// TODO(Babel 8): Remove this file.
-
-var runtime = __webpack_require__(/*! ../helpers/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/regeneratorRuntime.js")();
-module.exports = runtime;
-
-// Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
-try {
-  regeneratorRuntime = runtime;
-} catch (accidentalStrictMode) {
-  if (typeof globalThis === "object") {
-    globalThis.regeneratorRuntime = runtime;
-  } else {
-    Function("r", "regeneratorRuntime = r")(runtime);
-  }
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/@solana/wallet-standard-features/lib/cjs/index.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@solana/wallet-standard-features/lib/cjs/index.js ***!
@@ -23463,8 +22506,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   createCurve: () => (/* binding */ createCurve),
 /* harmony export */   getHash: () => (/* binding */ getHash)
 /* harmony export */ });
-/* harmony import */ var _noble_hashes_hmac__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @noble/hashes/hmac */ "./node_modules/@noble/hashes/esm/hmac.js");
-/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _noble_hashes_hmac__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @noble/hashes/hmac */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/hmac.js");
+/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 /* harmony import */ var _abstract_weierstrass_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./abstract/weierstrass.js */ "./node_modules/@noble/curves/esm/abstract/weierstrass.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 
@@ -23495,17 +22538,56 @@ function createCurve(curveDef, defHash) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   pippenger: () => (/* binding */ pippenger),
+/* harmony export */   precomputeMSMUnsafe: () => (/* binding */ precomputeMSMUnsafe),
 /* harmony export */   validateBasic: () => (/* binding */ validateBasic),
 /* harmony export */   wNAF: () => (/* binding */ wNAF)
 /* harmony export */ });
-/* harmony import */ var _modular_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
+/* harmony import */ var _modular_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 // Abelian group utilities
 
 
 const _0n = BigInt(0);
 const _1n = BigInt(1);
+function constTimeNegate(condition, item) {
+    const neg = item.negate();
+    return condition ? neg : item;
+}
+function validateW(W, bits) {
+    if (!Number.isSafeInteger(W) || W <= 0 || W > bits)
+        throw new Error('invalid window size, expected [1..' + bits + '], got W=' + W);
+}
+function calcWOpts(W, bits) {
+    validateW(W, bits);
+    const windows = Math.ceil(bits / W) + 1; // +1, because
+    const windowSize = 2 ** (W - 1); // -1 because we skip zero
+    return { windows, windowSize };
+}
+function validateMSMPoints(points, c) {
+    if (!Array.isArray(points))
+        throw new Error('array expected');
+    points.forEach((p, i) => {
+        if (!(p instanceof c))
+            throw new Error('invalid point at index ' + i);
+    });
+}
+function validateMSMScalars(scalars, field) {
+    if (!Array.isArray(scalars))
+        throw new Error('array of scalars expected');
+    scalars.forEach((s, i) => {
+        if (!field.isValid(s))
+            throw new Error('invalid scalar at index ' + i);
+    });
+}
+// Since points in different groups cannot be equal (different object constructor),
+// we can have single place to store precomputes
+const pointPrecomputes = new WeakMap();
+const pointWindowSizes = new WeakMap(); // This allows use make points immutable (nothing changes inside)
+function getW(P) {
+    return pointWindowSizes.get(P) || 1;
+}
 // Elliptic curve multiplication of Point by scalar. Fragile.
 // Scalars should always be less than curve order: this should be checked inside of a curve itself.
 // Creates precomputation tables for fast multiplication:
@@ -23518,20 +22600,13 @@ const _1n = BigInt(1);
 // TODO: Research returning 2d JS array of windows, instead of a single window. This would allow
 // windows to be in different memory locations
 function wNAF(c, bits) {
-    const constTimeNegate = (condition, item) => {
-        const neg = item.negate();
-        return condition ? neg : item;
-    };
-    const opts = (W) => {
-        const windows = Math.ceil(bits / W) + 1; // +1, because
-        const windowSize = 2 ** (W - 1); // -1 because we skip zero
-        return { windows, windowSize };
-    };
     return {
         constTimeNegate,
+        hasPrecomputes(elm) {
+            return getW(elm) !== 1;
+        },
         // non-const time multiplication ladder
-        unsafeLadder(elm, n) {
-            let p = c.ZERO;
+        unsafeLadder(elm, n, p = c.ZERO) {
             let d = elm;
             while (n > _0n) {
                 if (n & _1n)
@@ -23549,10 +22624,12 @@ function wNAF(c, bits) {
          * - 𝑊 is the window size
          * - 𝑛 is the bitlength of the curve order.
          * For a 256-bit curve and window size 8, the number of precomputed points is 128 * 33 = 4224.
+         * @param elm Point instance
+         * @param W window size
          * @returns precomputed point tables flattened to a single array
          */
         precomputeWindow(elm, W) {
-            const { windows, windowSize } = opts(W);
+            const { windows, windowSize } = calcWOpts(W, bits);
             const points = [];
             let p = elm;
             let base = p;
@@ -23578,7 +22655,7 @@ function wNAF(c, bits) {
         wNAF(W, precomputes, n) {
             // TODO: maybe check that scalar is less than group order? wNAF behavious is undefined otherwise
             // But need to carefully remove other checks before wNAF. ORDER == bits here
-            const { windows, windowSize } = opts(W);
+            const { windows, windowSize } = calcWOpts(W, bits);
             let p = c.ZERO;
             let f = c.BASE;
             const mask = BigInt(2 ** W - 1); // Create mask with W ones: 0b1111 for W=4 etc.
@@ -23622,24 +22699,203 @@ function wNAF(c, bits) {
             // which makes it less const-time: around 1 bigint multiply.
             return { p, f };
         },
-        wNAFCached(P, precomputesMap, n, transform) {
-            // @ts-ignore
-            const W = P._WINDOW_SIZE || 1;
+        /**
+         * Implements ec unsafe (non const-time) multiplication using precomputed tables and w-ary non-adjacent form.
+         * @param W window size
+         * @param precomputes precomputed tables
+         * @param n scalar (we don't check here, but should be less than curve order)
+         * @param acc accumulator point to add result of multiplication
+         * @returns point
+         */
+        wNAFUnsafe(W, precomputes, n, acc = c.ZERO) {
+            const { windows, windowSize } = calcWOpts(W, bits);
+            const mask = BigInt(2 ** W - 1); // Create mask with W ones: 0b1111 for W=4 etc.
+            const maxNumber = 2 ** W;
+            const shiftBy = BigInt(W);
+            for (let window = 0; window < windows; window++) {
+                const offset = window * windowSize;
+                if (n === _0n)
+                    break; // No need to go over empty scalar
+                // Extract W bits.
+                let wbits = Number(n & mask);
+                // Shift number by W bits.
+                n >>= shiftBy;
+                // If the bits are bigger than max size, we'll split those.
+                // +224 => 256 - 32
+                if (wbits > windowSize) {
+                    wbits -= maxNumber;
+                    n += _1n;
+                }
+                if (wbits === 0)
+                    continue;
+                let curr = precomputes[offset + Math.abs(wbits) - 1]; // -1 because we skip zero
+                if (wbits < 0)
+                    curr = curr.negate();
+                // NOTE: by re-using acc, we can save a lot of additions in case of MSM
+                acc = acc.add(curr);
+            }
+            return acc;
+        },
+        getPrecomputes(W, P, transform) {
             // Calculate precomputes on a first run, reuse them after
-            let comp = precomputesMap.get(P);
+            let comp = pointPrecomputes.get(P);
             if (!comp) {
                 comp = this.precomputeWindow(P, W);
-                if (W !== 1) {
-                    precomputesMap.set(P, transform(comp));
-                }
+                if (W !== 1)
+                    pointPrecomputes.set(P, transform(comp));
             }
-            return this.wNAF(W, comp, n);
+            return comp;
+        },
+        wNAFCached(P, n, transform) {
+            const W = getW(P);
+            return this.wNAF(W, this.getPrecomputes(W, P, transform), n);
+        },
+        wNAFCachedUnsafe(P, n, transform, prev) {
+            const W = getW(P);
+            if (W === 1)
+                return this.unsafeLadder(P, n, prev); // For W=1 ladder is ~x2 faster
+            return this.wNAFUnsafe(W, this.getPrecomputes(W, P, transform), n, prev);
+        },
+        // We calculate precomputes for elliptic curve point multiplication
+        // using windowed method. This specifies window size and
+        // stores precomputed values. Usually only base point would be precomputed.
+        setWindowSize(P, W) {
+            validateW(W, bits);
+            pointWindowSizes.set(P, W);
+            pointPrecomputes.delete(P);
         },
     };
 }
+/**
+ * Pippenger algorithm for multi-scalar multiplication (MSM, Pa + Qb + Rc + ...).
+ * 30x faster vs naive addition on L=4096, 10x faster with precomputes.
+ * For N=254bit, L=1, it does: 1024 ADD + 254 DBL. For L=5: 1536 ADD + 254 DBL.
+ * Algorithmically constant-time (for same L), even when 1 point + scalar, or when scalar = 0.
+ * @param c Curve Point constructor
+ * @param fieldN field over CURVE.N - important that it's not over CURVE.P
+ * @param points array of L curve points
+ * @param scalars array of L scalars (aka private keys / bigints)
+ */
+function pippenger(c, fieldN, points, scalars) {
+    // If we split scalars by some window (let's say 8 bits), every chunk will only
+    // take 256 buckets even if there are 4096 scalars, also re-uses double.
+    // TODO:
+    // - https://eprint.iacr.org/2024/750.pdf
+    // - https://tches.iacr.org/index.php/TCHES/article/view/10287
+    // 0 is accepted in scalars
+    validateMSMPoints(points, c);
+    validateMSMScalars(scalars, fieldN);
+    if (points.length !== scalars.length)
+        throw new Error('arrays of points and scalars must have equal length');
+    const zero = c.ZERO;
+    const wbits = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bitLen)(BigInt(points.length));
+    const windowSize = wbits > 12 ? wbits - 3 : wbits > 4 ? wbits - 2 : wbits ? 2 : 1; // in bits
+    const MASK = (1 << windowSize) - 1;
+    const buckets = new Array(MASK + 1).fill(zero); // +1 for zero array
+    const lastBits = Math.floor((fieldN.BITS - 1) / windowSize) * windowSize;
+    let sum = zero;
+    for (let i = lastBits; i >= 0; i -= windowSize) {
+        buckets.fill(zero);
+        for (let j = 0; j < scalars.length; j++) {
+            const scalar = scalars[j];
+            const wbits = Number((scalar >> BigInt(i)) & BigInt(MASK));
+            buckets[wbits] = buckets[wbits].add(points[j]);
+        }
+        let resI = zero; // not using this will do small speed-up, but will lose ct
+        // Skip first bucket, because it is zero
+        for (let j = buckets.length - 1, sumI = zero; j > 0; j--) {
+            sumI = sumI.add(buckets[j]);
+            resI = resI.add(sumI);
+        }
+        sum = sum.add(resI);
+        if (i !== 0)
+            for (let j = 0; j < windowSize; j++)
+                sum = sum.double();
+    }
+    return sum;
+}
+/**
+ * Precomputed multi-scalar multiplication (MSM, Pa + Qb + Rc + ...).
+ * @param c Curve Point constructor
+ * @param fieldN field over CURVE.N - important that it's not over CURVE.P
+ * @param points array of L curve points
+ * @returns function which multiplies points with scaars
+ */
+function precomputeMSMUnsafe(c, fieldN, points, windowSize) {
+    /**
+     * Performance Analysis of Window-based Precomputation
+     *
+     * Base Case (256-bit scalar, 8-bit window):
+     * - Standard precomputation requires:
+     *   - 31 additions per scalar × 256 scalars = 7,936 ops
+     *   - Plus 255 summary additions = 8,191 total ops
+     *   Note: Summary additions can be optimized via accumulator
+     *
+     * Chunked Precomputation Analysis:
+     * - Using 32 chunks requires:
+     *   - 255 additions per chunk
+     *   - 256 doublings
+     *   - Total: (255 × 32) + 256 = 8,416 ops
+     *
+     * Memory Usage Comparison:
+     * Window Size | Standard Points | Chunked Points
+     * ------------|-----------------|---------------
+     *     4-bit   |     520         |      15
+     *     8-bit   |    4,224        |     255
+     *    10-bit   |   13,824        |   1,023
+     *    16-bit   |  557,056        |  65,535
+     *
+     * Key Advantages:
+     * 1. Enables larger window sizes due to reduced memory overhead
+     * 2. More efficient for smaller scalar counts:
+     *    - 16 chunks: (16 × 255) + 256 = 4,336 ops
+     *    - ~2x faster than standard 8,191 ops
+     *
+     * Limitations:
+     * - Not suitable for plain precomputes (requires 256 constant doublings)
+     * - Performance degrades with larger scalar counts:
+     *   - Optimal for ~256 scalars
+     *   - Less efficient for 4096+ scalars (Pippenger preferred)
+     */
+    validateW(windowSize, fieldN.BITS);
+    validateMSMPoints(points, c);
+    const zero = c.ZERO;
+    const tableSize = 2 ** windowSize - 1; // table size (without zero)
+    const chunks = Math.ceil(fieldN.BITS / windowSize); // chunks of item
+    const MASK = BigInt((1 << windowSize) - 1);
+    const tables = points.map((p) => {
+        const res = [];
+        for (let i = 0, acc = p; i < tableSize; i++) {
+            res.push(acc);
+            acc = acc.add(p);
+        }
+        return res;
+    });
+    return (scalars) => {
+        validateMSMScalars(scalars, fieldN);
+        if (scalars.length > points.length)
+            throw new Error('array of scalars must be smaller than array of points');
+        let res = zero;
+        for (let i = 0; i < chunks; i++) {
+            // No need to double if accumulator is still zero.
+            if (res !== zero)
+                for (let j = 0; j < windowSize; j++)
+                    res = res.double();
+            const shiftBy = BigInt(chunks * windowSize - (i + 1) * windowSize);
+            for (let j = 0; j < scalars.length; j++) {
+                const n = scalars[j];
+                const curr = Number((n >> shiftBy) & MASK);
+                if (!curr)
+                    continue; // skip zero scalars chunks
+                res = res.add(tables[j][curr - 1]);
+            }
+        }
+        return res;
+    };
+}
 function validateBasic(curve) {
-    (0,_modular_js__WEBPACK_IMPORTED_MODULE_0__.validateField)(curve.Fp);
-    (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.validateObject)(curve, {
+    (0,_modular_js__WEBPACK_IMPORTED_MODULE_1__.validateField)(curve.Fp);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.validateObject)(curve, {
         n: 'bigint',
         h: 'bigint',
         Gx: 'field',
@@ -23650,7 +22906,7 @@ function validateBasic(curve) {
     });
     // Set defaults
     return Object.freeze({
-        ...(0,_modular_js__WEBPACK_IMPORTED_MODULE_0__.nLength)(curve.n, curve.nBitLength),
+        ...(0,_modular_js__WEBPACK_IMPORTED_MODULE_1__.nLength)(curve.n, curve.nBitLength),
         ...curve,
         ...{ p: curve.Fp.ORDER },
     });
@@ -23670,9 +22926,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   twistedEdwards: () => (/* binding */ twistedEdwards)
 /* harmony export */ });
+/* harmony import */ var _curve_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./curve.js */ "./node_modules/@noble/curves/esm/abstract/curve.js");
 /* harmony import */ var _modular_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
-/* harmony import */ var _curve_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./curve.js */ "./node_modules/@noble/curves/esm/abstract/curve.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 // Twisted Edwards curve. The formula is: ax² + y² = 1 + dx²y²
 
@@ -23700,12 +22956,23 @@ function validateOpts(curve) {
     // Set defaults
     return Object.freeze({ ...opts });
 }
-// It is not generic twisted curve for now, but ed25519/ed448 generic implementation
+/**
+ * Creates Twisted Edwards curve with EdDSA signatures.
+ * @example
+ * import { Field } from '@noble/curves/abstract/modular';
+ * // Before that, define BigInt-s: a, d, p, n, Gx, Gy, h
+ * const curve = twistedEdwards({ a, d, Fp: Field(p), n, Gx, Gy, h })
+ */
 function twistedEdwards(curveDef) {
     const CURVE = validateOpts(curveDef);
     const { Fp, n: CURVE_ORDER, prehash: prehash, hash: cHash, randomBytes, nByteLength, h: cofactor, } = CURVE;
+    // Important:
+    // There are some places where Fp.BYTES is used instead of nByteLength.
+    // So far, everything has been tested with curves of Fp.BYTES == nByteLength.
+    // TODO: test and find curves which behave otherwise.
     const MASK = _2n << (BigInt(nByteLength * 8) - _1n);
     const modP = Fp.create; // Function overrides
+    const Fn = (0,_modular_js__WEBPACK_IMPORTED_MODULE_2__.Field)(CURVE.n, CURVE.nBitLength);
     // sqrt(u/v)
     const uvRatio = CURVE.uvRatio ||
         ((u, v) => {
@@ -23719,28 +22986,59 @@ function twistedEdwards(curveDef) {
     const adjustScalarBytes = CURVE.adjustScalarBytes || ((bytes) => bytes); // NOOP
     const domain = CURVE.domain ||
         ((data, ctx, phflag) => {
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.abool)('phflag', phflag);
             if (ctx.length || phflag)
                 throw new Error('Contexts/pre-hash are not supported');
             return data;
         }); // NOOP
-    const inBig = (n) => typeof n === 'bigint' && _0n < n; // n in [1..]
-    const inRange = (n, max) => inBig(n) && inBig(max) && n < max; // n in [1..max-1]
-    const in0MaskRange = (n) => n === _0n || inRange(n, MASK); // n in [0..MASK-1]
-    function assertInRange(n, max) {
-        // n in [1..max-1]
-        if (inRange(n, max))
-            return n;
-        throw new Error(`Expected valid scalar < ${max}, got ${typeof n} ${n}`);
+    // 0 <= n < MASK
+    // Coordinates larger than Fp.ORDER are allowed for zip215
+    function aCoordinate(title, n) {
+        _utils_js__WEBPACK_IMPORTED_MODULE_1__.aInRange('coordinate ' + title, n, _0n, MASK);
     }
-    function assertGE0(n) {
-        // n in [0..CURVE_ORDER-1]
-        return n === _0n ? n : assertInRange(n, CURVE_ORDER); // GE = prime subgroup, not full group
-    }
-    const pointPrecomputes = new Map();
-    function isPoint(other) {
+    function assertPoint(other) {
         if (!(other instanceof Point))
             throw new Error('ExtendedPoint expected');
     }
+    // Converts Extended point to default (x, y) coordinates.
+    // Can accept precomputed Z^-1 - for example, from invertBatch.
+    const toAffineMemo = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.memoized)((p, iz) => {
+        const { ex: x, ey: y, ez: z } = p;
+        const is0 = p.is0();
+        if (iz == null)
+            iz = is0 ? _8n : Fp.inv(z); // 8 was chosen arbitrarily
+        const ax = modP(x * iz);
+        const ay = modP(y * iz);
+        const zz = modP(z * iz);
+        if (is0)
+            return { x: _0n, y: _1n };
+        if (zz !== _1n)
+            throw new Error('invZ was invalid');
+        return { x: ax, y: ay };
+    });
+    const assertValidMemo = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.memoized)((p) => {
+        const { a, d } = CURVE;
+        if (p.is0())
+            throw new Error('bad point: ZERO'); // TODO: optimize, with vars below?
+        // Equation in affine coordinates: ax² + y² = 1 + dx²y²
+        // Equation in projective coordinates (X/Z, Y/Z, Z):  (aX² + Y²)Z² = Z⁴ + dX²Y²
+        const { ex: X, ey: Y, ez: Z, et: T } = p;
+        const X2 = modP(X * X); // X²
+        const Y2 = modP(Y * Y); // Y²
+        const Z2 = modP(Z * Z); // Z²
+        const Z4 = modP(Z2 * Z2); // Z⁴
+        const aX2 = modP(X2 * a); // aX²
+        const left = modP(Z2 * modP(aX2 + Y2)); // (aX² + Y²)Z²
+        const right = modP(Z4 + modP(d * modP(X2 * Y2))); // Z⁴ + dX²Y²
+        if (left !== right)
+            throw new Error('bad point: equation left != right (1)');
+        // In Extended coordinates we also have T, which is x*y=T/Z: check X*Y == Z*T
+        const XY = modP(X * Y);
+        const ZT = modP(Z * T);
+        if (XY !== ZT)
+            throw new Error('bad point: equation left != right (2)');
+        return true;
+    });
     // Extended Point works in extended coordinates: (x, y, z, t) ∋ (x=x/z, y=y/z, t=xy).
     // https://en.wikipedia.org/wiki/Twisted_Edwards_curve#Extended_coordinates
     class Point {
@@ -23749,14 +23047,11 @@ function twistedEdwards(curveDef) {
             this.ey = ey;
             this.ez = ez;
             this.et = et;
-            if (!in0MaskRange(ex))
-                throw new Error('x required');
-            if (!in0MaskRange(ey))
-                throw new Error('y required');
-            if (!in0MaskRange(ez))
-                throw new Error('z required');
-            if (!in0MaskRange(et))
-                throw new Error('t required');
+            aCoordinate('x', ex);
+            aCoordinate('y', ey);
+            aCoordinate('z', ez);
+            aCoordinate('t', et);
+            Object.freeze(this);
         }
         get x() {
             return this.toAffine().x;
@@ -23768,46 +23063,30 @@ function twistedEdwards(curveDef) {
             if (p instanceof Point)
                 throw new Error('extended point not allowed');
             const { x, y } = p || {};
-            if (!in0MaskRange(x) || !in0MaskRange(y))
-                throw new Error('invalid affine point');
+            aCoordinate('x', x);
+            aCoordinate('y', y);
             return new Point(x, y, _1n, modP(x * y));
         }
         static normalizeZ(points) {
             const toInv = Fp.invertBatch(points.map((p) => p.ez));
             return points.map((p, i) => p.toAffine(toInv[i])).map(Point.fromAffine);
         }
+        // Multiscalar Multiplication
+        static msm(points, scalars) {
+            return (0,_curve_js__WEBPACK_IMPORTED_MODULE_0__.pippenger)(Point, Fn, points, scalars);
+        }
         // "Private method", don't use it directly
         _setWindowSize(windowSize) {
-            this._WINDOW_SIZE = windowSize;
-            pointPrecomputes.delete(this);
+            wnaf.setWindowSize(this, windowSize);
         }
         // Not required for fromHex(), which always creates valid points.
         // Could be useful for fromAffine().
         assertValidity() {
-            const { a, d } = CURVE;
-            if (this.is0())
-                throw new Error('bad point: ZERO'); // TODO: optimize, with vars below?
-            // Equation in affine coordinates: ax² + y² = 1 + dx²y²
-            // Equation in projective coordinates (X/Z, Y/Z, Z):  (aX² + Y²)Z² = Z⁴ + dX²Y²
-            const { ex: X, ey: Y, ez: Z, et: T } = this;
-            const X2 = modP(X * X); // X²
-            const Y2 = modP(Y * Y); // Y²
-            const Z2 = modP(Z * Z); // Z²
-            const Z4 = modP(Z2 * Z2); // Z⁴
-            const aX2 = modP(X2 * a); // aX²
-            const left = modP(Z2 * modP(aX2 + Y2)); // (aX² + Y²)Z²
-            const right = modP(Z4 + modP(d * modP(X2 * Y2))); // Z⁴ + dX²Y²
-            if (left !== right)
-                throw new Error('bad point: equation left != right (1)');
-            // In Extended coordinates we also have T, which is x*y=T/Z: check X*Y == Z*T
-            const XY = modP(X * Y);
-            const ZT = modP(Z * T);
-            if (XY !== ZT)
-                throw new Error('bad point: equation left != right (2)');
+            assertValidMemo(this);
         }
         // Compare one point to another.
         equals(other) {
-            isPoint(other);
+            assertPoint(other);
             const { ex: X1, ey: Y1, ez: Z1 } = this;
             const { ex: X2, ey: Y2, ez: Z2 } = other;
             const X1Z2 = modP(X1 * Z2);
@@ -23848,7 +23127,7 @@ function twistedEdwards(curveDef) {
         // https://hyperelliptic.org/EFD/g1p/auto-twisted-extended.html#addition-add-2008-hwcd
         // Cost: 9M + 1*a + 1*d + 7add.
         add(other) {
-            isPoint(other);
+            assertPoint(other);
             const { a, d } = CURVE;
             const { ex: X1, ey: Y1, ez: Z1, et: T1 } = this;
             const { ex: X2, ey: Y2, ez: Z2, et: T2 } = other;
@@ -23891,26 +23170,28 @@ function twistedEdwards(curveDef) {
             return this.add(other.negate());
         }
         wNAF(n) {
-            return wnaf.wNAFCached(this, pointPrecomputes, n, Point.normalizeZ);
+            return wnaf.wNAFCached(this, n, Point.normalizeZ);
         }
         // Constant-time multiplication.
         multiply(scalar) {
-            const { p, f } = this.wNAF(assertInRange(scalar, CURVE_ORDER));
+            const n = scalar;
+            _utils_js__WEBPACK_IMPORTED_MODULE_1__.aInRange('scalar', n, _1n, CURVE_ORDER); // 1 <= scalar < L
+            const { p, f } = this.wNAF(n);
             return Point.normalizeZ([p, f])[0];
         }
         // Non-constant-time multiplication. Uses double-and-add algorithm.
         // It's faster, but should only be used when you don't care about
         // an exposed private key e.g. sig verification.
         // Does NOT allow scalars higher than CURVE.n.
-        multiplyUnsafe(scalar) {
-            let n = assertGE0(scalar); // 0 <= scalar < CURVE.n
+        // Accepts optional accumulator to merge with multiply (important for sparse scalars)
+        multiplyUnsafe(scalar, acc = Point.ZERO) {
+            const n = scalar;
+            _utils_js__WEBPACK_IMPORTED_MODULE_1__.aInRange('scalar', n, _0n, CURVE_ORDER); // 0 <= scalar < L
             if (n === _0n)
                 return I;
-            if (this.equals(I) || n === _1n)
+            if (this.is0() || n === _1n)
                 return this;
-            if (this.equals(G))
-                return this.wNAF(n).p;
-            return wnaf.unsafeLadder(this, n);
+            return wnaf.wNAFCachedUnsafe(this, n, Point.normalizeZ, acc);
         }
         // Checks if point is of small order.
         // If you add something to small order point, you will have "dirty"
@@ -23927,18 +23208,7 @@ function twistedEdwards(curveDef) {
         // Converts Extended point to default (x, y) coordinates.
         // Can accept precomputed Z^-1 - for example, from invertBatch.
         toAffine(iz) {
-            const { ex: x, ey: y, ez: z } = this;
-            const is0 = this.is0();
-            if (iz == null)
-                iz = is0 ? _8n : Fp.inv(z); // 8 was chosen arbitrarily
-            const ax = modP(x * iz);
-            const ay = modP(y * iz);
-            const zz = modP(z * iz);
-            if (is0)
-                return { x: _0n, y: _1n };
-            if (zz !== _1n)
-                throw new Error('invZ was invalid');
-            return { x: ax, y: ay };
+            return toAffineMemo(this, iz);
         }
         clearCofactor() {
             const { h: cofactor } = CURVE;
@@ -23952,20 +23222,17 @@ function twistedEdwards(curveDef) {
             const { d, a } = CURVE;
             const len = Fp.BYTES;
             hex = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('pointHex', hex, len); // copy hex to a new array
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.abool)('zip215', zip215);
             const normed = hex.slice(); // copy again, we'll manipulate it
             const lastByte = hex[len - 1]; // select last byte
             normed[len - 1] = lastByte & ~0x80; // clear last bit
             const y = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberLE(normed);
-            if (y === _0n) {
-                // y=0 is allowed
-            }
-            else {
-                // RFC8032 prohibits >= p, but ZIP215 doesn't
-                if (zip215)
-                    assertInRange(y, MASK); // zip215=true [1..P-1] (2^255-19-1 for ed25519)
-                else
-                    assertInRange(y, Fp.ORDER); // zip215=false [1..MASK-1] (2^256-1 for ed25519)
-            }
+            // zip215=true is good for consensus-critical apps. =false follows RFC8032 / NIST186-5.
+            // RFC8032 prohibits >= p, but ZIP215 doesn't
+            // zip215=true:  0 <= y < MASK (2^256 for ed25519)
+            // zip215=false: 0 <= y < P (2^255-19 for ed25519)
+            const max = zip215 ? MASK : Fp.ORDER;
+            _utils_js__WEBPACK_IMPORTED_MODULE_1__.aInRange('pointHex.y', y, _0n, max);
             // Ed25519: x² = (y²-1)/(dy²+1) mod p. Ed448: x² = (y²-1)/(dy²-1) mod p. Generic case:
             // ax²+y²=1+dx²y² => y²-1=dx²y²-ax² => y²-1=x²(dy²-a) => x²=(y²-1)/(dy²-a)
             const y2 = modP(y * y); // denominator is always non-0 mod p.
@@ -24009,7 +23276,7 @@ function twistedEdwards(curveDef) {
     }
     /** Convenience method that creates public key and other stuff. RFC8032 5.1.5 */
     function getExtendedPublicKey(key) {
-        const len = nByteLength;
+        const len = Fp.BYTES;
         key = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('private key', key, len);
         // Hash private key with curve's hash function to produce uniformingly random input
         // Check byte lengths: ensure(64, h(ensure(32, key)))
@@ -24040,23 +23307,31 @@ function twistedEdwards(curveDef) {
         const R = G.multiply(r).toRawBytes(); // R = rG
         const k = hashDomainToScalar(options.context, R, pointBytes, msg); // R || A || PH(M)
         const s = modN(r + k * scalar); // S = (r + k * s) mod L
-        assertGE0(s); // 0 <= s < l
+        _utils_js__WEBPACK_IMPORTED_MODULE_1__.aInRange('signature.s', s, _0n, CURVE_ORDER); // 0 <= s < l
         const res = _utils_js__WEBPACK_IMPORTED_MODULE_1__.concatBytes(R, _utils_js__WEBPACK_IMPORTED_MODULE_1__.numberToBytesLE(s, Fp.BYTES));
-        return (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('result', res, nByteLength * 2); // 64-byte signature
+        return (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('result', res, Fp.BYTES * 2); // 64-byte signature
     }
     const verifyOpts = VERIFY_DEFAULT;
+    /**
+     * Verifies EdDSA signature against message and public key. RFC8032 5.1.7.
+     * An extended group equation is checked.
+     */
     function verify(sig, msg, publicKey, options = verifyOpts) {
         const { context, zip215 } = options;
         const len = Fp.BYTES; // Verifies EdDSA signature against message and public key. RFC8032 5.1.7.
         sig = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('signature', sig, 2 * len); // An extended group equation is checked.
         msg = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('message', msg);
+        publicKey = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('publicKey', publicKey, len);
+        if (zip215 !== undefined)
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.abool)('zip215', zip215);
         if (prehash)
             msg = prehash(msg); // for ed25519ph, etc
         const s = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberLE(sig.slice(len, 2 * len));
-        // zip215: true is good for consensus-critical apps and allows points < 2^256
-        // zip215: false follows RFC8032 / NIST186-5 and restricts points to CURVE.p
         let A, R, SB;
         try {
+            // zip215=true is good for consensus-critical apps. =false follows RFC8032 / NIST186-5.
+            // zip215=true:  0 <= y < MASK (2^256 for ed25519)
+            // zip215=false: 0 <= y < P (2^255-19 for ed25519)
             A = Point.fromHex(publicKey, zip215);
             R = Point.fromHex(sig.slice(0, len), zip215);
             SB = G.multiplyUnsafe(s); // 0 <= s < l is done inside
@@ -24068,6 +23343,7 @@ function twistedEdwards(curveDef) {
             return false;
         const k = hashDomainToScalar(context, R.toRawBytes(), A.toRawBytes(), msg);
         const RkA = R.add(A.multiplyUnsafe(k));
+        // Extended group equation
         // [8][S]B = [8]R + [8][k]A'
         return RkA.subtract(SB).clearCofactor().equals(Point.ZERO);
     }
@@ -24120,20 +23396,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
 
 
-function validateDST(dst) {
-    if ((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isBytes)(dst))
-        return dst;
-    if (typeof dst === 'string')
-        return (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.utf8ToBytes)(dst);
-    throw new Error('DST must be Uint8Array or string');
-}
 // Octet Stream to Integer. "spec" implementation of os2ip is 2.5x slower vs bytesToNumberBE.
 const os2ip = _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE;
 // Integer to Octet Stream (numberToBytesBE)
 function i2osp(value, length) {
-    if (value < 0 || value >= 1 << (8 * length)) {
-        throw new Error(`bad I2OSP call: value=${value} length=${length}`);
-    }
+    anum(value);
+    anum(length);
+    if (value < 0 || value >= 1 << (8 * length))
+        throw new Error('invalid I2OSP input: ' + value);
     const res = Array.from({ length }).fill(0);
     for (let i = length - 1; i >= 0; i--) {
         res[i] = value & 0xff;
@@ -24148,27 +23418,23 @@ function strxor(a, b) {
     }
     return arr;
 }
-function abytes(item) {
-    if (!(0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.isBytes)(item))
-        throw new Error('Uint8Array expected');
-}
-function isNum(item) {
+function anum(item) {
     if (!Number.isSafeInteger(item))
         throw new Error('number expected');
 }
 // Produces a uniformly random byte string using a cryptographic hash function H that outputs b bits
 // https://www.rfc-editor.org/rfc/rfc9380#section-5.3.1
 function expand_message_xmd(msg, DST, lenInBytes, H) {
-    abytes(msg);
-    abytes(DST);
-    isNum(lenInBytes);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(msg);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(DST);
+    anum(lenInBytes);
     // https://www.rfc-editor.org/rfc/rfc9380#section-5.3.3
     if (DST.length > 255)
         DST = H((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.concatBytes)((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.utf8ToBytes)('H2C-OVERSIZE-DST-'), DST));
     const { outputLen: b_in_bytes, blockLen: r_in_bytes } = H;
     const ell = Math.ceil(lenInBytes / b_in_bytes);
-    if (ell > 255)
-        throw new Error('Invalid xmd length');
+    if (lenInBytes > 65535 || ell > 255)
+        throw new Error('expand_message_xmd: invalid lenInBytes');
     const DST_prime = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.concatBytes)(DST, i2osp(DST.length, 1));
     const Z_pad = i2osp(0, r_in_bytes);
     const l_i_b_str = i2osp(lenInBytes, 2); // len_in_bytes_str
@@ -24188,9 +23454,9 @@ function expand_message_xmd(msg, DST, lenInBytes, H) {
 //    a random oracle under a reasonable cryptographic assumption.
 // https://www.rfc-editor.org/rfc/rfc9380#section-5.3.2
 function expand_message_xof(msg, DST, lenInBytes, k, H) {
-    abytes(msg);
-    abytes(DST);
-    isNum(lenInBytes);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(msg);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(DST);
+    anum(lenInBytes);
     // https://www.rfc-editor.org/rfc/rfc9380#section-5.3.3
     // DST = H('H2C-OVERSIZE-DST-' || a_very_long_DST, Math.ceil((lenInBytes * k) / 8));
     if (DST.length > 255) {
@@ -24224,9 +23490,9 @@ function hash_to_field(msg, count, options) {
         hash: 'hash',
     });
     const { p, k, m, hash, expand, DST: _DST } = options;
-    abytes(msg);
-    isNum(count);
-    const DST = validateDST(_DST);
+    (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(msg);
+    anum(count);
+    const DST = typeof _DST === 'string' ? (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.utf8ToBytes)(_DST) : _DST;
     const log2p = p.toString(2).length;
     const L = Math.ceil((log2p + k) / 8); // section 5.1 of ietf draft link above
     const len_in_bytes = count * m * L;
@@ -24288,6 +23554,17 @@ function createHasher(Point, mapToCurve, def) {
             P.assertValidity();
             return P;
         },
+        // Same as encodeToCurve, but without hash
+        mapToCurve(scalars) {
+            if (!Array.isArray(scalars))
+                throw new Error('mapToCurve: expected array of bigints');
+            for (const i of scalars)
+                if (typeof i !== 'bigint')
+                    throw new Error('mapToCurve: expected array of bigints');
+            const P = Point.fromAffine(mapToCurve(scalars)).clearCofactor();
+            P.assertValidity();
+            return P;
+        },
     };
 }
 //# sourceMappingURL=hash-to-curve.js.map
@@ -24307,6 +23584,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FpDiv: () => (/* binding */ FpDiv),
 /* harmony export */   FpInvertBatch: () => (/* binding */ FpInvertBatch),
 /* harmony export */   FpIsSquare: () => (/* binding */ FpIsSquare),
+/* harmony export */   FpLegendre: () => (/* binding */ FpLegendre),
 /* harmony export */   FpPow: () => (/* binding */ FpPow),
 /* harmony export */   FpSqrt: () => (/* binding */ FpSqrt),
 /* harmony export */   FpSqrtEven: () => (/* binding */ FpSqrtEven),
@@ -24329,11 +23607,11 @@ __webpack_require__.r(__webpack_exports__);
 // Utilities for modular arithmetics and finite fields
 
 // prettier-ignore
-const _0n = BigInt(0), _1n = BigInt(1), _2n = BigInt(2), _3n = BigInt(3);
+const _0n = BigInt(0), _1n = BigInt(1), _2n = /* @__PURE__ */ BigInt(2), _3n = /* @__PURE__ */ BigInt(3);
 // prettier-ignore
-const _4n = BigInt(4), _5n = BigInt(5), _8n = BigInt(8);
+const _4n = /* @__PURE__ */ BigInt(4), _5n = /* @__PURE__ */ BigInt(5), _8n = /* @__PURE__ */ BigInt(8);
 // prettier-ignore
-const _9n = BigInt(9), _16n = BigInt(16);
+const _9n = /* @__PURE__ */ BigInt(9), _16n = /* @__PURE__ */ BigInt(16);
 // Calculates a modulo b
 function mod(a, b) {
     const result = a % b;
@@ -24347,8 +23625,10 @@ function mod(a, b) {
  */
 // TODO: use field version && remove
 function pow(num, power, modulo) {
-    if (modulo <= _0n || power < _0n)
-        throw new Error('Expected power/modulo > 0');
+    if (power < _0n)
+        throw new Error('invalid exponent, negatives unsupported');
+    if (modulo <= _0n)
+        throw new Error('invalid modulus');
     if (modulo === _1n)
         return _0n;
     let res = _1n;
@@ -24371,9 +23651,10 @@ function pow2(x, power, modulo) {
 }
 // Inverses number over modulo
 function invert(number, modulo) {
-    if (number === _0n || modulo <= _0n) {
-        throw new Error(`invert: expected positive integers, got n=${number} mod=${modulo}`);
-    }
+    if (number === _0n)
+        throw new Error('invert: expected non-zero number');
+    if (modulo <= _0n)
+        throw new Error('invert: expected positive modulus, got ' + modulo);
     // Euclidean GCD https://brilliant.org/wiki/extended-euclidean-algorithm/
     // Fermat's little theorem "CT-like" version inv(n) = n^(m-2) mod m is 30x slower.
     let a = mod(number, modulo);
@@ -24415,8 +23696,11 @@ function tonelliShanks(P) {
     for (Q = P - _1n, S = 0; Q % _2n === _0n; Q /= _2n, S++)
         ;
     // Step 2: Select a non-square z such that (z | p) ≡ -1 and set c ≡ zq
-    for (Z = _2n; Z < P && pow(Z, legendreC, P) !== P - _1n; Z++)
-        ;
+    for (Z = _2n; Z < P && pow(Z, legendreC, P) !== P - _1n; Z++) {
+        // Crash instead of infinity loop, we cannot reasonable count until P.
+        if (Z > 1000)
+            throw new Error('Cannot find square root: likely non-prime P');
+    }
     // Fast-path
     if (S === 1) {
         const p1div4 = (P + _1n) / _4n;
@@ -24546,7 +23830,7 @@ function FpPow(f, num, power) {
     // Should have same speed as pow for bigints
     // TODO: benchmark!
     if (power < _0n)
-        throw new Error('Expected power > 0');
+        throw new Error('invalid exponent, negatives unsupported');
     if (power === _0n)
         return f.ONE;
     if (power === _1n)
@@ -24588,11 +23872,18 @@ function FpInvertBatch(f, nums) {
 function FpDiv(f, lhs, rhs) {
     return f.mul(lhs, typeof rhs === 'bigint' ? invert(rhs, f.ORDER) : f.inv(rhs));
 }
+function FpLegendre(order) {
+    // (a | p) ≡ 1    if a is a square (mod p), quadratic residue
+    // (a | p) ≡ -1   if a is not a square (mod p), quadratic non residue
+    // (a | p) ≡ 0    if a ≡ 0 (mod p)
+    const legendreConst = (order - _1n) / _2n; // Integer arithmetic
+    return (f, x) => f.pow(x, legendreConst);
+}
 // This function returns True whenever the value x is a square in the field F.
 function FpIsSquare(f) {
-    const legendreConst = (f.ORDER - _1n) / _2n; // Integer arithmetic
+    const legendre = FpLegendre(f.ORDER);
     return (x) => {
-        const p = f.pow(x, legendreConst);
+        const p = legendre(f, x);
         return f.eql(p, f.ZERO) || f.eql(p, f.ONE);
     };
 }
@@ -24610,6 +23901,9 @@ function nLength(n, nBitLength) {
  * * a) denormalized operations like mulN instead of mul
  * * b) same object shape: never add or remove keys
  * * c) Object.freeze
+ * NOTE: operations don't check 'isValid' for all elements for performance reasons,
+ * it is caller responsibility to check this.
+ * This is low-level code, please make sure you know what you doing.
  * @param ORDER prime positive bigint
  * @param bitLen how many bits the field consumes
  * @param isLE (def: false) if encoding / decoding should be in little-endian
@@ -24617,11 +23911,11 @@ function nLength(n, nBitLength) {
  */
 function Field(ORDER, bitLen, isLE = false, redef = {}) {
     if (ORDER <= _0n)
-        throw new Error(`Expected Field ORDER > 0, got ${ORDER}`);
+        throw new Error('invalid field: expected ORDER > 0, got ' + ORDER);
     const { nBitLength: BITS, nByteLength: BYTES } = nLength(ORDER, bitLen);
     if (BYTES > 2048)
-        throw new Error('Field lengths over 2048 bytes are not supported');
-    const sqrtP = FpSqrt(ORDER);
+        throw new Error('invalid field: expected ORDER of <= 2048 bytes');
+    let sqrtP; // cached sqrtP
     const f = Object.freeze({
         ORDER,
         BITS,
@@ -24632,7 +23926,7 @@ function Field(ORDER, bitLen, isLE = false, redef = {}) {
         create: (num) => mod(num, ORDER),
         isValid: (num) => {
             if (typeof num !== 'bigint')
-                throw new Error(`Invalid field element: expected bigint, got ${typeof num}`);
+                throw new Error('invalid field element: expected bigint, got ' + typeof num);
             return _0n <= num && num < ORDER; // 0 is valid element, but it's not invertible
         },
         is0: (num) => num === _0n,
@@ -24651,7 +23945,12 @@ function Field(ORDER, bitLen, isLE = false, redef = {}) {
         subN: (lhs, rhs) => lhs - rhs,
         mulN: (lhs, rhs) => lhs * rhs,
         inv: (num) => invert(num, ORDER),
-        sqrt: redef.sqrt || ((n) => sqrtP(f, n)),
+        sqrt: redef.sqrt ||
+            ((n) => {
+                if (!sqrtP)
+                    sqrtP = FpSqrt(ORDER);
+                return sqrtP(f, n);
+            }),
         invertBatch: (lst) => FpInvertBatch(f, lst),
         // TODO: do we really need constant cmov?
         // We don't have const-time bigints anyway, so probably will be not very useful
@@ -24659,7 +23958,7 @@ function Field(ORDER, bitLen, isLE = false, redef = {}) {
         toBytes: (num) => (isLE ? (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToBytesLE)(num, BYTES) : (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToBytesBE)(num, BYTES)),
         fromBytes: (bytes) => {
             if (bytes.length !== BYTES)
-                throw new Error(`Fp.fromBytes: expected ${BYTES}, got ${bytes.length}`);
+                throw new Error('Field.fromBytes: expected ' + BYTES + ' bytes, got ' + bytes.length);
             return isLE ? (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberLE)(bytes) : (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE)(bytes);
         },
     });
@@ -24667,13 +23966,13 @@ function Field(ORDER, bitLen, isLE = false, redef = {}) {
 }
 function FpSqrtOdd(Fp, elm) {
     if (!Fp.isOdd)
-        throw new Error(`Field doesn't have isOdd`);
+        throw new Error("Field doesn't have isOdd");
     const root = Fp.sqrt(elm);
     return Fp.isOdd(root) ? root : Fp.neg(root);
 }
 function FpSqrtEven(Fp, elm) {
     if (!Fp.isOdd)
-        throw new Error(`Field doesn't have isOdd`);
+        throw new Error("Field doesn't have isOdd");
     const root = Fp.sqrt(elm);
     return Fp.isOdd(root) ? Fp.neg(root) : root;
 }
@@ -24688,7 +23987,7 @@ function hashToPrivateScalar(hash, groupOrder, isLE = false) {
     const hashLen = hash.length;
     const minLen = nLength(groupOrder).nByteLength + 8;
     if (minLen < 24 || hashLen < minLen || hashLen > 1024)
-        throw new Error(`hashToPrivateScalar: expected ${minLen}-1024 bytes of input, got ${hashLen}`);
+        throw new Error('hashToPrivateScalar: expected ' + minLen + '-1024 bytes of input, got ' + hashLen);
     const num = isLE ? (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberLE)(hash) : (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE)(hash);
     return mod(num, groupOrder - _1n) + _1n;
 }
@@ -24734,7 +24033,7 @@ function mapHashToField(key, fieldOrder, isLE = false) {
     const minLen = getMinHashLength(fieldOrder);
     // No small numbers: need to understand bias story. No huge numbers: easier to detect JS timings.
     if (len < 16 || len < minLen || len > 1024)
-        throw new Error(`expected ${minLen}-1024 bytes of input, got ${len}`);
+        throw new Error('expected ' + minLen + '-1024 bytes of input, got ' + len);
     const num = isLE ? (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE)(key) : (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberLE)(key);
     // `mod(x, 11)` can sometimes produce 0. `mod(x, 10) + 1` is the same, but no 0
     const reduced = mod(num, fieldOrder - _1n) + _1n;
@@ -24803,12 +24102,6 @@ function montgomery(curveDef) {
         x_3 = modP(x_3 + dummy);
         return [x_2, x_3];
     }
-    // Accepts 0 as well
-    function assertFieldElement(n) {
-        if (typeof n === 'bigint' && _0n <= n && n < P)
-            return n;
-        throw new Error('Expected valid scalar 0 < scalar < CURVE.P');
-    }
     // x25519 from 4
     // The constant a24 is (486662 - 2) / 4 = 121665 for curve25519/X25519
     const a24 = (CURVE.a - BigInt(2)) / BigInt(4);
@@ -24818,11 +24111,12 @@ function montgomery(curveDef) {
      * @param scalar by which the point would be multiplied
      * @returns new Point on Montgomery curve
      */
-    function montgomeryLadder(pointU, scalar) {
-        const u = assertFieldElement(pointU);
+    function montgomeryLadder(u, scalar) {
+        (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange)('u', u, _0n, P);
+        (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange)('scalar', scalar, _0n, P);
         // Section 5: Implementations MUST accept non-canonical values and process them as
         // if they had been reduced modulo the field prime.
-        const k = assertFieldElement(scalar);
+        const k = scalar;
         const x_1 = u;
         let x_2 = _1n;
         let z_2 = _0n;
@@ -24883,8 +24177,10 @@ function montgomery(curveDef) {
     function decodeScalar(n) {
         const bytes = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('scalar', n);
         const len = bytes.length;
-        if (len !== montgomeryBytes && len !== fieldLen)
-            throw new Error(`Expected ${montgomeryBytes} or ${fieldLen} bytes, got ${len}`);
+        if (len !== montgomeryBytes && len !== fieldLen) {
+            let valid = '' + montgomeryBytes + ' or ' + fieldLen;
+            throw new Error('invalid scalar, expected ' + valid + ' bytes, got ' + len);
+        }
         return (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberLE)(adjustScalarBytes(bytes));
     }
     function scalarMult(scalar, u) {
@@ -24894,7 +24190,7 @@ function montgomery(curveDef) {
         // The result was not contributory
         // https://cr.yp.to/ecdh.html#validate
         if (pu === _0n)
-            throw new Error('Invalid private or public key received');
+            throw new Error('invalid private or public key received');
         return encodeUCoordinate(pu);
     }
     // Computes public key from private. By doing scalar multiplication of base point.
@@ -24924,6 +24220,9 @@ function montgomery(curveDef) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   aInRange: () => (/* binding */ aInRange),
+/* harmony export */   abool: () => (/* binding */ abool),
+/* harmony export */   abytes: () => (/* binding */ abytes),
 /* harmony export */   bitGet: () => (/* binding */ bitGet),
 /* harmony export */   bitLen: () => (/* binding */ bitLen),
 /* harmony export */   bitMask: () => (/* binding */ bitMask),
@@ -24937,7 +24236,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   equalBytes: () => (/* binding */ equalBytes),
 /* harmony export */   hexToBytes: () => (/* binding */ hexToBytes),
 /* harmony export */   hexToNumber: () => (/* binding */ hexToNumber),
+/* harmony export */   inRange: () => (/* binding */ inRange),
 /* harmony export */   isBytes: () => (/* binding */ isBytes),
+/* harmony export */   memoized: () => (/* binding */ memoized),
+/* harmony export */   notImplemented: () => (/* binding */ notImplemented),
 /* harmony export */   numberToBytesBE: () => (/* binding */ numberToBytesBE),
 /* harmony export */   numberToBytesLE: () => (/* binding */ numberToBytesLE),
 /* harmony export */   numberToHexUnpadded: () => (/* binding */ numberToHexUnpadded),
@@ -24950,12 +24252,19 @@ __webpack_require__.r(__webpack_exports__);
 // This is OK: `abstract` directory does not use noble-hashes.
 // User may opt-in into using different hashing library. This way, noble-hashes
 // won't be included into their bundle.
-const _0n = BigInt(0);
-const _1n = BigInt(1);
-const _2n = BigInt(2);
+const _0n = /* @__PURE__ */ BigInt(0);
+const _1n = /* @__PURE__ */ BigInt(1);
+const _2n = /* @__PURE__ */ BigInt(2);
 function isBytes(a) {
-    return (a instanceof Uint8Array ||
-        (a != null && typeof a === 'object' && a.constructor.name === 'Uint8Array'));
+    return a instanceof Uint8Array || (ArrayBuffer.isView(a) && a.constructor.name === 'Uint8Array');
+}
+function abytes(item) {
+    if (!isBytes(item))
+        throw new Error('Uint8Array expected');
+}
+function abool(title, value) {
+    if (typeof value !== 'boolean')
+        throw new Error(title + ' boolean expected, got ' + value);
 }
 // Array where index 0xf0 (240) is mapped to string 'f0'
 const hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
@@ -24963,8 +24272,7 @@ const hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(1
  * @example bytesToHex(Uint8Array.from([0xca, 0xfe, 0x01, 0x23])) // 'cafe0123'
  */
 function bytesToHex(bytes) {
-    if (!isBytes(bytes))
-        throw new Error('Uint8Array expected');
+    abytes(bytes);
     // pre-caching improves the speed 6x
     let hex = '';
     for (let i = 0; i < bytes.length; i++) {
@@ -24974,23 +24282,22 @@ function bytesToHex(bytes) {
 }
 function numberToHexUnpadded(num) {
     const hex = num.toString(16);
-    return hex.length & 1 ? `0${hex}` : hex;
+    return hex.length & 1 ? '0' + hex : hex;
 }
 function hexToNumber(hex) {
     if (typeof hex !== 'string')
         throw new Error('hex string expected, got ' + typeof hex);
-    // Big Endian
-    return BigInt(hex === '' ? '0' : `0x${hex}`);
+    return hex === '' ? _0n : BigInt('0x' + hex); // Big Endian
 }
 // We use optimized technique to convert hex string to byte array
-const asciis = { _0: 48, _9: 57, _A: 65, _F: 70, _a: 97, _f: 102 };
-function asciiToBase16(char) {
-    if (char >= asciis._0 && char <= asciis._9)
-        return char - asciis._0;
-    if (char >= asciis._A && char <= asciis._F)
-        return char - (asciis._A - 10);
-    if (char >= asciis._a && char <= asciis._f)
-        return char - (asciis._a - 10);
+const asciis = { _0: 48, _9: 57, A: 65, F: 70, a: 97, f: 102 };
+function asciiToBase16(ch) {
+    if (ch >= asciis._0 && ch <= asciis._9)
+        return ch - asciis._0; // '2' => 50-48
+    if (ch >= asciis.A && ch <= asciis.F)
+        return ch - (asciis.A - 10); // 'B' => 66-(65-10)
+    if (ch >= asciis.a && ch <= asciis.f)
+        return ch - (asciis.a - 10); // 'b' => 98-(97-10)
     return;
 }
 /**
@@ -25002,7 +24309,7 @@ function hexToBytes(hex) {
     const hl = hex.length;
     const al = hl / 2;
     if (hl % 2)
-        throw new Error('padded hex string expected, got unpadded hex of length ' + hl);
+        throw new Error('hex string expected, got unpadded hex of length ' + hl);
     const array = new Uint8Array(al);
     for (let ai = 0, hi = 0; ai < al; ai++, hi += 2) {
         const n1 = asciiToBase16(hex.charCodeAt(hi));
@@ -25011,7 +24318,7 @@ function hexToBytes(hex) {
             const char = hex[hi] + hex[hi + 1];
             throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
         }
-        array[ai] = n1 * 16 + n2;
+        array[ai] = n1 * 16 + n2; // multiply first octet, e.g. 'a3' => 10*16+3 => 160 + 3 => 163
     }
     return array;
 }
@@ -25020,8 +24327,7 @@ function bytesToNumberBE(bytes) {
     return hexToNumber(bytesToHex(bytes));
 }
 function bytesToNumberLE(bytes) {
-    if (!isBytes(bytes))
-        throw new Error('Uint8Array expected');
+    abytes(bytes);
     return hexToNumber(bytesToHex(Uint8Array.from(bytes).reverse()));
 }
 function numberToBytesBE(n, len) {
@@ -25050,7 +24356,7 @@ function ensureBytes(title, hex, expectedLength) {
             res = hexToBytes(hex);
         }
         catch (e) {
-            throw new Error(`${title} must be valid hex string, got "${hex}". Cause: ${e}`);
+            throw new Error(title + ' must be hex string or Uint8Array, cause: ' + e);
         }
     }
     else if (isBytes(hex)) {
@@ -25059,11 +24365,11 @@ function ensureBytes(title, hex, expectedLength) {
         res = Uint8Array.from(hex);
     }
     else {
-        throw new Error(`${title} must be hex string or Uint8Array`);
+        throw new Error(title + ' must be hex string or Uint8Array');
     }
     const len = res.length;
     if (typeof expectedLength === 'number' && len !== expectedLength)
-        throw new Error(`${title} expected ${expectedLength} bytes, got ${len}`);
+        throw new Error(title + ' of length ' + expectedLength + ' expected, got ' + len);
     return res;
 }
 /**
@@ -25073,13 +24379,11 @@ function concatBytes(...arrays) {
     let sum = 0;
     for (let i = 0; i < arrays.length; i++) {
         const a = arrays[i];
-        if (!isBytes(a))
-            throw new Error('Uint8Array expected');
+        abytes(a);
         sum += a.length;
     }
-    let res = new Uint8Array(sum);
-    let pad = 0;
-    for (let i = 0; i < arrays.length; i++) {
+    const res = new Uint8Array(sum);
+    for (let i = 0, pad = 0; i < arrays.length; i++) {
         const a = arrays[i];
         res.set(a, pad);
         pad += a.length;
@@ -25100,8 +24404,27 @@ function equalBytes(a, b) {
  */
 function utf8ToBytes(str) {
     if (typeof str !== 'string')
-        throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
+        throw new Error('string expected');
     return new Uint8Array(new TextEncoder().encode(str)); // https://bugzil.la/1681809
+}
+// Is positive bigint
+const isPosBig = (n) => typeof n === 'bigint' && _0n <= n;
+function inRange(n, min, max) {
+    return isPosBig(n) && isPosBig(min) && isPosBig(max) && min <= n && n < max;
+}
+/**
+ * Asserts min <= n < max. NOTE: It's < max and not <= max.
+ * @example
+ * aInRange('x', x, 1n, 256n); // would assume x is in (1n..255n)
+ */
+function aInRange(title, n, min, max) {
+    // Why min <= n < max and not a (min < n < max) OR b (min <= n <= max)?
+    // consider P=256n, min=0n, max=P
+    // - a for min=0 would require -1:          `inRange('x', x, -1n, P)`
+    // - b would commonly require subtraction:  `inRange('x', x, 0n, P - 1n)`
+    // - our way is the cleanest:               `inRange('x', x, 0n, P)
+    if (!inRange(n, min, max))
+        throw new Error('expected valid ' + title + ': ' + min + ' <= n < ' + max + ', got ' + n);
 }
 // Bit operations
 /**
@@ -25125,9 +24448,9 @@ function bitGet(n, pos) {
 /**
  * Sets single bit at position.
  */
-const bitSet = (n, pos, value) => {
+function bitSet(n, pos, value) {
     return n | ((value ? _1n : _0n) << BigInt(pos));
-};
+}
 /**
  * Calculate mask for N bits. Not using ** operator with bigints because of old engines.
  * Same as BigInt(`0b${Array(i).fill('1').join('')}`)
@@ -25211,12 +24534,12 @@ function validateObject(object, validators, optValidators = {}) {
     const checkField = (fieldName, type, isOptional) => {
         const checkVal = validatorFns[type];
         if (typeof checkVal !== 'function')
-            throw new Error(`Invalid validator "${type}", expected function`);
+            throw new Error('invalid validator function');
         const val = object[fieldName];
         if (isOptional && val === undefined)
             return;
         if (!checkVal(val, object)) {
-            throw new Error(`Invalid param ${String(fieldName)}=${val} (${typeof val}), expected ${type}`);
+            throw new Error('param ' + String(fieldName) + ' is invalid. Expected ' + type + ', got ' + val);
         }
     };
     for (const [fieldName, type] of Object.entries(validators))
@@ -25233,6 +24556,27 @@ function validateObject(object, validators, optValidators = {}) {
 // const z2 = validateObject(o, { a: 'isSafeInteger' }, { c: 'zz' });
 // const z3 = validateObject(o, { test: 'boolean', z: 'bug' });
 // const z4 = validateObject(o, { a: 'boolean', z: 'bug' });
+/**
+ * throws not implemented error
+ */
+const notImplemented = () => {
+    throw new Error('not implemented');
+};
+/**
+ * Memoizes (caches) computation result.
+ * Uses WeakMap: the value is going auto-cleaned by GC after last reference is removed.
+ */
+function memoized(fn) {
+    const map = new WeakMap();
+    return (arg, ...args) => {
+        const val = map.get(arg);
+        if (val !== undefined)
+            return val;
+        const computed = fn(arg, ...args);
+        map.set(arg, computed);
+        return computed;
+    };
+}
 //# sourceMappingURL=utils.js.map
 
 /***/ }),
@@ -25252,18 +24596,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   weierstrass: () => (/* binding */ weierstrass),
 /* harmony export */   weierstrassPoints: () => (/* binding */ weierstrassPoints)
 /* harmony export */ });
+/* harmony import */ var _curve_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./curve.js */ "./node_modules/@noble/curves/esm/abstract/curve.js");
 /* harmony import */ var _modular_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
-/* harmony import */ var _curve_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./curve.js */ "./node_modules/@noble/curves/esm/abstract/curve.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 // Short Weierstrass curve. The formula is: y² = x³ + ax + b
 
 
 
 
+function validateSigVerOpts(opts) {
+    if (opts.lowS !== undefined)
+        (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abool)('lowS', opts.lowS);
+    if (opts.prehash !== undefined)
+        (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abool)('prehash', opts.prehash);
+}
 function validatePointOpts(curve) {
-    const opts = (0,_curve_js__WEBPACK_IMPORTED_MODULE_0__.validateBasic)(curve);
-    _utils_js__WEBPACK_IMPORTED_MODULE_1__.validateObject(opts, {
+    const opts = (0,_curve_js__WEBPACK_IMPORTED_MODULE_1__.validateBasic)(curve);
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__.validateObject(opts, {
         a: 'field',
         b: 'field',
     }, {
@@ -25278,18 +24628,24 @@ function validatePointOpts(curve) {
     const { endo, Fp, a } = opts;
     if (endo) {
         if (!Fp.eql(a, Fp.ZERO)) {
-            throw new Error('Endomorphism can only be defined for Koblitz curves that have a=0');
+            throw new Error('invalid endomorphism, can only be defined for Koblitz curves that have a=0');
         }
         if (typeof endo !== 'object' ||
             typeof endo.beta !== 'bigint' ||
             typeof endo.splitScalar !== 'function') {
-            throw new Error('Expected endomorphism with beta: bigint and splitScalar: function');
+            throw new Error('invalid endomorphism, expected beta: bigint and splitScalar: function');
         }
     }
     return Object.freeze({ ...opts });
 }
-// ASN.1 DER encoding utilities
-const { bytesToNumberBE: b2n, hexToBytes: h2b } = _utils_js__WEBPACK_IMPORTED_MODULE_1__;
+const { bytesToNumberBE: b2n, hexToBytes: h2b } = _utils_js__WEBPACK_IMPORTED_MODULE_0__;
+/**
+ * ASN.1 DER encoding utilities. ASN is very complex & fragile. Format:
+ *
+ *     [0x30 (SEQUENCE), bytelength, 0x02 (INTEGER), intLength, R, 0x02 (INTEGER), intLength, S]
+ *
+ * Docs: https://letsencrypt.org/docs/a-warm-welcome-to-asn1-and-der/, https://luca.ntop.org/Teaching/Appunti/asn1.html
+ */
 const DER = {
     // asn.1 DER encoding utils
     Err: class DERErr extends Error {
@@ -25297,55 +24653,106 @@ const DER = {
             super(m);
         }
     },
-    _parseInt(data) {
-        const { Err: E } = DER;
-        if (data.length < 2 || data[0] !== 0x02)
-            throw new E('Invalid signature integer tag');
-        const len = data[1];
-        const res = data.subarray(2, len + 2);
-        if (!len || res.length !== len)
-            throw new E('Invalid signature integer: wrong length');
-        // https://crypto.stackexchange.com/a/57734 Leftmost bit of first byte is 'negative' flag,
-        // since we always use positive integers here. It must always be empty:
-        // - add zero byte if exists
-        // - if next byte doesn't have a flag, leading zero is not allowed (minimal encoding)
-        if (res[0] & 0b10000000)
-            throw new E('Invalid signature integer: negative');
-        if (res[0] === 0x00 && !(res[1] & 0b10000000))
-            throw new E('Invalid signature integer: unnecessary leading zero');
-        return { d: b2n(res), l: data.subarray(len + 2) }; // d is data, l is left
+    // Basic building block is TLV (Tag-Length-Value)
+    _tlv: {
+        encode: (tag, data) => {
+            const { Err: E } = DER;
+            if (tag < 0 || tag > 256)
+                throw new E('tlv.encode: wrong tag');
+            if (data.length & 1)
+                throw new E('tlv.encode: unpadded data');
+            const dataLen = data.length / 2;
+            const len = _utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToHexUnpadded(dataLen);
+            if ((len.length / 2) & 128)
+                throw new E('tlv.encode: long form length too big');
+            // length of length with long form flag
+            const lenLen = dataLen > 127 ? _utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToHexUnpadded((len.length / 2) | 128) : '';
+            const t = _utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToHexUnpadded(tag);
+            return t + lenLen + len + data;
+        },
+        // v - value, l - left bytes (unparsed)
+        decode(tag, data) {
+            const { Err: E } = DER;
+            let pos = 0;
+            if (tag < 0 || tag > 256)
+                throw new E('tlv.encode: wrong tag');
+            if (data.length < 2 || data[pos++] !== tag)
+                throw new E('tlv.decode: wrong tlv');
+            const first = data[pos++];
+            const isLong = !!(first & 128); // First bit of first length byte is flag for short/long form
+            let length = 0;
+            if (!isLong)
+                length = first;
+            else {
+                // Long form: [longFlag(1bit), lengthLength(7bit), length (BE)]
+                const lenLen = first & 127;
+                if (!lenLen)
+                    throw new E('tlv.decode(long): indefinite length not supported');
+                if (lenLen > 4)
+                    throw new E('tlv.decode(long): byte length is too big'); // this will overflow u32 in js
+                const lengthBytes = data.subarray(pos, pos + lenLen);
+                if (lengthBytes.length !== lenLen)
+                    throw new E('tlv.decode: length bytes not complete');
+                if (lengthBytes[0] === 0)
+                    throw new E('tlv.decode(long): zero leftmost byte');
+                for (const b of lengthBytes)
+                    length = (length << 8) | b;
+                pos += lenLen;
+                if (length < 128)
+                    throw new E('tlv.decode(long): not minimal encoding');
+            }
+            const v = data.subarray(pos, pos + length);
+            if (v.length !== length)
+                throw new E('tlv.decode: wrong value length');
+            return { v, l: data.subarray(pos + length) };
+        },
+    },
+    // https://crypto.stackexchange.com/a/57734 Leftmost bit of first byte is 'negative' flag,
+    // since we always use positive integers here. It must always be empty:
+    // - add zero byte if exists
+    // - if next byte doesn't have a flag, leading zero is not allowed (minimal encoding)
+    _int: {
+        encode(num) {
+            const { Err: E } = DER;
+            if (num < _0n)
+                throw new E('integer: negative integers are not allowed');
+            let hex = _utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToHexUnpadded(num);
+            // Pad with zero byte if negative flag is present
+            if (Number.parseInt(hex[0], 16) & 0b1000)
+                hex = '00' + hex;
+            if (hex.length & 1)
+                throw new E('unexpected DER parsing assertion: unpadded hex');
+            return hex;
+        },
+        decode(data) {
+            const { Err: E } = DER;
+            if (data[0] & 128)
+                throw new E('invalid signature integer: negative');
+            if (data[0] === 0x00 && !(data[1] & 128))
+                throw new E('invalid signature integer: unnecessary leading zero');
+            return b2n(data);
+        },
     },
     toSig(hex) {
         // parse DER signature
-        const { Err: E } = DER;
+        const { Err: E, _int: int, _tlv: tlv } = DER;
         const data = typeof hex === 'string' ? h2b(hex) : hex;
-        if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__.isBytes(data))
-            throw new Error('ui8a expected');
-        let l = data.length;
-        if (l < 2 || data[0] != 0x30)
-            throw new E('Invalid signature tag');
-        if (data[1] !== l - 2)
-            throw new E('Invalid signature: incorrect length');
-        const { d: r, l: sBytes } = DER._parseInt(data.subarray(2));
-        const { d: s, l: rBytesLeft } = DER._parseInt(sBytes);
-        if (rBytesLeft.length)
-            throw new E('Invalid signature: left bytes after parsing');
-        return { r, s };
+        _utils_js__WEBPACK_IMPORTED_MODULE_0__.abytes(data);
+        const { v: seqBytes, l: seqLeftBytes } = tlv.decode(0x30, data);
+        if (seqLeftBytes.length)
+            throw new E('invalid signature: left bytes after parsing');
+        const { v: rBytes, l: rLeftBytes } = tlv.decode(0x02, seqBytes);
+        const { v: sBytes, l: sLeftBytes } = tlv.decode(0x02, rLeftBytes);
+        if (sLeftBytes.length)
+            throw new E('invalid signature: left bytes after parsing');
+        return { r: int.decode(rBytes), s: int.decode(sBytes) };
     },
     hexFromSig(sig) {
-        // Add leading zero if first byte has negative bit enabled. More details in '_parseInt'
-        const slice = (s) => (Number.parseInt(s[0], 16) & 0b1000 ? '00' + s : s);
-        const h = (num) => {
-            const hex = num.toString(16);
-            return hex.length & 1 ? `0${hex}` : hex;
-        };
-        const s = slice(h(sig.s));
-        const r = slice(h(sig.r));
-        const shl = s.length / 2;
-        const rhl = r.length / 2;
-        const sl = h(shl);
-        const rl = h(rhl);
-        return `30${h(rhl + shl + 4)}02${rl}${r}02${sl}${s}`;
+        const { _tlv: tlv, _int: int } = DER;
+        const rs = tlv.encode(0x02, int.encode(sig.r));
+        const ss = tlv.encode(0x02, int.encode(sig.s));
+        const seq = rs + ss;
+        return tlv.encode(0x30, seq);
     },
 };
 // Be friendly to bad ECMAScript parsers by not using bigint literals
@@ -25354,10 +24761,11 @@ const _0n = BigInt(0), _1n = BigInt(1), _2n = BigInt(2), _3n = BigInt(3), _4n = 
 function weierstrassPoints(opts) {
     const CURVE = validatePointOpts(opts);
     const { Fp } = CURVE; // All curves has same field / group length as for now, but they can differ
+    const Fn = _modular_js__WEBPACK_IMPORTED_MODULE_2__.Field(CURVE.n, CURVE.nBitLength);
     const toBytes = CURVE.toBytes ||
         ((_c, point, _isCompressed) => {
             const a = point.toAffine();
-            return _utils_js__WEBPACK_IMPORTED_MODULE_1__.concatBytes(Uint8Array.from([0x04]), Fp.toBytes(a.x), Fp.toBytes(a.y));
+            return _utils_js__WEBPACK_IMPORTED_MODULE_0__.concatBytes(Uint8Array.from([0x04]), Fp.toBytes(a.x), Fp.toBytes(a.y));
         });
     const fromBytes = CURVE.fromBytes ||
         ((bytes) => {
@@ -25386,22 +24794,18 @@ function weierstrassPoints(opts) {
         throw new Error('bad generator point: equation left != right');
     // Valid group elements reside in range 1..n-1
     function isWithinCurveOrder(num) {
-        return typeof num === 'bigint' && _0n < num && num < CURVE.n;
-    }
-    function assertGE(num) {
-        if (!isWithinCurveOrder(num))
-            throw new Error('Expected valid bigint: 0 < bigint < curve.n');
+        return _utils_js__WEBPACK_IMPORTED_MODULE_0__.inRange(num, _1n, CURVE.n);
     }
     // Validates if priv key is valid and converts it to bigint.
     // Supports options allowedPrivateKeyLengths and wrapPrivateKey.
     function normPrivateKeyToScalar(key) {
-        const { allowedPrivateKeyLengths: lengths, nByteLength, wrapPrivateKey, n } = CURVE;
+        const { allowedPrivateKeyLengths: lengths, nByteLength, wrapPrivateKey, n: N } = CURVE;
         if (lengths && typeof key !== 'bigint') {
-            if (_utils_js__WEBPACK_IMPORTED_MODULE_1__.isBytes(key))
-                key = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToHex(key);
+            if (_utils_js__WEBPACK_IMPORTED_MODULE_0__.isBytes(key))
+                key = _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToHex(key);
             // Normalize to hex string, pad. E.g. P521 would norm 130-132 char hex to 132-char bytes
             if (typeof key !== 'string' || !lengths.includes(key.length))
-                throw new Error('Invalid key');
+                throw new Error('invalid private key');
             key = key.padStart(nByteLength * 2, '0');
         }
         let num;
@@ -25409,21 +24813,67 @@ function weierstrassPoints(opts) {
             num =
                 typeof key === 'bigint'
                     ? key
-                    : _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberBE((0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('private key', key, nByteLength));
+                    : _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('private key', key, nByteLength));
         }
         catch (error) {
-            throw new Error(`private key must be ${nByteLength} bytes, hex or bigint, not ${typeof key}`);
+            throw new Error('invalid private key, expected hex or ' + nByteLength + ' bytes, got ' + typeof key);
         }
         if (wrapPrivateKey)
-            num = _modular_js__WEBPACK_IMPORTED_MODULE_2__.mod(num, n); // disabled by default, enabled for BLS
-        assertGE(num); // num in range [1..N-1]
+            num = _modular_js__WEBPACK_IMPORTED_MODULE_2__.mod(num, N); // disabled by default, enabled for BLS
+        _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('private key', num, _1n, N); // num in range [1..N-1]
         return num;
     }
-    const pointPrecomputes = new Map();
     function assertPrjPoint(other) {
         if (!(other instanceof Point))
             throw new Error('ProjectivePoint expected');
     }
+    // Memoized toAffine / validity check. They are heavy. Points are immutable.
+    // Converts Projective point to affine (x, y) coordinates.
+    // Can accept precomputed Z^-1 - for example, from invertBatch.
+    // (x, y, z) ∋ (x=x/z, y=y/z)
+    const toAffineMemo = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.memoized)((p, iz) => {
+        const { px: x, py: y, pz: z } = p;
+        // Fast-path for normalized points
+        if (Fp.eql(z, Fp.ONE))
+            return { x, y };
+        const is0 = p.is0();
+        // If invZ was 0, we return zero point. However we still want to execute
+        // all operations, so we replace invZ with a random number, 1.
+        if (iz == null)
+            iz = is0 ? Fp.ONE : Fp.inv(z);
+        const ax = Fp.mul(x, iz);
+        const ay = Fp.mul(y, iz);
+        const zz = Fp.mul(z, iz);
+        if (is0)
+            return { x: Fp.ZERO, y: Fp.ZERO };
+        if (!Fp.eql(zz, Fp.ONE))
+            throw new Error('invZ was invalid');
+        return { x: ax, y: ay };
+    });
+    // NOTE: on exception this will crash 'cached' and no value will be set.
+    // Otherwise true will be return
+    const assertValidMemo = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.memoized)((p) => {
+        if (p.is0()) {
+            // (0, 1, 0) aka ZERO is invalid in most contexts.
+            // In BLS, ZERO can be serialized, so we allow it.
+            // (0, 0, 0) is invalid representation of ZERO.
+            if (CURVE.allowInfinityPoint && !Fp.is0(p.py))
+                return;
+            throw new Error('bad point: ZERO');
+        }
+        // Some 3rd-party test vectors require different wording between here & `fromCompressedHex`
+        const { x, y } = p.toAffine();
+        // Check if x, y are valid field elements
+        if (!Fp.isValid(x) || !Fp.isValid(y))
+            throw new Error('bad point: x or y not FE');
+        const left = Fp.sqr(y); // y²
+        const right = weierstrassEquation(x); // x³ + ax + b
+        if (!Fp.eql(left, right))
+            throw new Error('bad point: equation left != right');
+        if (!p.isTorsionFree())
+            throw new Error('bad point: not in prime-order subgroup');
+        return true;
+    });
     /**
      * Projective Point works in 3d / projective (homogeneous) coordinates: (x, y, z) ∋ (x=x/z, y=y/z)
      * Default Point works in 2d / affine coordinates: (x, y)
@@ -25440,6 +24890,7 @@ function weierstrassPoints(opts) {
                 throw new Error('y required');
             if (pz == null || !Fp.isValid(pz))
                 throw new Error('z required');
+            Object.freeze(this);
         }
         // Does not validate if the point is on-curve.
         // Use fromHex instead, or call assertValidity() later.
@@ -25476,7 +24927,7 @@ function weierstrassPoints(opts) {
          * @param hex short/long ECDSA hex
          */
         static fromHex(hex) {
-            const P = Point.fromAffine(fromBytes((0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('pointHex', hex)));
+            const P = Point.fromAffine(fromBytes((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('pointHex', hex)));
             P.assertValidity();
             return P;
         }
@@ -25484,32 +24935,17 @@ function weierstrassPoints(opts) {
         static fromPrivateKey(privateKey) {
             return Point.BASE.multiply(normPrivateKeyToScalar(privateKey));
         }
+        // Multiscalar Multiplication
+        static msm(points, scalars) {
+            return (0,_curve_js__WEBPACK_IMPORTED_MODULE_1__.pippenger)(Point, Fn, points, scalars);
+        }
         // "Private method", don't use it directly
         _setWindowSize(windowSize) {
-            this._WINDOW_SIZE = windowSize;
-            pointPrecomputes.delete(this);
+            wnaf.setWindowSize(this, windowSize);
         }
         // A point on curve is valid if it conforms to equation.
         assertValidity() {
-            if (this.is0()) {
-                // (0, 1, 0) aka ZERO is invalid in most contexts.
-                // In BLS, ZERO can be serialized, so we allow it.
-                // (0, 0, 0) is wrong representation of ZERO and is always invalid.
-                if (CURVE.allowInfinityPoint && !Fp.is0(this.py))
-                    return;
-                throw new Error('bad point: ZERO');
-            }
-            // Some 3rd-party test vectors require different wording between here & `fromCompressedHex`
-            const { x, y } = this.toAffine();
-            // Check if x, y are valid field elements
-            if (!Fp.isValid(x) || !Fp.isValid(y))
-                throw new Error('bad point: x or y not FE');
-            const left = Fp.sqr(y); // y²
-            const right = weierstrassEquation(x); // x³ + ax + b
-            if (!Fp.eql(left, right))
-                throw new Error('bad point: equation left != right');
-            if (!this.isTorsionFree())
-                throw new Error('bad point: not in prime-order subgroup');
+            assertValidMemo(this);
         }
         hasEvenY() {
             const { y } = this.toAffine();
@@ -25636,28 +25072,26 @@ function weierstrassPoints(opts) {
             return this.equals(Point.ZERO);
         }
         wNAF(n) {
-            return wnaf.wNAFCached(this, pointPrecomputes, n, (comp) => {
-                const toInv = Fp.invertBatch(comp.map((p) => p.pz));
-                return comp.map((p, i) => p.toAffine(toInv[i])).map(Point.fromAffine);
-            });
+            return wnaf.wNAFCached(this, n, Point.normalizeZ);
         }
         /**
          * Non-constant-time multiplication. Uses double-and-add algorithm.
          * It's faster, but should only be used when you don't care about
          * an exposed private key e.g. sig verification, which works over *public* keys.
          */
-        multiplyUnsafe(n) {
+        multiplyUnsafe(sc) {
+            const { endo, n: N } = CURVE;
+            _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('scalar', sc, _0n, N);
             const I = Point.ZERO;
-            if (n === _0n)
+            if (sc === _0n)
                 return I;
-            assertGE(n); // Will throw on 0
-            if (n === _1n)
+            if (this.is0() || sc === _1n)
                 return this;
-            const { endo } = CURVE;
-            if (!endo)
-                return wnaf.unsafeLadder(this, n);
-            // Apply endomorphism
-            let { k1neg, k1, k2neg, k2 } = endo.splitScalar(n);
+            // Case a: no endomorphism. Case b: has precomputes.
+            if (!endo || wnaf.hasPrecomputes(this))
+                return wnaf.wNAFCachedUnsafe(this, sc, Point.normalizeZ);
+            // Case c: endomorphism
+            let { k1neg, k1, k2neg, k2 } = endo.splitScalar(sc);
             let k1p = I;
             let k2p = I;
             let d = this;
@@ -25687,12 +25121,11 @@ function weierstrassPoints(opts) {
          * @returns New point
          */
         multiply(scalar) {
-            assertGE(scalar);
-            let n = scalar;
+            const { endo, n: N } = CURVE;
+            _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('scalar', scalar, _1n, N);
             let point, fake; // Fake point is used to const-time mult
-            const { endo } = CURVE;
             if (endo) {
-                const { k1neg, k1, k2neg, k2 } = endo.splitScalar(n);
+                const { k1neg, k1, k2neg, k2 } = endo.splitScalar(scalar);
                 let { p: k1p, f: f1p } = this.wNAF(k1);
                 let { p: k2p, f: f2p } = this.wNAF(k2);
                 k1p = wnaf.constTimeNegate(k1neg, k1p);
@@ -25702,7 +25135,7 @@ function weierstrassPoints(opts) {
                 fake = f1p.add(f2p);
             }
             else {
-                const { p, f } = this.wNAF(n);
+                const { p, f } = this.wNAF(scalar);
                 point = p;
                 fake = f;
             }
@@ -25726,20 +25159,7 @@ function weierstrassPoints(opts) {
         // Can accept precomputed Z^-1 - for example, from invertBatch.
         // (x, y, z) ∋ (x=x/z, y=y/z)
         toAffine(iz) {
-            const { px: x, py: y, pz: z } = this;
-            const is0 = this.is0();
-            // If invZ was 0, we return zero point. However we still want to execute
-            // all operations, so we replace invZ with a random number, 1.
-            if (iz == null)
-                iz = is0 ? Fp.ONE : Fp.inv(z);
-            const ax = Fp.mul(x, iz);
-            const ay = Fp.mul(y, iz);
-            const zz = Fp.mul(z, iz);
-            if (is0)
-                return { x: Fp.ZERO, y: Fp.ZERO };
-            if (!Fp.eql(zz, Fp.ONE))
-                throw new Error('invZ was invalid');
-            return { x: ax, y: ay };
+            return toAffineMemo(this, iz);
         }
         isTorsionFree() {
             const { h: cofactor, isTorsionFree } = CURVE;
@@ -25758,17 +25178,19 @@ function weierstrassPoints(opts) {
             return this.multiplyUnsafe(CURVE.h);
         }
         toRawBytes(isCompressed = true) {
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abool)('isCompressed', isCompressed);
             this.assertValidity();
             return toBytes(Point, this, isCompressed);
         }
         toHex(isCompressed = true) {
-            return _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToHex(this.toRawBytes(isCompressed));
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abool)('isCompressed', isCompressed);
+            return _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToHex(this.toRawBytes(isCompressed));
         }
     }
     Point.BASE = new Point(CURVE.Gx, CURVE.Gy, Fp.ONE);
     Point.ZERO = new Point(Fp.ZERO, Fp.ONE, Fp.ZERO);
     const _bits = CURVE.nBitLength;
-    const wnaf = (0,_curve_js__WEBPACK_IMPORTED_MODULE_0__.wNAF)(Point, CURVE.endo ? Math.ceil(_bits / 2) : _bits);
+    const wnaf = (0,_curve_js__WEBPACK_IMPORTED_MODULE_1__.wNAF)(Point, CURVE.endo ? Math.ceil(_bits / 2) : _bits);
     // Validate if generator point is on curve
     return {
         CURVE,
@@ -25779,8 +25201,8 @@ function weierstrassPoints(opts) {
     };
 }
 function validateOpts(curve) {
-    const opts = (0,_curve_js__WEBPACK_IMPORTED_MODULE_0__.validateBasic)(curve);
-    _utils_js__WEBPACK_IMPORTED_MODULE_1__.validateObject(opts, {
+    const opts = (0,_curve_js__WEBPACK_IMPORTED_MODULE_1__.validateBasic)(curve);
+    _utils_js__WEBPACK_IMPORTED_MODULE_0__.validateObject(opts, {
         hash: 'hash',
         hmac: 'function',
         randomBytes: 'function',
@@ -25791,14 +25213,18 @@ function validateOpts(curve) {
     });
     return Object.freeze({ lowS: true, ...opts });
 }
+/**
+ * Creates short weierstrass curve and ECDSA signature methods for it.
+ * @example
+ * import { Field } from '@noble/curves/abstract/modular';
+ * // Before that, define BigInt-s: a, b, p, n, Gx, Gy
+ * const curve = weierstrass({ a, b, Fp: Field(p), n, Gx, Gy, h: 1n })
+ */
 function weierstrass(curveDef) {
     const CURVE = validateOpts(curveDef);
     const { Fp, n: CURVE_ORDER } = CURVE;
     const compressedLen = Fp.BYTES + 1; // e.g. 33 for 32
     const uncompressedLen = 2 * Fp.BYTES + 1; // e.g. 65 for 32
-    function isValidFieldElement(num) {
-        return _0n < num && num < Fp.ORDER; // 0 is banned since it's not invertible FE
-    }
     function modN(a) {
         return _modular_js__WEBPACK_IMPORTED_MODULE_2__.mod(a, CURVE_ORDER);
     }
@@ -25810,7 +25236,8 @@ function weierstrass(curveDef) {
         toBytes(_c, point, isCompressed) {
             const a = point.toAffine();
             const x = Fp.toBytes(a.x);
-            const cat = _utils_js__WEBPACK_IMPORTED_MODULE_1__.concatBytes;
+            const cat = _utils_js__WEBPACK_IMPORTED_MODULE_0__.concatBytes;
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.abool)('isCompressed', isCompressed);
             if (isCompressed) {
                 return cat(Uint8Array.from([point.hasEvenY() ? 0x02 : 0x03]), x);
             }
@@ -25824,11 +25251,18 @@ function weierstrass(curveDef) {
             const tail = bytes.subarray(1);
             // this.assertValidity() is done inside of fromHex
             if (len === compressedLen && (head === 0x02 || head === 0x03)) {
-                const x = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberBE(tail);
-                if (!isValidFieldElement(x))
+                const x = _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE(tail);
+                if (!_utils_js__WEBPACK_IMPORTED_MODULE_0__.inRange(x, _1n, Fp.ORDER))
                     throw new Error('Point is not on curve');
                 const y2 = weierstrassEquation(x); // y² = x³ + ax + b
-                let y = Fp.sqrt(y2); // y = y² ^ (p+1)/4
+                let y;
+                try {
+                    y = Fp.sqrt(y2); // y = y² ^ (p+1)/4
+                }
+                catch (sqrtError) {
+                    const suffix = sqrtError instanceof Error ? ': ' + sqrtError.message : '';
+                    throw new Error('Point is not on curve' + suffix);
+                }
                 const isYOdd = (y & _1n) === _1n;
                 // ECDSA
                 const isHeadOdd = (head & 1) === 1;
@@ -25842,11 +25276,13 @@ function weierstrass(curveDef) {
                 return { x, y };
             }
             else {
-                throw new Error(`Point of length ${len} was invalid. Expected ${compressedLen} compressed bytes or ${uncompressedLen} uncompressed bytes`);
+                const cl = compressedLen;
+                const ul = uncompressedLen;
+                throw new Error('invalid Point, expected length of ' + cl + ', or uncompressed ' + ul + ', got ' + len);
             }
         },
     });
-    const numToNByteStr = (num) => _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToHex(_utils_js__WEBPACK_IMPORTED_MODULE_1__.numberToBytesBE(num, CURVE.nByteLength));
+    const numToNByteStr = (num) => _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToHex(_utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToBytesBE(num, CURVE.nByteLength));
     function isBiggerThanHalfOrder(number) {
         const HALF = CURVE_ORDER >> _1n;
         return number > HALF;
@@ -25855,7 +25291,7 @@ function weierstrass(curveDef) {
         return isBiggerThanHalfOrder(s) ? modN(-s) : s;
     }
     // slice bytes num
-    const slcNum = (b, from, to) => _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberBE(b.slice(from, to));
+    const slcNum = (b, from, to) => _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE(b.slice(from, to));
     /**
      * ECDSA signature with its (r, s) properties. Supports DER & compact representations.
      */
@@ -25869,28 +25305,25 @@ function weierstrass(curveDef) {
         // pair (bytes of r, bytes of s)
         static fromCompact(hex) {
             const l = CURVE.nByteLength;
-            hex = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('compactSignature', hex, l * 2);
+            hex = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('compactSignature', hex, l * 2);
             return new Signature(slcNum(hex, 0, l), slcNum(hex, l, 2 * l));
         }
         // DER encoded ECDSA signature
         // https://bitcoin.stackexchange.com/questions/57644/what-are-the-parts-of-a-bitcoin-transaction-input-script
         static fromDER(hex) {
-            const { r, s } = DER.toSig((0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('DER', hex));
+            const { r, s } = DER.toSig((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('DER', hex));
             return new Signature(r, s);
         }
         assertValidity() {
-            // can use assertGE here
-            if (!isWithinCurveOrder(this.r))
-                throw new Error('r must be 0 < r < CURVE.n');
-            if (!isWithinCurveOrder(this.s))
-                throw new Error('s must be 0 < s < CURVE.n');
+            _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('r', this.r, _1n, CURVE_ORDER); // r in [1..N]
+            _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('s', this.s, _1n, CURVE_ORDER); // s in [1..N]
         }
         addRecoveryBit(recovery) {
             return new Signature(this.r, this.s, recovery);
         }
         recoverPublicKey(msgHash) {
             const { r, s, recovery: rec } = this;
-            const h = bits2int_modN((0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('msgHash', msgHash)); // Truncate hash
+            const h = bits2int_modN((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('msgHash', msgHash)); // Truncate hash
             if (rec == null || ![0, 1, 2, 3].includes(rec))
                 throw new Error('recovery id invalid');
             const radj = rec === 2 || rec === 3 ? r + CURVE.n : r;
@@ -25916,14 +25349,14 @@ function weierstrass(curveDef) {
         }
         // DER-encoded
         toDERRawBytes() {
-            return _utils_js__WEBPACK_IMPORTED_MODULE_1__.hexToBytes(this.toDERHex());
+            return _utils_js__WEBPACK_IMPORTED_MODULE_0__.hexToBytes(this.toDERHex());
         }
         toDERHex() {
             return DER.hexFromSig({ r: this.r, s: this.s });
         }
         // padded bytes of r, then padded bytes of s
         toCompactRawBytes() {
-            return _utils_js__WEBPACK_IMPORTED_MODULE_1__.hexToBytes(this.toCompactHex());
+            return _utils_js__WEBPACK_IMPORTED_MODULE_0__.hexToBytes(this.toCompactHex());
         }
         toCompactHex() {
             return numToNByteStr(this.r) + numToNByteStr(this.s);
@@ -25975,7 +25408,7 @@ function weierstrass(curveDef) {
      * Quick and dirty check for item being public key. Does not validate hex, or being on-curve.
      */
     function isProbPub(item) {
-        const arr = _utils_js__WEBPACK_IMPORTED_MODULE_1__.isBytes(item);
+        const arr = _utils_js__WEBPACK_IMPORTED_MODULE_0__.isBytes(item);
         const str = typeof item === 'string';
         const len = (arr || str) && item.length;
         if (arr)
@@ -26010,9 +25443,12 @@ function weierstrass(curveDef) {
     // int2octets can't be used; pads small msgs with 0: unacceptatble for trunc as per RFC vectors
     const bits2int = CURVE.bits2int ||
         function (bytes) {
+            // Our custom check "just in case"
+            if (bytes.length > 8192)
+                throw new Error('input is too large');
             // For curves with nBitLength % 8 !== 0: bits2octets(bits2octets(m)) !== bits2octets(m)
             // for some cases, since bytes.length * 8 is not actual bitLength.
-            const num = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bytesToNumberBE(bytes); // check for == u8 done here
+            const num = _utils_js__WEBPACK_IMPORTED_MODULE_0__.bytesToNumberBE(bytes); // check for == u8 done here
             const delta = bytes.length * 8 - CURVE.nBitLength; // truncate to nBitLength leftmost bits
             return delta > 0 ? num >> BigInt(delta) : num;
         };
@@ -26021,23 +25457,20 @@ function weierstrass(curveDef) {
             return modN(bits2int(bytes)); // can't use bytesToNumberBE here
         };
     // NOTE: pads output with zero as per spec
-    const ORDER_MASK = _utils_js__WEBPACK_IMPORTED_MODULE_1__.bitMask(CURVE.nBitLength);
+    const ORDER_MASK = _utils_js__WEBPACK_IMPORTED_MODULE_0__.bitMask(CURVE.nBitLength);
     /**
      * Converts to bytes. Checks if num in `[0..ORDER_MASK-1]` e.g.: `[0..2^256-1]`.
      */
     function int2octets(num) {
-        if (typeof num !== 'bigint')
-            throw new Error('bigint expected');
-        if (!(_0n <= num && num < ORDER_MASK))
-            throw new Error(`bigint expected < 2^${CURVE.nBitLength}`);
+        _utils_js__WEBPACK_IMPORTED_MODULE_0__.aInRange('num < 2^' + CURVE.nBitLength, num, _0n, ORDER_MASK);
         // works with order, can have different size than numToField!
-        return _utils_js__WEBPACK_IMPORTED_MODULE_1__.numberToBytesBE(num, CURVE.nByteLength);
+        return _utils_js__WEBPACK_IMPORTED_MODULE_0__.numberToBytesBE(num, CURVE.nByteLength);
     }
     // Steps A, D of RFC6979 3.2
     // Creates RFC6979 seed; converts msg/privKey to numbers.
     // Used only in sign, not in verify.
-    // NOTE: we cannot assume here that msgHash has same amount of bytes as curve order, this will be wrong at least for P521.
-    // Also it can be bigger for P224 + SHA256
+    // NOTE: we cannot assume here that msgHash has same amount of bytes as curve order,
+    // this will be invalid at least for P521. Also it can be bigger for P224 + SHA256
     function prepSig(msgHash, privateKey, opts = defaultSigOpts) {
         if (['recovered', 'canonical'].some((k) => k in opts))
             throw new Error('sign() legacy options not supported');
@@ -26045,9 +25478,10 @@ function weierstrass(curveDef) {
         let { lowS, prehash, extraEntropy: ent } = opts; // generates low-s sigs by default
         if (lowS == null)
             lowS = true; // RFC6979 3.2: we skip step A, because we already provide hash
-        msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('msgHash', msgHash);
+        msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('msgHash', msgHash);
+        validateSigVerOpts(opts);
         if (prehash)
-            msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('prehashed msgHash', hash(msgHash));
+            msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('prehashed msgHash', hash(msgHash));
         // We can't later call bits2octets, since nested bits2int is broken for curves
         // with nBitLength % 8 !== 0. Because of that, we unwrap it here as int2octets call.
         // const bits2octets = (bits) => int2octets(bits2int_modN(bits))
@@ -26055,12 +25489,12 @@ function weierstrass(curveDef) {
         const d = normPrivateKeyToScalar(privateKey); // validate private key, convert to bigint
         const seedArgs = [int2octets(d), int2octets(h1int)];
         // extraEntropy. RFC6979 3.6: additional k' (optional).
-        if (ent != null) {
+        if (ent != null && ent !== false) {
             // K = HMAC_K(V || 0x00 || int2octets(x) || bits2octets(h1) || k')
             const e = ent === true ? randomBytes(Fp.BYTES) : ent; // generate random bytes OR pass as-is
-            seedArgs.push((0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('extraEntropy', e)); // check for being bytes
+            seedArgs.push((0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('extraEntropy', e)); // check for being bytes
         }
-        const seed = _utils_js__WEBPACK_IMPORTED_MODULE_1__.concatBytes(...seedArgs); // Step D of RFC6979 3.2
+        const seed = _utils_js__WEBPACK_IMPORTED_MODULE_0__.concatBytes(...seedArgs); // Step D of RFC6979 3.2
         const m = h1int; // NOTE: no need to call bits2int second time here, it is inside truncateHash!
         // Converts signature params into point w r/s, checks result for validity.
         function k2sig(kBytes) {
@@ -26107,7 +25541,7 @@ function weierstrass(curveDef) {
     function sign(msgHash, privKey, opts = defaultSigOpts) {
         const { seed, k2sig } = prepSig(msgHash, privKey, opts); // Steps A, D of RFC6979 3.2.
         const C = CURVE;
-        const drbg = _utils_js__WEBPACK_IMPORTED_MODULE_1__.createHmacDrbg(C.hash.outputLen, C.nByteLength, C.hmac);
+        const drbg = _utils_js__WEBPACK_IMPORTED_MODULE_0__.createHmacDrbg(C.hash.outputLen, C.nByteLength, C.hmac);
         return drbg(seed, k2sig); // Steps B, C, D, E, F, G
     }
     // Enable precomputes. Slows down first publicKey computation by 20ms.
@@ -26128,40 +25562,50 @@ function weierstrass(curveDef) {
      */
     function verify(signature, msgHash, publicKey, opts = defaultVerOpts) {
         const sg = signature;
-        msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('msgHash', msgHash);
-        publicKey = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ensureBytes)('publicKey', publicKey);
+        msgHash = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('msgHash', msgHash);
+        publicKey = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.ensureBytes)('publicKey', publicKey);
+        const { lowS, prehash, format } = opts;
+        // Verify opts, deduce signature format
+        validateSigVerOpts(opts);
         if ('strict' in opts)
             throw new Error('options.strict was renamed to lowS');
-        const { lowS, prehash } = opts;
+        if (format !== undefined && format !== 'compact' && format !== 'der')
+            throw new Error('format must be compact or der');
+        const isHex = typeof sg === 'string' || _utils_js__WEBPACK_IMPORTED_MODULE_0__.isBytes(sg);
+        const isObj = !isHex &&
+            !format &&
+            typeof sg === 'object' &&
+            sg !== null &&
+            typeof sg.r === 'bigint' &&
+            typeof sg.s === 'bigint';
+        if (!isHex && !isObj)
+            throw new Error('invalid signature, expected Uint8Array, hex string or Signature instance');
         let _sig = undefined;
         let P;
         try {
-            if (typeof sg === 'string' || _utils_js__WEBPACK_IMPORTED_MODULE_1__.isBytes(sg)) {
+            if (isObj)
+                _sig = new Signature(sg.r, sg.s);
+            if (isHex) {
                 // Signature can be represented in 2 ways: compact (2*nByteLength) & DER (variable-length).
                 // Since DER can also be 2*nByteLength bytes, we check for it first.
                 try {
-                    _sig = Signature.fromDER(sg);
+                    if (format !== 'compact')
+                        _sig = Signature.fromDER(sg);
                 }
                 catch (derError) {
                     if (!(derError instanceof DER.Err))
                         throw derError;
-                    _sig = Signature.fromCompact(sg);
                 }
-            }
-            else if (typeof sg === 'object' && typeof sg.r === 'bigint' && typeof sg.s === 'bigint') {
-                const { r, s } = sg;
-                _sig = new Signature(r, s);
-            }
-            else {
-                throw new Error('PARSE');
+                if (!_sig && format !== 'der')
+                    _sig = Signature.fromCompact(sg);
             }
             P = Point.fromHex(publicKey);
         }
         catch (error) {
-            if (error.message === 'PARSE')
-                throw new Error(`signature must be Signature instance, Uint8Array or hex string`);
             return false;
         }
+        if (!_sig)
+            return false;
         if (lowS && _sig.hasHighS())
             return false;
         if (prehash)
@@ -26337,13 +25781,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   hash_to_ristretto255: () => (/* binding */ hash_to_ristretto255),
 /* harmony export */   x25519: () => (/* binding */ x25519)
 /* harmony export */ });
-/* harmony import */ var _noble_hashes_sha512__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/sha512 */ "./node_modules/@noble/hashes/esm/sha512.js");
-/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _noble_hashes_sha512__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/sha512 */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha512.js");
+/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 /* harmony import */ var _abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./abstract/edwards.js */ "./node_modules/@noble/curves/esm/abstract/edwards.js");
-/* harmony import */ var _abstract_montgomery_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./abstract/montgomery.js */ "./node_modules/@noble/curves/esm/abstract/montgomery.js");
-/* harmony import */ var _abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract/modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
-/* harmony import */ var _abstract_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./abstract/utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
 /* harmony import */ var _abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./abstract/hash-to-curve.js */ "./node_modules/@noble/curves/esm/abstract/hash-to-curve.js");
+/* harmony import */ var _abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract/modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
+/* harmony import */ var _abstract_montgomery_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./abstract/montgomery.js */ "./node_modules/@noble/curves/esm/abstract/montgomery.js");
+/* harmony import */ var _abstract_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./abstract/utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 
 
@@ -26360,12 +25804,14 @@ __webpack_require__.r(__webpack_exports__);
  */
 const ED25519_P = BigInt('57896044618658097711785492504343953926634992332820282019728792003956564819949');
 // √(-1) aka √(a) aka 2^((p-1)/4)
-const ED25519_SQRT_M1 = BigInt('19681161376707505956807079304988542015446066515923890162744021073123829784752');
+const ED25519_SQRT_M1 = /* @__PURE__ */ BigInt('19681161376707505956807079304988542015446066515923890162744021073123829784752');
 // prettier-ignore
-const _0n = BigInt(0), _1n = BigInt(1), _2n = BigInt(2), _5n = BigInt(5);
+const _0n = BigInt(0), _1n = BigInt(1), _2n = BigInt(2), _3n = BigInt(3);
 // prettier-ignore
-const _10n = BigInt(10), _20n = BigInt(20), _40n = BigInt(40), _80n = BigInt(80);
+const _5n = BigInt(5), _8n = BigInt(8);
 function ed25519_pow_2_252_3(x) {
+    // prettier-ignore
+    const _10n = BigInt(10), _20n = BigInt(20), _40n = BigInt(40), _80n = BigInt(80);
     const P = ED25519_P;
     const x2 = (x * x) % P;
     const b2 = (x2 * x) % P; // x^3, 11
@@ -26425,8 +25871,8 @@ const ED25519_TORSION_SUBGROUP = [
     '0000000000000000000000000000000000000000000000000000000000000000',
     'c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac03fa',
 ];
-const Fp = (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.Field)(ED25519_P, undefined, true);
-const ed25519Defaults = {
+const Fp = /* @__PURE__ */ (() => (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.Field)(ED25519_P, undefined, true))();
+const ed25519Defaults = /* @__PURE__ */ (() => ({
     // Param: a
     a: BigInt(-1), // Fp.create(-1) is proper; our way still works and is faster
     // d is equal to -121665/121666 over finite field.
@@ -26438,7 +25884,7 @@ const ed25519Defaults = {
     // 2n**252n + 27742317777372353535851937790883648493n;
     n: BigInt('7237005577332262213973186563042994240857116359379907606001950938285454250989'),
     // Cofactor
-    h: BigInt(8),
+    h: _8n,
     // Base point (x, y) aka generator point
     Gx: BigInt('15112221349535400772501151409588531511454012693041857206046113283949847762202'),
     Gy: BigInt('46316835694926478169428394003475163141307993866256225615783033603165251855960'),
@@ -26449,22 +25895,24 @@ const ed25519Defaults = {
     // Ratio of u to v. Allows us to combine inversion and square root. Uses algo from RFC8032 5.1.3.
     // Constant-time, u/√v
     uvRatio,
-};
-const ed25519 = /* @__PURE__ */ (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)(ed25519Defaults);
+}))();
+/**
+ * ed25519 curve with EdDSA signatures.
+ */
+const ed25519 = /* @__PURE__ */ (() => (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)(ed25519Defaults))();
 function ed25519_domain(data, ctx, phflag) {
     if (ctx.length > 255)
         throw new Error('Context is too big');
     return (0,_noble_hashes_utils__WEBPACK_IMPORTED_MODULE_2__.concatBytes)((0,_noble_hashes_utils__WEBPACK_IMPORTED_MODULE_2__.utf8ToBytes)('SigEd25519 no Ed25519 collisions'), new Uint8Array([phflag ? 1 : 0, ctx.length]), ctx, data);
 }
-const ed25519ctx = /* @__PURE__ */ (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)({
+const ed25519ctx = /* @__PURE__ */ (() => (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)({
     ...ed25519Defaults,
     domain: ed25519_domain,
-});
-const ed25519ph = /* @__PURE__ */ (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)({
-    ...ed25519Defaults,
+}))();
+const ed25519ph = /* @__PURE__ */ (() => (0,_abstract_edwards_js__WEBPACK_IMPORTED_MODULE_3__.twistedEdwards)(Object.assign({}, ed25519Defaults, {
     domain: ed25519_domain,
     prehash: _noble_hashes_sha512__WEBPACK_IMPORTED_MODULE_1__.sha512,
-});
+})))();
 const x25519 = /* @__PURE__ */ (() => (0,_abstract_montgomery_js__WEBPACK_IMPORTED_MODULE_4__.montgomery)({
     P: ED25519_P,
     a: BigInt(486662),
@@ -26475,7 +25923,7 @@ const x25519 = /* @__PURE__ */ (() => (0,_abstract_montgomery_js__WEBPACK_IMPORT
         const P = ED25519_P;
         // x^(p-2) aka x^(2^255-21)
         const { pow_p_5_8, b2 } = ed25519_pow_2_252_3(x);
-        return (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.mod)((0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.pow2)(pow_p_5_8, BigInt(3), P) * b2, P);
+        return (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.mod)((0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.pow2)(pow_p_5_8, _3n, P) * b2, P);
     },
     adjustScalarBytes,
     randomBytes: _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_2__.randomBytes,
@@ -26509,13 +25957,13 @@ function edwardsToMontgomeryPriv(edwardsPriv) {
 // Hash To Curve Elligator2 Map (NOTE: different from ristretto255 elligator)
 // NOTE: very important part is usage of FpSqrtEven for ELL2_C1_EDWARDS, since
 // SageMath returns different root first and everything falls apart
-const ELL2_C1 = (Fp.ORDER + BigInt(3)) / BigInt(8); // 1. c1 = (q + 3) / 8       # Integer arithmetic
-const ELL2_C2 = Fp.pow(_2n, ELL2_C1); // 2. c2 = 2^c1
-const ELL2_C3 = Fp.sqrt(Fp.neg(Fp.ONE)); // 3. c3 = sqrt(-1)
-const ELL2_C4 = (Fp.ORDER - BigInt(5)) / BigInt(8); // 4. c4 = (q - 5) / 8       # Integer arithmetic
-const ELL2_J = BigInt(486662);
+const ELL2_C1 = /* @__PURE__ */ (() => (Fp.ORDER + _3n) / _8n)(); // 1. c1 = (q + 3) / 8       # Integer arithmetic
+const ELL2_C2 = /* @__PURE__ */ (() => Fp.pow(_2n, ELL2_C1))(); // 2. c2 = 2^c1
+const ELL2_C3 = /* @__PURE__ */ (() => Fp.sqrt(Fp.neg(Fp.ONE)))(); // 3. c3 = sqrt(-1)
 // prettier-ignore
 function map_to_curve_elligator2_curve25519(u) {
+    const ELL2_C4 = (Fp.ORDER - _5n) / _8n; // 4. c4 = (q - 5) / 8       # Integer arithmetic
+    const ELL2_J = BigInt(486662);
     let tv1 = Fp.sqr(u); //  1.  tv1 = u^2
     tv1 = Fp.mul(tv1, _2n); //  2.  tv1 = 2 * tv1
     let xd = Fp.add(tv1, Fp.ONE); //  3.   xd = tv1 + 1         # Nonzero: -1 is square (mod p), tv1 is not
@@ -26556,7 +26004,7 @@ function map_to_curve_elligator2_curve25519(u) {
     y = Fp.cmov(y, Fp.neg(y), e3 !== e4); //  38.   y = CMOV(y, -y, e3 XOR e4)
     return { xMn: xn, xMd: xd, yMn: y, yMd: _1n }; //  39. return (xn, xd, y, 1)
 }
-const ELL2_C1_EDWARDS = (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.FpSqrtEven)(Fp, Fp.neg(BigInt(486664))); // sgn0(c1) MUST equal 0
+const ELL2_C1_EDWARDS = /* @__PURE__ */ (() => (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.FpSqrtEven)(Fp, Fp.neg(BigInt(486664))))(); // sgn0(c1) MUST equal 0
 function map_to_curve_elligator2_edwards25519(u) {
     const { xMn, xMd, yMn, yMd } = map_to_curve_elligator2_curve25519(u); //  1.  (xMn, xMd, yMn, yMd) =
     // map_to_curve_elligator2_curve25519(u)
@@ -26592,16 +26040,16 @@ function assertRstPoint(other) {
 // √(-1) aka √(a) aka 2^((p-1)/4)
 const SQRT_M1 = ED25519_SQRT_M1;
 // √(ad - 1)
-const SQRT_AD_MINUS_ONE = BigInt('25063068953384623474111414158702152701244531502492656460079210482610430750235');
+const SQRT_AD_MINUS_ONE = /* @__PURE__ */ BigInt('25063068953384623474111414158702152701244531502492656460079210482610430750235');
 // 1 / √(a-d)
-const INVSQRT_A_MINUS_D = BigInt('54469307008909316920995813868745141605393597292927456921205312896311721017578');
+const INVSQRT_A_MINUS_D = /* @__PURE__ */ BigInt('54469307008909316920995813868745141605393597292927456921205312896311721017578');
 // 1-d²
-const ONE_MINUS_D_SQ = BigInt('1159843021668779879193775521855586647937357759715417654439879720876111806838');
+const ONE_MINUS_D_SQ = /* @__PURE__ */ BigInt('1159843021668779879193775521855586647937357759715417654439879720876111806838');
 // (d-1)²
-const D_MINUS_ONE_SQ = BigInt('40440834346308536858101042469323190826248399146238708352240133220865137265952');
+const D_MINUS_ONE_SQ = /* @__PURE__ */ BigInt('40440834346308536858101042469323190826248399146238708352240133220865137265952');
 // Calculates 1/√(number)
 const invertSqrt = (number) => uvRatio(_1n, number);
-const MAX_255B = BigInt('0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
+const MAX_255B = /* @__PURE__ */ BigInt('0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
 const bytes255ToNumberLE = (bytes) => ed25519.CURVE.Fp.create((0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_6__.bytesToNumberLE)(bytes) & MAX_255B);
 // Computes Elligator map for Ristretto
 // https://ristretto.group/formulas/elligator.html
@@ -26800,13 +26248,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   schnorr: () => (/* binding */ schnorr),
 /* harmony export */   secp256k1: () => (/* binding */ secp256k1)
 /* harmony export */ });
-/* harmony import */ var _noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @noble/hashes/sha256 */ "./node_modules/@noble/hashes/esm/sha256.js");
-/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/hashes/esm/utils.js");
-/* harmony import */ var _abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract/modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
-/* harmony import */ var _abstract_weierstrass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./abstract/weierstrass.js */ "./node_modules/@noble/curves/esm/abstract/weierstrass.js");
-/* harmony import */ var _abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./abstract/utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
-/* harmony import */ var _abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./abstract/hash-to-curve.js */ "./node_modules/@noble/curves/esm/abstract/hash-to-curve.js");
+/* harmony import */ var _noble_hashes_sha256__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @noble/hashes/sha256 */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha256.js");
+/* harmony import */ var _noble_hashes_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @noble/hashes/utils */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 /* harmony import */ var _shortw_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_shortw_utils.js */ "./node_modules/@noble/curves/esm/_shortw_utils.js");
+/* harmony import */ var _abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./abstract/hash-to-curve.js */ "./node_modules/@noble/curves/esm/abstract/hash-to-curve.js");
+/* harmony import */ var _abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract/modular.js */ "./node_modules/@noble/curves/esm/abstract/modular.js");
+/* harmony import */ var _abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./abstract/utils.js */ "./node_modules/@noble/curves/esm/abstract/utils.js");
+/* harmony import */ var _abstract_weierstrass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./abstract/weierstrass.js */ "./node_modules/@noble/curves/esm/abstract/weierstrass.js");
 /*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 
 
@@ -26844,15 +26292,18 @@ function sqrtMod(y) {
     const t1 = ((0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.pow2)(b223, _23n, P) * b22) % P;
     const t2 = ((0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.pow2)(t1, _6n, P) * b2) % P;
     const root = (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.pow2)(t2, _2n, P);
-    if (!Fp.eql(Fp.sqr(root), y))
+    if (!Fpk1.eql(Fpk1.sqr(root), y))
         throw new Error('Cannot find square root');
     return root;
 }
-const Fp = (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.Field)(secp256k1P, undefined, undefined, { sqrt: sqrtMod });
+const Fpk1 = (0,_abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.Field)(secp256k1P, undefined, undefined, { sqrt: sqrtMod });
+/**
+ * secp256k1 short weierstrass curve and ECDSA signatures over it.
+ */
 const secp256k1 = (0,_shortw_utils_js__WEBPACK_IMPORTED_MODULE_1__.createCurve)({
     a: BigInt(0), // equation params: a, b
     b: BigInt(7), // Seem to be rigid: bitcointalk.org/index.php?topic=289795.msg3183975#msg3183975
-    Fp, // Field's prime: 2n**256n - 2n**32n - 2n**9n - 2n**8n - 2n**7n - 2n**6n - 2n**4n - 1n
+    Fp: Fpk1, // Field's prime: 2n**256n - 2n**32n - 2n**9n - 2n**8n - 2n**7n - 2n**6n - 2n**4n - 1n
     n: secp256k1N, // Curve order, total count of valid points in the field
     // Base point (x, y) aka generator point
     Gx: BigInt('55066263022277343669578718895168534326250603453777594175500187360389116729240'),
@@ -26894,8 +26345,6 @@ const secp256k1 = (0,_shortw_utils_js__WEBPACK_IMPORTED_MODULE_1__.createCurve)(
 // Schnorr signatures are superior to ECDSA from above. Below is Schnorr-specific BIP0340 code.
 // https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki
 const _0n = BigInt(0);
-const fe = (x) => typeof x === 'bigint' && _0n < x && x < secp256k1P;
-const ge = (x) => typeof x === 'bigint' && _0n < x && x < secp256k1N;
 /** An object mapping tags to their tagged hash prefix of [SHA256(tag) | SHA256(tag)] */
 const TAGGED_HASH_PREFIXES = {};
 function taggedHash(tag, ...messages) {
@@ -26926,8 +26375,7 @@ function schnorrGetExtPubKey(priv) {
  * @returns valid point checked for being on-curve
  */
 function lift_x(x) {
-    if (!fe(x))
-        throw new Error('bad x: need 0 < x < p'); // Fail if x ≥ p.
+    (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.aInRange)('x', x, _1n, secp256k1P); // Fail if x ≥ p.
     const xx = modP(x * x);
     const c = modP(xx * x + BigInt(7)); // Let c = x³ + 7 mod p.
     let y = sqrtMod(c); // Let y = c^(p+1)/4 mod p.
@@ -26937,11 +26385,12 @@ function lift_x(x) {
     p.assertValidity();
     return p;
 }
+const num = _abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE;
 /**
  * Create tagged hash, convert it to bigint, reduce modulo-n.
  */
 function challenge(...args) {
-    return modN((0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(taggedHash('BIP0340/challenge', ...args)));
+    return modN(num(taggedHash('BIP0340/challenge', ...args)));
 }
 /**
  * Schnorr public key is just `x` coordinate of Point as per BIP340.
@@ -26957,9 +26406,9 @@ function schnorrSign(message, privateKey, auxRand = (0,_noble_hashes_utils__WEBP
     const m = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.ensureBytes)('message', message);
     const { bytes: px, scalar: d } = schnorrGetExtPubKey(privateKey); // checks for isWithinCurveOrder
     const a = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.ensureBytes)('auxRand', auxRand, 32); // Auxiliary random data a: a 32-byte array
-    const t = numTo32b(d ^ (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(taggedHash('BIP0340/aux', a))); // Let t be the byte-wise xor of bytes(d) and hash/aux(a)
+    const t = numTo32b(d ^ num(taggedHash('BIP0340/aux', a))); // Let t be the byte-wise xor of bytes(d) and hash/aux(a)
     const rand = taggedHash('BIP0340/nonce', t, px, m); // Let rand = hash/nonce(t || bytes(P) || m)
-    const k_ = modN((0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(rand)); // Let k' = int(rand) mod n
+    const k_ = modN(num(rand)); // Let k' = int(rand) mod n
     if (k_ === _0n)
         throw new Error('sign failed: k is zero'); // Fail if k' = 0.
     const { bytes: rx, scalar: k } = schnorrGetExtPubKey(k_); // Let R = k'⋅G.
@@ -26981,12 +26430,12 @@ function schnorrVerify(signature, message, publicKey) {
     const m = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.ensureBytes)('message', message);
     const pub = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.ensureBytes)('publicKey', publicKey, 32);
     try {
-        const P = lift_x((0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(pub)); // P = lift_x(int(pk)); fail if that fails
-        const r = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(sig.subarray(0, 32)); // Let r = int(sig[0:32]); fail if r ≥ p.
-        if (!fe(r))
+        const P = lift_x(num(pub)); // P = lift_x(int(pk)); fail if that fails
+        const r = num(sig.subarray(0, 32)); // Let r = int(sig[0:32]); fail if r ≥ p.
+        if (!(0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.inRange)(r, _1n, secp256k1P))
             return false;
-        const s = (0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.bytesToNumberBE)(sig.subarray(32, 64)); // Let s = int(sig[32:64]); fail if s ≥ n.
-        if (!ge(s))
+        const s = num(sig.subarray(32, 64)); // Let s = int(sig[32:64]); fail if s ≥ n.
+        if (!(0,_abstract_utils_js__WEBPACK_IMPORTED_MODULE_3__.inRange)(s, _1n, secp256k1N))
             return false;
         const e = challenge(numTo32b(r), pointToBytes(P), m); // int(challenge(bytes(r)||bytes(P)||m))%n
         const R = GmulAdd(P, s, modN(-e)); // R = s⋅G - e⋅P
@@ -26998,6 +26447,9 @@ function schnorrVerify(signature, message, publicKey) {
         return false;
     }
 }
+/**
+ * Schnorr signatures over secp256k1.
+ */
 const schnorr = /* @__PURE__ */ (() => ({
     getPublicKey: schnorrGetPublicKey,
     sign: schnorrSign,
@@ -27012,7 +26464,7 @@ const schnorr = /* @__PURE__ */ (() => ({
         mod: _abstract_modular_js__WEBPACK_IMPORTED_MODULE_0__.mod,
     },
 }))();
-const isoMap = /* @__PURE__ */ (() => (0,_abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__.isogenyMap)(Fp, [
+const isoMap = /* @__PURE__ */ (() => (0,_abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__.isogenyMap)(Fpk1, [
     // xNum
     [
         '0x8e38e38e38e38e38e38e38e38e38e38e38e38e38e38e38e38e38e38daaaaa8c7',
@@ -27041,18 +26493,18 @@ const isoMap = /* @__PURE__ */ (() => (0,_abstract_hash_to_curve_js__WEBPACK_IMP
         '0x0000000000000000000000000000000000000000000000000000000000000001', // LAST 1
     ],
 ].map((i) => i.map((j) => BigInt(j)))))();
-const mapSWU = /* @__PURE__ */ (() => (0,_abstract_weierstrass_js__WEBPACK_IMPORTED_MODULE_6__.mapToCurveSimpleSWU)(Fp, {
+const mapSWU = /* @__PURE__ */ (() => (0,_abstract_weierstrass_js__WEBPACK_IMPORTED_MODULE_6__.mapToCurveSimpleSWU)(Fpk1, {
     A: BigInt('0x3f8731abdd661adca08a5558f0f5d272e953d363cb6f0e5d405447c01a444533'),
     B: BigInt('1771'),
-    Z: Fp.create(BigInt('-11')),
+    Z: Fpk1.create(BigInt('-11')),
 }))();
 const htf = /* @__PURE__ */ (() => (0,_abstract_hash_to_curve_js__WEBPACK_IMPORTED_MODULE_5__.createHasher)(secp256k1.ProjectivePoint, (scalars) => {
-    const { x, y } = mapSWU(Fp.create(scalars[0]));
+    const { x, y } = mapSWU(Fpk1.create(scalars[0]));
     return isoMap(x, y);
 }, {
     DST: 'secp256k1_XMD:SHA-256_SSWU_RO_',
     encodeDST: 'secp256k1_XMD:SHA-256_SSWU_NU_',
-    p: Fp.ORDER,
+    p: Fpk1.ORDER,
     m: 1,
     k: 128,
     expand: 'xmd',
@@ -27064,84 +26516,90 @@ const encodeToCurve = /* @__PURE__ */ (() => htf.encodeToCurve)();
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/_assert.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/_assert.js ***!
-  \***************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   bool: () => (/* binding */ bool),
-/* harmony export */   bytes: () => (/* binding */ bytes),
+/* harmony export */   abytes: () => (/* binding */ abytes),
+/* harmony export */   aexists: () => (/* binding */ aexists),
+/* harmony export */   ahash: () => (/* binding */ ahash),
+/* harmony export */   anumber: () => (/* binding */ anumber),
+/* harmony export */   aoutput: () => (/* binding */ aoutput),
+/* harmony export */   bytes: () => (/* binding */ abytes),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   exists: () => (/* binding */ exists),
-/* harmony export */   hash: () => (/* binding */ hash),
-/* harmony export */   number: () => (/* binding */ number),
-/* harmony export */   output: () => (/* binding */ output)
+/* harmony export */   number: () => (/* binding */ anumber)
 /* harmony export */ });
-function number(n) {
+function anumber(n) {
     if (!Number.isSafeInteger(n) || n < 0)
-        throw new Error(`Wrong positive integer: ${n}`);
-}
-function bool(b) {
-    if (typeof b !== 'boolean')
-        throw new Error(`Expected boolean, not ${b}`);
+        throw new Error('positive integer expected, got ' + n);
 }
 // copied from utils
 function isBytes(a) {
-    return (a instanceof Uint8Array ||
-        (a != null && typeof a === 'object' && a.constructor.name === 'Uint8Array'));
+    return a instanceof Uint8Array || (ArrayBuffer.isView(a) && a.constructor.name === 'Uint8Array');
 }
-function bytes(b, ...lengths) {
+function abytes(b, ...lengths) {
     if (!isBytes(b))
-        throw new Error('Expected Uint8Array');
+        throw new Error('Uint8Array expected');
     if (lengths.length > 0 && !lengths.includes(b.length))
-        throw new Error(`Expected Uint8Array of length ${lengths}, not of length=${b.length}`);
+        throw new Error('Uint8Array expected of length ' + lengths + ', got length=' + b.length);
 }
-function hash(hash) {
-    if (typeof hash !== 'function' || typeof hash.create !== 'function')
+function ahash(h) {
+    if (typeof h !== 'function' || typeof h.create !== 'function')
         throw new Error('Hash should be wrapped by utils.wrapConstructor');
-    number(hash.outputLen);
-    number(hash.blockLen);
+    anumber(h.outputLen);
+    anumber(h.blockLen);
 }
-function exists(instance, checkFinished = true) {
+function aexists(instance, checkFinished = true) {
     if (instance.destroyed)
         throw new Error('Hash instance has been destroyed');
     if (checkFinished && instance.finished)
         throw new Error('Hash#digest() has already been called');
 }
-function output(out, instance) {
-    bytes(out);
+function aoutput(out, instance) {
+    abytes(out);
     const min = instance.outputLen;
     if (out.length < min) {
-        throw new Error(`digestInto() expects output buffer of length at least ${min}`);
+        throw new Error('digestInto() expects output buffer of length at least ' + min);
     }
 }
 
-const assert = { number, bool, bytes, hash, exists, output };
+const assert = {
+    number: anumber,
+    bytes: abytes,
+    hash: ahash,
+    exists: aexists,
+    output: aoutput,
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (assert);
 //# sourceMappingURL=_assert.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/_sha2.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/_sha2.js ***!
-  \*************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js ***!
+  \**************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   SHA2: () => (/* binding */ SHA2)
+/* harmony export */   Chi: () => (/* binding */ Chi),
+/* harmony export */   HashMD: () => (/* binding */ HashMD),
+/* harmony export */   Maj: () => (/* binding */ Maj)
 /* harmony export */ });
-/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 
 
-// Polyfill for Safari 14
+/**
+ * Polyfill for Safari 14
+ */
 function setBigUint64(view, byteOffset, value, isLE) {
     if (typeof view.setBigUint64 === 'function')
         return view.setBigUint64(byteOffset, value, isLE);
@@ -27154,8 +26612,19 @@ function setBigUint64(view, byteOffset, value, isLE) {
     view.setUint32(byteOffset + h, wh, isLE);
     view.setUint32(byteOffset + l, wl, isLE);
 }
-// Base SHA2 class (RFC 6234)
-class SHA2 extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
+/**
+ * Choice: a ? b : c
+ */
+const Chi = (a, b, c) => (a & b) ^ (~a & c);
+/**
+ * Majority function, true if any two inputs is true
+ */
+const Maj = (a, b, c) => (a & b) ^ (a & c) ^ (b & c);
+/**
+ * Merkle-Damgard hash construction base class.
+ * Could be used to create MD5, RIPEMD, SHA1, SHA2.
+ */
+class HashMD extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
     constructor(blockLen, outputLen, padOffset, isLE) {
         super();
         this.blockLen = blockLen;
@@ -27170,7 +26639,7 @@ class SHA2 extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         this.view = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.createView)(this.buffer);
     }
     update(data) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.exists)(this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
         const { view, buffer, blockLen } = this;
         data = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.toBytes)(data);
         const len = data.length;
@@ -27196,8 +26665,8 @@ class SHA2 extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         return this;
     }
     digestInto(out) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.exists)(this);
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.output)(out, this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aoutput)(out, this);
         this.finished = true;
         // Padding
         // We can avoid allocation of buffer for padding completely if it
@@ -27207,7 +26676,8 @@ class SHA2 extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         // append the bit '1' to the message
         buffer[pos++] = 0b10000000;
         this.buffer.subarray(pos).fill(0);
-        // we have less than padOffset left in buffer, so we cannot put length in current block, need process it and pad again
+        // we have less than padOffset left in buffer, so we cannot put length in
+        // current block, need process it and pad again
         if (this.padOffset > blockLen - pos) {
             this.process(view, 0);
             pos = 0;
@@ -27252,14 +26722,14 @@ class SHA2 extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         return to;
     }
 }
-//# sourceMappingURL=_sha2.js.map
+//# sourceMappingURL=_md.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/_u64.js":
-/*!************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/_u64.js ***!
-  \************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_u64.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_u64.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27291,7 +26761,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
 const _32n = /* @__PURE__ */ BigInt(32);
-// We are not using BigUint64Array, because they are extremely slow as per 2022
+// BigUint64Array is too slow as per 2024, so we implement it using Uint32Array.
+// TODO: re-check https://issues.chromium.org/issues/42212588
 function fromBig(n, le = false) {
     if (le)
         return { h: Number(n & U32_MASK64), l: Number((n >> _32n) & U32_MASK64) };
@@ -27354,10 +26825,10 @@ const u64 = {
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/crypto.js":
-/*!**************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/crypto.js ***!
-  \**************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/crypto.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/crypto.js ***!
+  \*****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27370,10 +26841,10 @@ const crypto = typeof globalThis === 'object' && 'crypto' in globalThis ? global
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/hmac.js":
-/*!************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/hmac.js ***!
-  \************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/hmac.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/hmac.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27382,8 +26853,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   HMAC: () => (/* binding */ HMAC),
 /* harmony export */   hmac: () => (/* binding */ hmac)
 /* harmony export */ });
-/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 
 
 // HMAC (RFC 2104)
@@ -27392,7 +26863,7 @@ class HMAC extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         super();
         this.finished = false;
         this.destroyed = false;
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.hash)(hash);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.ahash)(hash);
         const key = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.toBytes)(_key);
         this.iHash = hash.create();
         if (typeof this.iHash.update !== 'function')
@@ -27415,13 +26886,13 @@ class HMAC extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
         pad.fill(0);
     }
     update(buf) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.exists)(this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
         this.iHash.update(buf);
         return this;
     }
     digestInto(out) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.exists)(this);
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.bytes)(out, this.outputLen);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.abytes)(out, this.outputLen);
         this.finished = true;
         this.iHash.digestInto(out);
         this.oHash.update(out);
@@ -27457,6 +26928,10 @@ class HMAC extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
  * @param hash - function that would be used e.g. sha256
  * @param key - message key
  * @param message - message data
+ * @example
+ * import { hmac } from '@noble/hashes/hmac';
+ * import { sha256 } from '@noble/hashes/sha2';
+ * const mac1 = hmac(sha256, 'key', 'message');
  */
 const hmac = (hash, key, message) => new HMAC(hash, key).update(message).digest();
 hmac.create = (hash, key) => new HMAC(hash, key);
@@ -27464,28 +26939,25 @@ hmac.create = (hash, key) => new HMAC(hash, key);
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/sha256.js":
-/*!**************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/sha256.js ***!
-  \**************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha256.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha256.js ***!
+  \*****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SHA256: () => (/* binding */ SHA256),
 /* harmony export */   sha224: () => (/* binding */ sha224),
 /* harmony export */   sha256: () => (/* binding */ sha256)
 /* harmony export */ });
-/* harmony import */ var _sha2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_sha2.js */ "./node_modules/@noble/hashes/esm/_sha2.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _md_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_md.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 
 
 // SHA2-256 need to try 2^128 hashes to execute birthday attack.
-// BTC network is doing 2^67 hashes/sec as per early 2023.
-// Choice: a ? b : c
-const Chi = (a, b, c) => (a & b) ^ (~a & c);
-// Majority function, true if any two inpust is true
-const Maj = (a, b, c) => (a & b) ^ (a & c) ^ (b & c);
+// BTC network is doing 2^70 hashes/sec (2^95 hashes/year) as per late 2024.
 // Round constants:
 // first 32 bits of the fractional parts of the cube roots of the first 64 primes 2..311)
 // prettier-ignore
@@ -27499,27 +26971,28 @@ const SHA256_K = /* @__PURE__ */ new Uint32Array([
     0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 ]);
-// Initial state (first 32 bits of the fractional parts of the square roots of the first 8 primes 2..19):
+// Initial state:
+// first 32 bits of the fractional parts of the square roots of the first 8 primes 2..19
 // prettier-ignore
-const IV = /* @__PURE__ */ new Uint32Array([
+const SHA256_IV = /* @__PURE__ */ new Uint32Array([
     0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
 ]);
 // Temporary buffer, not used to store anything between runs
 // Named this way because it matches specification.
 const SHA256_W = /* @__PURE__ */ new Uint32Array(64);
-class SHA256 extends _sha2_js__WEBPACK_IMPORTED_MODULE_0__.SHA2 {
+class SHA256 extends _md_js__WEBPACK_IMPORTED_MODULE_0__.HashMD {
     constructor() {
         super(64, 32, 8, false);
         // We cannot use array here since array allows indexing by variable
         // which means optimizer/compiler cannot use registers.
-        this.A = IV[0] | 0;
-        this.B = IV[1] | 0;
-        this.C = IV[2] | 0;
-        this.D = IV[3] | 0;
-        this.E = IV[4] | 0;
-        this.F = IV[5] | 0;
-        this.G = IV[6] | 0;
-        this.H = IV[7] | 0;
+        this.A = SHA256_IV[0] | 0;
+        this.B = SHA256_IV[1] | 0;
+        this.C = SHA256_IV[2] | 0;
+        this.D = SHA256_IV[3] | 0;
+        this.E = SHA256_IV[4] | 0;
+        this.F = SHA256_IV[5] | 0;
+        this.G = SHA256_IV[6] | 0;
+        this.H = SHA256_IV[7] | 0;
     }
     get() {
         const { A, B, C, D, E, F, G, H } = this;
@@ -27551,9 +27024,9 @@ class SHA256 extends _sha2_js__WEBPACK_IMPORTED_MODULE_0__.SHA2 {
         let { A, B, C, D, E, F, G, H } = this;
         for (let i = 0; i < 64; i++) {
             const sigma1 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 6) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 11) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 25);
-            const T1 = (H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
+            const T1 = (H + sigma1 + (0,_md_js__WEBPACK_IMPORTED_MODULE_0__.Chi)(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
             const sigma0 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 2) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 13) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 22);
-            const T2 = (sigma0 + Maj(A, B, C)) | 0;
+            const T2 = (sigma0 + (0,_md_js__WEBPACK_IMPORTED_MODULE_0__.Maj)(A, B, C)) | 0;
             H = G;
             G = F;
             F = E;
@@ -27602,265 +27075,35 @@ class SHA224 extends SHA256 {
  * @param message - data that would be hashed
  */
 const sha256 = /* @__PURE__ */ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new SHA256());
+/**
+ * SHA2-224 hash function
+ */
 const sha224 = /* @__PURE__ */ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new SHA224());
 //# sourceMappingURL=sha256.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/sha3.js":
-/*!************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/sha3.js ***!
-  \************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha512.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha512.js ***!
+  \*****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Keccak: () => (/* binding */ Keccak),
-/* harmony export */   keccakP: () => (/* binding */ keccakP),
-/* harmony export */   keccak_224: () => (/* binding */ keccak_224),
-/* harmony export */   keccak_256: () => (/* binding */ keccak_256),
-/* harmony export */   keccak_384: () => (/* binding */ keccak_384),
-/* harmony export */   keccak_512: () => (/* binding */ keccak_512),
-/* harmony export */   sha3_224: () => (/* binding */ sha3_224),
-/* harmony export */   sha3_256: () => (/* binding */ sha3_256),
-/* harmony export */   sha3_384: () => (/* binding */ sha3_384),
-/* harmony export */   sha3_512: () => (/* binding */ sha3_512),
-/* harmony export */   shake128: () => (/* binding */ shake128),
-/* harmony export */   shake256: () => (/* binding */ shake256)
-/* harmony export */ });
-/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
-/* harmony import */ var _u64_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_u64.js */ "./node_modules/@noble/hashes/esm/_u64.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
-
-
-
-// SHA3 (keccak) is based on a new design: basically, the internal state is bigger than output size.
-// It's called a sponge function.
-// Various per round constants calculations
-const [SHA3_PI, SHA3_ROTL, _SHA3_IOTA] = [[], [], []];
-const _0n = /* @__PURE__ */ BigInt(0);
-const _1n = /* @__PURE__ */ BigInt(1);
-const _2n = /* @__PURE__ */ BigInt(2);
-const _7n = /* @__PURE__ */ BigInt(7);
-const _256n = /* @__PURE__ */ BigInt(256);
-const _0x71n = /* @__PURE__ */ BigInt(0x71);
-for (let round = 0, R = _1n, x = 1, y = 0; round < 24; round++) {
-    // Pi
-    [x, y] = [y, (2 * x + 3 * y) % 5];
-    SHA3_PI.push(2 * (5 * y + x));
-    // Rotational
-    SHA3_ROTL.push((((round + 1) * (round + 2)) / 2) % 64);
-    // Iota
-    let t = _0n;
-    for (let j = 0; j < 7; j++) {
-        R = ((R << _1n) ^ ((R >> _7n) * _0x71n)) % _256n;
-        if (R & _2n)
-            t ^= _1n << ((_1n << /* @__PURE__ */ BigInt(j)) - _1n);
-    }
-    _SHA3_IOTA.push(t);
-}
-const [SHA3_IOTA_H, SHA3_IOTA_L] = /* @__PURE__ */ (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.split)(_SHA3_IOTA, true);
-// Left rotation (without 0, 32, 64)
-const rotlH = (h, l, s) => (s > 32 ? (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlBH)(h, l, s) : (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlSH)(h, l, s));
-const rotlL = (h, l, s) => (s > 32 ? (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlBL)(h, l, s) : (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlSL)(h, l, s));
-// Same as keccakf1600, but allows to skip some rounds
-function keccakP(s, rounds = 24) {
-    const B = new Uint32Array(5 * 2);
-    // NOTE: all indices are x2 since we store state as u32 instead of u64 (bigints to slow in js)
-    for (let round = 24 - rounds; round < 24; round++) {
-        // Theta θ
-        for (let x = 0; x < 10; x++)
-            B[x] = s[x] ^ s[x + 10] ^ s[x + 20] ^ s[x + 30] ^ s[x + 40];
-        for (let x = 0; x < 10; x += 2) {
-            const idx1 = (x + 8) % 10;
-            const idx0 = (x + 2) % 10;
-            const B0 = B[idx0];
-            const B1 = B[idx0 + 1];
-            const Th = rotlH(B0, B1, 1) ^ B[idx1];
-            const Tl = rotlL(B0, B1, 1) ^ B[idx1 + 1];
-            for (let y = 0; y < 50; y += 10) {
-                s[x + y] ^= Th;
-                s[x + y + 1] ^= Tl;
-            }
-        }
-        // Rho (ρ) and Pi (π)
-        let curH = s[2];
-        let curL = s[3];
-        for (let t = 0; t < 24; t++) {
-            const shift = SHA3_ROTL[t];
-            const Th = rotlH(curH, curL, shift);
-            const Tl = rotlL(curH, curL, shift);
-            const PI = SHA3_PI[t];
-            curH = s[PI];
-            curL = s[PI + 1];
-            s[PI] = Th;
-            s[PI + 1] = Tl;
-        }
-        // Chi (χ)
-        for (let y = 0; y < 50; y += 10) {
-            for (let x = 0; x < 10; x++)
-                B[x] = s[y + x];
-            for (let x = 0; x < 10; x++)
-                s[y + x] ^= ~B[(x + 2) % 10] & B[(x + 4) % 10];
-        }
-        // Iota (ι)
-        s[0] ^= SHA3_IOTA_H[round];
-        s[1] ^= SHA3_IOTA_L[round];
-    }
-    B.fill(0);
-}
-class Keccak extends _utils_js__WEBPACK_IMPORTED_MODULE_1__.Hash {
-    // NOTE: we accept arguments in bytes instead of bits here.
-    constructor(blockLen, suffix, outputLen, enableXOF = false, rounds = 24) {
-        super();
-        this.blockLen = blockLen;
-        this.suffix = suffix;
-        this.outputLen = outputLen;
-        this.enableXOF = enableXOF;
-        this.rounds = rounds;
-        this.pos = 0;
-        this.posOut = 0;
-        this.finished = false;
-        this.destroyed = false;
-        // Can be passed from user as dkLen
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.number)(outputLen);
-        // 1600 = 5x5 matrix of 64bit.  1600 bits === 200 bytes
-        if (0 >= this.blockLen || this.blockLen >= 200)
-            throw new Error('Sha3 supports only keccak-f1600 function');
-        this.state = new Uint8Array(200);
-        this.state32 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.u32)(this.state);
-    }
-    keccak() {
-        keccakP(this.state32, this.rounds);
-        this.posOut = 0;
-        this.pos = 0;
-    }
-    update(data) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.exists)(this);
-        const { blockLen, state } = this;
-        data = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.toBytes)(data);
-        const len = data.length;
-        for (let pos = 0; pos < len;) {
-            const take = Math.min(blockLen - this.pos, len - pos);
-            for (let i = 0; i < take; i++)
-                state[this.pos++] ^= data[pos++];
-            if (this.pos === blockLen)
-                this.keccak();
-        }
-        return this;
-    }
-    finish() {
-        if (this.finished)
-            return;
-        this.finished = true;
-        const { state, suffix, pos, blockLen } = this;
-        // Do the padding
-        state[pos] ^= suffix;
-        if ((suffix & 0x80) !== 0 && pos === blockLen - 1)
-            this.keccak();
-        state[blockLen - 1] ^= 0x80;
-        this.keccak();
-    }
-    writeInto(out) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.exists)(this, false);
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.bytes)(out);
-        this.finish();
-        const bufferOut = this.state;
-        const { blockLen } = this;
-        for (let pos = 0, len = out.length; pos < len;) {
-            if (this.posOut >= blockLen)
-                this.keccak();
-            const take = Math.min(blockLen - this.posOut, len - pos);
-            out.set(bufferOut.subarray(this.posOut, this.posOut + take), pos);
-            this.posOut += take;
-            pos += take;
-        }
-        return out;
-    }
-    xofInto(out) {
-        // Sha3/Keccak usage with XOF is probably mistake, only SHAKE instances can do XOF
-        if (!this.enableXOF)
-            throw new Error('XOF is not possible for this instance');
-        return this.writeInto(out);
-    }
-    xof(bytes) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.number)(bytes);
-        return this.xofInto(new Uint8Array(bytes));
-    }
-    digestInto(out) {
-        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.output)(out, this);
-        if (this.finished)
-            throw new Error('digest() was already called');
-        this.writeInto(out);
-        this.destroy();
-        return out;
-    }
-    digest() {
-        return this.digestInto(new Uint8Array(this.outputLen));
-    }
-    destroy() {
-        this.destroyed = true;
-        this.state.fill(0);
-    }
-    _cloneInto(to) {
-        const { blockLen, suffix, outputLen, rounds, enableXOF } = this;
-        to || (to = new Keccak(blockLen, suffix, outputLen, enableXOF, rounds));
-        to.state32.set(this.state32);
-        to.pos = this.pos;
-        to.posOut = this.posOut;
-        to.finished = this.finished;
-        to.rounds = rounds;
-        // Suffix can change in cSHAKE
-        to.suffix = suffix;
-        to.outputLen = outputLen;
-        to.enableXOF = enableXOF;
-        to.destroyed = this.destroyed;
-        return to;
-    }
-}
-const gen = (suffix, blockLen, outputLen) => (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new Keccak(blockLen, suffix, outputLen));
-const sha3_224 = /* @__PURE__ */ gen(0x06, 144, 224 / 8);
-/**
- * SHA3-256 hash function
- * @param message - that would be hashed
- */
-const sha3_256 = /* @__PURE__ */ gen(0x06, 136, 256 / 8);
-const sha3_384 = /* @__PURE__ */ gen(0x06, 104, 384 / 8);
-const sha3_512 = /* @__PURE__ */ gen(0x06, 72, 512 / 8);
-const keccak_224 = /* @__PURE__ */ gen(0x01, 144, 224 / 8);
-/**
- * keccak-256 hash function. Different from SHA3-256.
- * @param message - that would be hashed
- */
-const keccak_256 = /* @__PURE__ */ gen(0x01, 136, 256 / 8);
-const keccak_384 = /* @__PURE__ */ gen(0x01, 104, 384 / 8);
-const keccak_512 = /* @__PURE__ */ gen(0x01, 72, 512 / 8);
-const genShake = (suffix, blockLen, outputLen) => (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapXOFConstructorWithOpts)((opts = {}) => new Keccak(blockLen, suffix, opts.dkLen === undefined ? outputLen : opts.dkLen, true));
-const shake128 = /* @__PURE__ */ genShake(0x1f, 168, 128 / 8);
-const shake256 = /* @__PURE__ */ genShake(0x1f, 136, 256 / 8);
-//# sourceMappingURL=sha3.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@noble/hashes/esm/sha512.js":
-/*!**************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/sha512.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SHA384: () => (/* binding */ SHA384),
 /* harmony export */   SHA512: () => (/* binding */ SHA512),
+/* harmony export */   SHA512_224: () => (/* binding */ SHA512_224),
+/* harmony export */   SHA512_256: () => (/* binding */ SHA512_256),
 /* harmony export */   sha384: () => (/* binding */ sha384),
 /* harmony export */   sha512: () => (/* binding */ sha512),
 /* harmony export */   sha512_224: () => (/* binding */ sha512_224),
 /* harmony export */   sha512_256: () => (/* binding */ sha512_256)
 /* harmony export */ });
-/* harmony import */ var _sha2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_sha2.js */ "./node_modules/@noble/hashes/esm/_sha2.js");
-/* harmony import */ var _u64_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_u64.js */ "./node_modules/@noble/hashes/esm/_u64.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+/* harmony import */ var _md_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_md.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js");
+/* harmony import */ var _u64_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_u64.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_u64.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js");
 
 
 
@@ -27891,7 +27134,7 @@ const [SHA512_Kh, SHA512_Kl] = /* @__PURE__ */ (() => _u64_js__WEBPACK_IMPORTED_
 // Temporary buffer, not used to store anything between runs
 const SHA512_W_H = /* @__PURE__ */ new Uint32Array(80);
 const SHA512_W_L = /* @__PURE__ */ new Uint32Array(80);
-class SHA512 extends _sha2_js__WEBPACK_IMPORTED_MODULE_1__.SHA2 {
+class SHA512 extends _md_js__WEBPACK_IMPORTED_MODULE_1__.HashMD {
     constructor() {
         super(128, 64, 16, false);
         // We cannot use array here since array allows indexing by variable which means optimizer/compiler cannot use registers.
@@ -28095,10 +27338,10 @@ const sha384 = /* @__PURE__ */ (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.wrapCon
 
 /***/ }),
 
-/***/ "./node_modules/@noble/hashes/esm/utils.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@noble/hashes/esm/utils.js ***!
-  \*************************************************/
+/***/ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js ***!
+  \****************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28106,14 +27349,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Hash: () => (/* binding */ Hash),
 /* harmony export */   asyncLoop: () => (/* binding */ asyncLoop),
+/* harmony export */   byteSwap: () => (/* binding */ byteSwap),
+/* harmony export */   byteSwap32: () => (/* binding */ byteSwap32),
+/* harmony export */   byteSwapIfBE: () => (/* binding */ byteSwapIfBE),
 /* harmony export */   bytesToHex: () => (/* binding */ bytesToHex),
 /* harmony export */   checkOpts: () => (/* binding */ checkOpts),
 /* harmony export */   concatBytes: () => (/* binding */ concatBytes),
 /* harmony export */   createView: () => (/* binding */ createView),
 /* harmony export */   hexToBytes: () => (/* binding */ hexToBytes),
+/* harmony export */   isBytes: () => (/* binding */ isBytes),
 /* harmony export */   isLE: () => (/* binding */ isLE),
 /* harmony export */   nextTick: () => (/* binding */ nextTick),
 /* harmony export */   randomBytes: () => (/* binding */ randomBytes),
+/* harmony export */   rotl: () => (/* binding */ rotl),
 /* harmony export */   rotr: () => (/* binding */ rotr),
 /* harmony export */   toBytes: () => (/* binding */ toBytes),
 /* harmony export */   u32: () => (/* binding */ u32),
@@ -28123,7 +27371,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   wrapConstructorWithOpts: () => (/* binding */ wrapConstructorWithOpts),
 /* harmony export */   wrapXOFConstructorWithOpts: () => (/* binding */ wrapXOFConstructorWithOpts)
 /* harmony export */ });
-/* harmony import */ var _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @noble/hashes/crypto */ "./node_modules/@noble/hashes/esm/crypto.js");
+/* harmony import */ var _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/crypto */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/crypto.js");
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js");
 /*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 // We use WebCrypto aka globalThis.crypto, which exists in browsers and node.js 16+.
 // node.js versions earlier than v19 don't declare it in global scope.
@@ -28132,32 +27381,42 @@ __webpack_require__.r(__webpack_exports__);
 // Makes the utils un-importable in browsers without a bundler.
 // Once node.js 18 is deprecated (2025-04-30), we can just drop the import.
 
+
+// export { isBytes } from './_assert.js';
+// We can't reuse isBytes from _assert, because somehow this causes huge perf issues
+function isBytes(a) {
+    return a instanceof Uint8Array || (ArrayBuffer.isView(a) && a.constructor.name === 'Uint8Array');
+}
 // Cast array to different type
 const u8 = (arr) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
 const u32 = (arr) => new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4));
-function isBytes(a) {
-    return (a instanceof Uint8Array ||
-        (a != null && typeof a === 'object' && a.constructor.name === 'Uint8Array'));
-}
 // Cast array to view
 const createView = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
 // The rotate right (circular right shift) operation for uint32
 const rotr = (word, shift) => (word << (32 - shift)) | (word >>> shift);
-// big-endian hardware is rare. Just in case someone still decides to run hashes:
-// early-throw an error because we don't support BE yet.
-// Other libraries would silently corrupt the data instead of throwing an error,
-// when they don't support it.
-const isLE = new Uint8Array(new Uint32Array([0x11223344]).buffer)[0] === 0x44;
-if (!isLE)
-    throw new Error('Non little-endian hardware is not supported');
+// The rotate left (circular left shift) operation for uint32
+const rotl = (word, shift) => (word << shift) | ((word >>> (32 - shift)) >>> 0);
+const isLE = /* @__PURE__ */ (() => new Uint8Array(new Uint32Array([0x11223344]).buffer)[0] === 0x44)();
+// The byte swap operation for uint32
+const byteSwap = (word) => ((word << 24) & 0xff000000) |
+    ((word << 8) & 0xff0000) |
+    ((word >>> 8) & 0xff00) |
+    ((word >>> 24) & 0xff);
+// Conditionally byte swap if on a big-endian platform
+const byteSwapIfBE = isLE ? (n) => n : (n) => byteSwap(n);
+// In place byte swap for Uint32Array
+function byteSwap32(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = byteSwap(arr[i]);
+    }
+}
 // Array where index 0xf0 (240) is mapped to string 'f0'
 const hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
 /**
  * @example bytesToHex(Uint8Array.from([0xca, 0xfe, 0x01, 0x23])) // 'cafe0123'
  */
 function bytesToHex(bytes) {
-    if (!isBytes(bytes))
-        throw new Error('Uint8Array expected');
+    (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(bytes);
     // pre-caching improves the speed 6x
     let hex = '';
     for (let i = 0; i < bytes.length; i++) {
@@ -28166,14 +27425,14 @@ function bytesToHex(bytes) {
     return hex;
 }
 // We use optimized technique to convert hex string to byte array
-const asciis = { _0: 48, _9: 57, _A: 65, _F: 70, _a: 97, _f: 102 };
-function asciiToBase16(char) {
-    if (char >= asciis._0 && char <= asciis._9)
-        return char - asciis._0;
-    if (char >= asciis._A && char <= asciis._F)
-        return char - (asciis._A - 10);
-    if (char >= asciis._a && char <= asciis._f)
-        return char - (asciis._a - 10);
+const asciis = { _0: 48, _9: 57, A: 65, F: 70, a: 97, f: 102 };
+function asciiToBase16(ch) {
+    if (ch >= asciis._0 && ch <= asciis._9)
+        return ch - asciis._0; // '2' => 50-48
+    if (ch >= asciis.A && ch <= asciis.F)
+        return ch - (asciis.A - 10); // 'B' => 66-(65-10)
+    if (ch >= asciis.a && ch <= asciis.f)
+        return ch - (asciis.a - 10); // 'b' => 98-(97-10)
     return;
 }
 /**
@@ -28194,7 +27453,7 @@ function hexToBytes(hex) {
             const char = hex[hi] + hex[hi + 1];
             throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
         }
-        array[ai] = n1 * 16 + n2;
+        array[ai] = n1 * 16 + n2; // multiply first octet, e.g. 'a3' => 10*16+3 => 160 + 3 => 163
     }
     return array;
 }
@@ -28220,7 +27479,7 @@ async function asyncLoop(iters, tick, cb) {
  */
 function utf8ToBytes(str) {
     if (typeof str !== 'string')
-        throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
+        throw new Error('utf8ToBytes expected string, got ' + typeof str);
     return new Uint8Array(new TextEncoder().encode(str)); // https://bugzil.la/1681809
 }
 /**
@@ -28231,8 +27490,7 @@ function utf8ToBytes(str) {
 function toBytes(data) {
     if (typeof data === 'string')
         data = utf8ToBytes(data);
-    if (!isBytes(data))
-        throw new Error(`expected Uint8Array, got ${typeof data}`);
+    (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(data);
     return data;
 }
 /**
@@ -28242,8 +27500,7 @@ function concatBytes(...arrays) {
     let sum = 0;
     for (let i = 0; i < arrays.length; i++) {
         const a = arrays[i];
-        if (!isBytes(a))
-            throw new Error('Uint8Array expected');
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(a);
         sum += a.length;
     }
     const res = new Uint8Array(sum);
@@ -28261,9 +27518,8 @@ class Hash {
         return this._cloneInto();
     }
 }
-const toStr = {}.toString;
 function checkOpts(defaults, opts) {
-    if (opts !== undefined && toStr.call(opts) !== '[object Object]')
+    if (opts !== undefined && {}.toString.call(opts) !== '[object Object]')
         throw new Error('Options should be object or undefined');
     const merged = Object.assign(defaults, opts);
     return merged;
@@ -28296,8 +27552,12 @@ function wrapXOFConstructorWithOpts(hashCons) {
  * Secure PRNG. Uses `crypto.getRandomValues`, which defers to OS.
  */
 function randomBytes(bytesLength = 32) {
-    if (_noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_0__.crypto && typeof _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_0__.crypto.getRandomValues === 'function') {
-        return _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_0__.crypto.getRandomValues(new Uint8Array(bytesLength));
+    if (_noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto && typeof _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.getRandomValues === 'function') {
+        return _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.getRandomValues(new Uint8Array(bytesLength));
+    }
+    // Legacy Node.js compatibility
+    if (_noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto && typeof _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.randomBytes === 'function') {
+        return _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.randomBytes(bytesLength);
     }
     throw new Error('crypto.getRandomValues must be defined');
 }
@@ -28305,10 +27565,1372 @@ function randomBytes(bytesLength = 32) {
 
 /***/ }),
 
-/***/ "./node_modules/superstruct/lib/index.es.js":
+/***/ "./node_modules/@noble/hashes/esm/_assert.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/_assert.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   abytes: () => (/* binding */ abytes),
+/* harmony export */   aexists: () => (/* binding */ aexists),
+/* harmony export */   ahash: () => (/* binding */ ahash),
+/* harmony export */   anumber: () => (/* binding */ anumber),
+/* harmony export */   aoutput: () => (/* binding */ aoutput),
+/* harmony export */   bytes: () => (/* binding */ abytes),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   number: () => (/* binding */ anumber)
+/* harmony export */ });
+function anumber(n) {
+    if (!Number.isSafeInteger(n) || n < 0)
+        throw new Error('positive integer expected, got ' + n);
+}
+// copied from utils
+function isBytes(a) {
+    return a instanceof Uint8Array || (ArrayBuffer.isView(a) && a.constructor.name === 'Uint8Array');
+}
+function abytes(b, ...lengths) {
+    if (!isBytes(b))
+        throw new Error('Uint8Array expected');
+    if (lengths.length > 0 && !lengths.includes(b.length))
+        throw new Error('Uint8Array expected of length ' + lengths + ', got length=' + b.length);
+}
+function ahash(h) {
+    if (typeof h !== 'function' || typeof h.create !== 'function')
+        throw new Error('Hash should be wrapped by utils.wrapConstructor');
+    anumber(h.outputLen);
+    anumber(h.blockLen);
+}
+function aexists(instance, checkFinished = true) {
+    if (instance.destroyed)
+        throw new Error('Hash instance has been destroyed');
+    if (checkFinished && instance.finished)
+        throw new Error('Hash#digest() has already been called');
+}
+function aoutput(out, instance) {
+    abytes(out);
+    const min = instance.outputLen;
+    if (out.length < min) {
+        throw new Error('digestInto() expects output buffer of length at least ' + min);
+    }
+}
+
+const assert = {
+    number: anumber,
+    bytes: abytes,
+    hash: ahash,
+    exists: aexists,
+    output: aoutput,
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (assert);
+//# sourceMappingURL=_assert.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/_md.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/_md.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Chi: () => (/* binding */ Chi),
+/* harmony export */   HashMD: () => (/* binding */ HashMD),
+/* harmony export */   Maj: () => (/* binding */ Maj)
+/* harmony export */ });
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+
+
+/**
+ * Polyfill for Safari 14
+ */
+function setBigUint64(view, byteOffset, value, isLE) {
+    if (typeof view.setBigUint64 === 'function')
+        return view.setBigUint64(byteOffset, value, isLE);
+    const _32n = BigInt(32);
+    const _u32_max = BigInt(0xffffffff);
+    const wh = Number((value >> _32n) & _u32_max);
+    const wl = Number(value & _u32_max);
+    const h = isLE ? 4 : 0;
+    const l = isLE ? 0 : 4;
+    view.setUint32(byteOffset + h, wh, isLE);
+    view.setUint32(byteOffset + l, wl, isLE);
+}
+/**
+ * Choice: a ? b : c
+ */
+const Chi = (a, b, c) => (a & b) ^ (~a & c);
+/**
+ * Majority function, true if any two inputs is true
+ */
+const Maj = (a, b, c) => (a & b) ^ (a & c) ^ (b & c);
+/**
+ * Merkle-Damgard hash construction base class.
+ * Could be used to create MD5, RIPEMD, SHA1, SHA2.
+ */
+class HashMD extends _utils_js__WEBPACK_IMPORTED_MODULE_0__.Hash {
+    constructor(blockLen, outputLen, padOffset, isLE) {
+        super();
+        this.blockLen = blockLen;
+        this.outputLen = outputLen;
+        this.padOffset = padOffset;
+        this.isLE = isLE;
+        this.finished = false;
+        this.length = 0;
+        this.pos = 0;
+        this.destroyed = false;
+        this.buffer = new Uint8Array(blockLen);
+        this.view = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.createView)(this.buffer);
+    }
+    update(data) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
+        const { view, buffer, blockLen } = this;
+        data = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.toBytes)(data);
+        const len = data.length;
+        for (let pos = 0; pos < len;) {
+            const take = Math.min(blockLen - this.pos, len - pos);
+            // Fast path: we have at least one block in input, cast it to view and process
+            if (take === blockLen) {
+                const dataView = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.createView)(data);
+                for (; blockLen <= len - pos; pos += blockLen)
+                    this.process(dataView, pos);
+                continue;
+            }
+            buffer.set(data.subarray(pos, pos + take), this.pos);
+            this.pos += take;
+            pos += take;
+            if (this.pos === blockLen) {
+                this.process(view, 0);
+                this.pos = 0;
+            }
+        }
+        this.length += data.length;
+        this.roundClean();
+        return this;
+    }
+    digestInto(out) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aexists)(this);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_1__.aoutput)(out, this);
+        this.finished = true;
+        // Padding
+        // We can avoid allocation of buffer for padding completely if it
+        // was previously not allocated here. But it won't change performance.
+        const { buffer, view, blockLen, isLE } = this;
+        let { pos } = this;
+        // append the bit '1' to the message
+        buffer[pos++] = 0b10000000;
+        this.buffer.subarray(pos).fill(0);
+        // we have less than padOffset left in buffer, so we cannot put length in
+        // current block, need process it and pad again
+        if (this.padOffset > blockLen - pos) {
+            this.process(view, 0);
+            pos = 0;
+        }
+        // Pad until full block byte with zeros
+        for (let i = pos; i < blockLen; i++)
+            buffer[i] = 0;
+        // Note: sha512 requires length to be 128bit integer, but length in JS will overflow before that
+        // You need to write around 2 exabytes (u64_max / 8 / (1024**6)) for this to happen.
+        // So we just write lowest 64 bits of that value.
+        setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
+        this.process(view, 0);
+        const oview = (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.createView)(out);
+        const len = this.outputLen;
+        // NOTE: we do division by 4 later, which should be fused in single op with modulo by JIT
+        if (len % 4)
+            throw new Error('_sha2: outputLen should be aligned to 32bit');
+        const outLen = len / 4;
+        const state = this.get();
+        if (outLen > state.length)
+            throw new Error('_sha2: outputLen bigger than state');
+        for (let i = 0; i < outLen; i++)
+            oview.setUint32(4 * i, state[i], isLE);
+    }
+    digest() {
+        const { buffer, outputLen } = this;
+        this.digestInto(buffer);
+        const res = buffer.slice(0, outputLen);
+        this.destroy();
+        return res;
+    }
+    _cloneInto(to) {
+        to || (to = new this.constructor());
+        to.set(...this.get());
+        const { blockLen, buffer, length, finished, destroyed, pos } = this;
+        to.length = length;
+        to.pos = pos;
+        to.finished = finished;
+        to.destroyed = destroyed;
+        if (length % blockLen)
+            to.buffer.set(buffer);
+        return to;
+    }
+}
+//# sourceMappingURL=_md.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/_u64.js":
+/*!************************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/_u64.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   add: () => (/* binding */ add),
+/* harmony export */   add3H: () => (/* binding */ add3H),
+/* harmony export */   add3L: () => (/* binding */ add3L),
+/* harmony export */   add4H: () => (/* binding */ add4H),
+/* harmony export */   add4L: () => (/* binding */ add4L),
+/* harmony export */   add5H: () => (/* binding */ add5H),
+/* harmony export */   add5L: () => (/* binding */ add5L),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   fromBig: () => (/* binding */ fromBig),
+/* harmony export */   rotlBH: () => (/* binding */ rotlBH),
+/* harmony export */   rotlBL: () => (/* binding */ rotlBL),
+/* harmony export */   rotlSH: () => (/* binding */ rotlSH),
+/* harmony export */   rotlSL: () => (/* binding */ rotlSL),
+/* harmony export */   rotr32H: () => (/* binding */ rotr32H),
+/* harmony export */   rotr32L: () => (/* binding */ rotr32L),
+/* harmony export */   rotrBH: () => (/* binding */ rotrBH),
+/* harmony export */   rotrBL: () => (/* binding */ rotrBL),
+/* harmony export */   rotrSH: () => (/* binding */ rotrSH),
+/* harmony export */   rotrSL: () => (/* binding */ rotrSL),
+/* harmony export */   shrSH: () => (/* binding */ shrSH),
+/* harmony export */   shrSL: () => (/* binding */ shrSL),
+/* harmony export */   split: () => (/* binding */ split),
+/* harmony export */   toBig: () => (/* binding */ toBig)
+/* harmony export */ });
+const U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
+const _32n = /* @__PURE__ */ BigInt(32);
+// BigUint64Array is too slow as per 2024, so we implement it using Uint32Array.
+// TODO: re-check https://issues.chromium.org/issues/42212588
+function fromBig(n, le = false) {
+    if (le)
+        return { h: Number(n & U32_MASK64), l: Number((n >> _32n) & U32_MASK64) };
+    return { h: Number((n >> _32n) & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
+}
+function split(lst, le = false) {
+    let Ah = new Uint32Array(lst.length);
+    let Al = new Uint32Array(lst.length);
+    for (let i = 0; i < lst.length; i++) {
+        const { h, l } = fromBig(lst[i], le);
+        [Ah[i], Al[i]] = [h, l];
+    }
+    return [Ah, Al];
+}
+const toBig = (h, l) => (BigInt(h >>> 0) << _32n) | BigInt(l >>> 0);
+// for Shift in [0, 32)
+const shrSH = (h, _l, s) => h >>> s;
+const shrSL = (h, l, s) => (h << (32 - s)) | (l >>> s);
+// Right rotate for Shift in [1, 32)
+const rotrSH = (h, l, s) => (h >>> s) | (l << (32 - s));
+const rotrSL = (h, l, s) => (h << (32 - s)) | (l >>> s);
+// Right rotate for Shift in (32, 64), NOTE: 32 is special case.
+const rotrBH = (h, l, s) => (h << (64 - s)) | (l >>> (s - 32));
+const rotrBL = (h, l, s) => (h >>> (s - 32)) | (l << (64 - s));
+// Right rotate for shift===32 (just swaps l&h)
+const rotr32H = (_h, l) => l;
+const rotr32L = (h, _l) => h;
+// Left rotate for Shift in [1, 32)
+const rotlSH = (h, l, s) => (h << s) | (l >>> (32 - s));
+const rotlSL = (h, l, s) => (l << s) | (h >>> (32 - s));
+// Left rotate for Shift in (32, 64), NOTE: 32 is special case.
+const rotlBH = (h, l, s) => (l << (s - 32)) | (h >>> (64 - s));
+const rotlBL = (h, l, s) => (h << (s - 32)) | (l >>> (64 - s));
+// JS uses 32-bit signed integers for bitwise operations which means we cannot
+// simple take carry out of low bit sum by shift, we need to use division.
+function add(Ah, Al, Bh, Bl) {
+    const l = (Al >>> 0) + (Bl >>> 0);
+    return { h: (Ah + Bh + ((l / 2 ** 32) | 0)) | 0, l: l | 0 };
+}
+// Addition with more than 2 elements
+const add3L = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
+const add3H = (low, Ah, Bh, Ch) => (Ah + Bh + Ch + ((low / 2 ** 32) | 0)) | 0;
+const add4L = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
+const add4H = (low, Ah, Bh, Ch, Dh) => (Ah + Bh + Ch + Dh + ((low / 2 ** 32) | 0)) | 0;
+const add5L = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
+const add5H = (low, Ah, Bh, Ch, Dh, Eh) => (Ah + Bh + Ch + Dh + Eh + ((low / 2 ** 32) | 0)) | 0;
+// prettier-ignore
+
+// prettier-ignore
+const u64 = {
+    fromBig, split, toBig,
+    shrSH, shrSL,
+    rotrSH, rotrSL, rotrBH, rotrBL,
+    rotr32H, rotr32L,
+    rotlSH, rotlSL, rotlBH, rotlBL,
+    add, add3L, add3H, add4L, add4H, add5H, add5L,
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (u64);
+//# sourceMappingURL=_u64.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/crypto.js":
 /*!**************************************************!*\
-  !*** ./node_modules/superstruct/lib/index.es.js ***!
+  !*** ./node_modules/@noble/hashes/esm/crypto.js ***!
   \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   crypto: () => (/* binding */ crypto)
+/* harmony export */ });
+const crypto = typeof globalThis === 'object' && 'crypto' in globalThis ? globalThis.crypto : undefined;
+//# sourceMappingURL=crypto.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/sha256.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/sha256.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SHA256: () => (/* binding */ SHA256),
+/* harmony export */   sha224: () => (/* binding */ sha224),
+/* harmony export */   sha256: () => (/* binding */ sha256)
+/* harmony export */ });
+/* harmony import */ var _md_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_md.js */ "./node_modules/@noble/hashes/esm/_md.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+
+
+// SHA2-256 need to try 2^128 hashes to execute birthday attack.
+// BTC network is doing 2^70 hashes/sec (2^95 hashes/year) as per late 2024.
+// Round constants:
+// first 32 bits of the fractional parts of the cube roots of the first 64 primes 2..311)
+// prettier-ignore
+const SHA256_K = /* @__PURE__ */ new Uint32Array([
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+]);
+// Initial state:
+// first 32 bits of the fractional parts of the square roots of the first 8 primes 2..19
+// prettier-ignore
+const SHA256_IV = /* @__PURE__ */ new Uint32Array([
+    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+]);
+// Temporary buffer, not used to store anything between runs
+// Named this way because it matches specification.
+const SHA256_W = /* @__PURE__ */ new Uint32Array(64);
+class SHA256 extends _md_js__WEBPACK_IMPORTED_MODULE_0__.HashMD {
+    constructor() {
+        super(64, 32, 8, false);
+        // We cannot use array here since array allows indexing by variable
+        // which means optimizer/compiler cannot use registers.
+        this.A = SHA256_IV[0] | 0;
+        this.B = SHA256_IV[1] | 0;
+        this.C = SHA256_IV[2] | 0;
+        this.D = SHA256_IV[3] | 0;
+        this.E = SHA256_IV[4] | 0;
+        this.F = SHA256_IV[5] | 0;
+        this.G = SHA256_IV[6] | 0;
+        this.H = SHA256_IV[7] | 0;
+    }
+    get() {
+        const { A, B, C, D, E, F, G, H } = this;
+        return [A, B, C, D, E, F, G, H];
+    }
+    // prettier-ignore
+    set(A, B, C, D, E, F, G, H) {
+        this.A = A | 0;
+        this.B = B | 0;
+        this.C = C | 0;
+        this.D = D | 0;
+        this.E = E | 0;
+        this.F = F | 0;
+        this.G = G | 0;
+        this.H = H | 0;
+    }
+    process(view, offset) {
+        // Extend the first 16 words into the remaining 48 words w[16..63] of the message schedule array
+        for (let i = 0; i < 16; i++, offset += 4)
+            SHA256_W[i] = view.getUint32(offset, false);
+        for (let i = 16; i < 64; i++) {
+            const W15 = SHA256_W[i - 15];
+            const W2 = SHA256_W[i - 2];
+            const s0 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(W15, 7) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(W15, 18) ^ (W15 >>> 3);
+            const s1 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(W2, 17) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(W2, 19) ^ (W2 >>> 10);
+            SHA256_W[i] = (s1 + SHA256_W[i - 7] + s0 + SHA256_W[i - 16]) | 0;
+        }
+        // Compression function main loop, 64 rounds
+        let { A, B, C, D, E, F, G, H } = this;
+        for (let i = 0; i < 64; i++) {
+            const sigma1 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 6) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 11) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(E, 25);
+            const T1 = (H + sigma1 + (0,_md_js__WEBPACK_IMPORTED_MODULE_0__.Chi)(E, F, G) + SHA256_K[i] + SHA256_W[i]) | 0;
+            const sigma0 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 2) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 13) ^ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.rotr)(A, 22);
+            const T2 = (sigma0 + (0,_md_js__WEBPACK_IMPORTED_MODULE_0__.Maj)(A, B, C)) | 0;
+            H = G;
+            G = F;
+            F = E;
+            E = (D + T1) | 0;
+            D = C;
+            C = B;
+            B = A;
+            A = (T1 + T2) | 0;
+        }
+        // Add the compressed chunk to the current hash value
+        A = (A + this.A) | 0;
+        B = (B + this.B) | 0;
+        C = (C + this.C) | 0;
+        D = (D + this.D) | 0;
+        E = (E + this.E) | 0;
+        F = (F + this.F) | 0;
+        G = (G + this.G) | 0;
+        H = (H + this.H) | 0;
+        this.set(A, B, C, D, E, F, G, H);
+    }
+    roundClean() {
+        SHA256_W.fill(0);
+    }
+    destroy() {
+        this.set(0, 0, 0, 0, 0, 0, 0, 0);
+        this.buffer.fill(0);
+    }
+}
+// Constants from https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
+class SHA224 extends SHA256 {
+    constructor() {
+        super();
+        this.A = 0xc1059ed8 | 0;
+        this.B = 0x367cd507 | 0;
+        this.C = 0x3070dd17 | 0;
+        this.D = 0xf70e5939 | 0;
+        this.E = 0xffc00b31 | 0;
+        this.F = 0x68581511 | 0;
+        this.G = 0x64f98fa7 | 0;
+        this.H = 0xbefa4fa4 | 0;
+        this.outputLen = 28;
+    }
+}
+/**
+ * SHA2-256 hash function
+ * @param message - data that would be hashed
+ */
+const sha256 = /* @__PURE__ */ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new SHA256());
+/**
+ * SHA2-224 hash function
+ */
+const sha224 = /* @__PURE__ */ (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new SHA224());
+//# sourceMappingURL=sha256.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/sha3.js":
+/*!************************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/sha3.js ***!
+  \************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Keccak: () => (/* binding */ Keccak),
+/* harmony export */   keccakP: () => (/* binding */ keccakP),
+/* harmony export */   keccak_224: () => (/* binding */ keccak_224),
+/* harmony export */   keccak_256: () => (/* binding */ keccak_256),
+/* harmony export */   keccak_384: () => (/* binding */ keccak_384),
+/* harmony export */   keccak_512: () => (/* binding */ keccak_512),
+/* harmony export */   sha3_224: () => (/* binding */ sha3_224),
+/* harmony export */   sha3_256: () => (/* binding */ sha3_256),
+/* harmony export */   sha3_384: () => (/* binding */ sha3_384),
+/* harmony export */   sha3_512: () => (/* binding */ sha3_512),
+/* harmony export */   shake128: () => (/* binding */ shake128),
+/* harmony export */   shake256: () => (/* binding */ shake256)
+/* harmony export */ });
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
+/* harmony import */ var _u64_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_u64.js */ "./node_modules/@noble/hashes/esm/_u64.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@noble/hashes/esm/utils.js");
+
+
+
+// SHA3 (keccak) is based on a new design: basically, the internal state is bigger than output size.
+// It's called a sponge function.
+// Various per round constants calculations
+const SHA3_PI = [];
+const SHA3_ROTL = [];
+const _SHA3_IOTA = [];
+const _0n = /* @__PURE__ */ BigInt(0);
+const _1n = /* @__PURE__ */ BigInt(1);
+const _2n = /* @__PURE__ */ BigInt(2);
+const _7n = /* @__PURE__ */ BigInt(7);
+const _256n = /* @__PURE__ */ BigInt(256);
+const _0x71n = /* @__PURE__ */ BigInt(0x71);
+for (let round = 0, R = _1n, x = 1, y = 0; round < 24; round++) {
+    // Pi
+    [x, y] = [y, (2 * x + 3 * y) % 5];
+    SHA3_PI.push(2 * (5 * y + x));
+    // Rotational
+    SHA3_ROTL.push((((round + 1) * (round + 2)) / 2) % 64);
+    // Iota
+    let t = _0n;
+    for (let j = 0; j < 7; j++) {
+        R = ((R << _1n) ^ ((R >> _7n) * _0x71n)) % _256n;
+        if (R & _2n)
+            t ^= _1n << ((_1n << /* @__PURE__ */ BigInt(j)) - _1n);
+    }
+    _SHA3_IOTA.push(t);
+}
+const [SHA3_IOTA_H, SHA3_IOTA_L] = /* @__PURE__ */ (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.split)(_SHA3_IOTA, true);
+// Left rotation (without 0, 32, 64)
+const rotlH = (h, l, s) => (s > 32 ? (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlBH)(h, l, s) : (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlSH)(h, l, s));
+const rotlL = (h, l, s) => (s > 32 ? (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlBL)(h, l, s) : (0,_u64_js__WEBPACK_IMPORTED_MODULE_0__.rotlSL)(h, l, s));
+// Same as keccakf1600, but allows to skip some rounds
+function keccakP(s, rounds = 24) {
+    const B = new Uint32Array(5 * 2);
+    // NOTE: all indices are x2 since we store state as u32 instead of u64 (bigints to slow in js)
+    for (let round = 24 - rounds; round < 24; round++) {
+        // Theta θ
+        for (let x = 0; x < 10; x++)
+            B[x] = s[x] ^ s[x + 10] ^ s[x + 20] ^ s[x + 30] ^ s[x + 40];
+        for (let x = 0; x < 10; x += 2) {
+            const idx1 = (x + 8) % 10;
+            const idx0 = (x + 2) % 10;
+            const B0 = B[idx0];
+            const B1 = B[idx0 + 1];
+            const Th = rotlH(B0, B1, 1) ^ B[idx1];
+            const Tl = rotlL(B0, B1, 1) ^ B[idx1 + 1];
+            for (let y = 0; y < 50; y += 10) {
+                s[x + y] ^= Th;
+                s[x + y + 1] ^= Tl;
+            }
+        }
+        // Rho (ρ) and Pi (π)
+        let curH = s[2];
+        let curL = s[3];
+        for (let t = 0; t < 24; t++) {
+            const shift = SHA3_ROTL[t];
+            const Th = rotlH(curH, curL, shift);
+            const Tl = rotlL(curH, curL, shift);
+            const PI = SHA3_PI[t];
+            curH = s[PI];
+            curL = s[PI + 1];
+            s[PI] = Th;
+            s[PI + 1] = Tl;
+        }
+        // Chi (χ)
+        for (let y = 0; y < 50; y += 10) {
+            for (let x = 0; x < 10; x++)
+                B[x] = s[y + x];
+            for (let x = 0; x < 10; x++)
+                s[y + x] ^= ~B[(x + 2) % 10] & B[(x + 4) % 10];
+        }
+        // Iota (ι)
+        s[0] ^= SHA3_IOTA_H[round];
+        s[1] ^= SHA3_IOTA_L[round];
+    }
+    B.fill(0);
+}
+class Keccak extends _utils_js__WEBPACK_IMPORTED_MODULE_1__.Hash {
+    // NOTE: we accept arguments in bytes instead of bits here.
+    constructor(blockLen, suffix, outputLen, enableXOF = false, rounds = 24) {
+        super();
+        this.blockLen = blockLen;
+        this.suffix = suffix;
+        this.outputLen = outputLen;
+        this.enableXOF = enableXOF;
+        this.rounds = rounds;
+        this.pos = 0;
+        this.posOut = 0;
+        this.finished = false;
+        this.destroyed = false;
+        // Can be passed from user as dkLen
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.anumber)(outputLen);
+        // 1600 = 5x5 matrix of 64bit.  1600 bits === 200 bytes
+        if (0 >= this.blockLen || this.blockLen >= 200)
+            throw new Error('Sha3 supports only keccak-f1600 function');
+        this.state = new Uint8Array(200);
+        this.state32 = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.u32)(this.state);
+    }
+    keccak() {
+        if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__.isLE)
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.byteSwap32)(this.state32);
+        keccakP(this.state32, this.rounds);
+        if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__.isLE)
+            (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.byteSwap32)(this.state32);
+        this.posOut = 0;
+        this.pos = 0;
+    }
+    update(data) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.aexists)(this);
+        const { blockLen, state } = this;
+        data = (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.toBytes)(data);
+        const len = data.length;
+        for (let pos = 0; pos < len;) {
+            const take = Math.min(blockLen - this.pos, len - pos);
+            for (let i = 0; i < take; i++)
+                state[this.pos++] ^= data[pos++];
+            if (this.pos === blockLen)
+                this.keccak();
+        }
+        return this;
+    }
+    finish() {
+        if (this.finished)
+            return;
+        this.finished = true;
+        const { state, suffix, pos, blockLen } = this;
+        // Do the padding
+        state[pos] ^= suffix;
+        if ((suffix & 0x80) !== 0 && pos === blockLen - 1)
+            this.keccak();
+        state[blockLen - 1] ^= 0x80;
+        this.keccak();
+    }
+    writeInto(out) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.aexists)(this, false);
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.abytes)(out);
+        this.finish();
+        const bufferOut = this.state;
+        const { blockLen } = this;
+        for (let pos = 0, len = out.length; pos < len;) {
+            if (this.posOut >= blockLen)
+                this.keccak();
+            const take = Math.min(blockLen - this.posOut, len - pos);
+            out.set(bufferOut.subarray(this.posOut, this.posOut + take), pos);
+            this.posOut += take;
+            pos += take;
+        }
+        return out;
+    }
+    xofInto(out) {
+        // Sha3/Keccak usage with XOF is probably mistake, only SHAKE instances can do XOF
+        if (!this.enableXOF)
+            throw new Error('XOF is not possible for this instance');
+        return this.writeInto(out);
+    }
+    xof(bytes) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.anumber)(bytes);
+        return this.xofInto(new Uint8Array(bytes));
+    }
+    digestInto(out) {
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_2__.aoutput)(out, this);
+        if (this.finished)
+            throw new Error('digest() was already called');
+        this.writeInto(out);
+        this.destroy();
+        return out;
+    }
+    digest() {
+        return this.digestInto(new Uint8Array(this.outputLen));
+    }
+    destroy() {
+        this.destroyed = true;
+        this.state.fill(0);
+    }
+    _cloneInto(to) {
+        const { blockLen, suffix, outputLen, rounds, enableXOF } = this;
+        to || (to = new Keccak(blockLen, suffix, outputLen, enableXOF, rounds));
+        to.state32.set(this.state32);
+        to.pos = this.pos;
+        to.posOut = this.posOut;
+        to.finished = this.finished;
+        to.rounds = rounds;
+        // Suffix can change in cSHAKE
+        to.suffix = suffix;
+        to.outputLen = outputLen;
+        to.enableXOF = enableXOF;
+        to.destroyed = this.destroyed;
+        return to;
+    }
+}
+const gen = (suffix, blockLen, outputLen) => (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapConstructor)(() => new Keccak(blockLen, suffix, outputLen));
+const sha3_224 = /* @__PURE__ */ gen(0x06, 144, 224 / 8);
+/**
+ * SHA3-256 hash function
+ * @param message - that would be hashed
+ */
+const sha3_256 = /* @__PURE__ */ gen(0x06, 136, 256 / 8);
+const sha3_384 = /* @__PURE__ */ gen(0x06, 104, 384 / 8);
+const sha3_512 = /* @__PURE__ */ gen(0x06, 72, 512 / 8);
+const keccak_224 = /* @__PURE__ */ gen(0x01, 144, 224 / 8);
+/**
+ * keccak-256 hash function. Different from SHA3-256.
+ * @param message - that would be hashed
+ */
+const keccak_256 = /* @__PURE__ */ gen(0x01, 136, 256 / 8);
+const keccak_384 = /* @__PURE__ */ gen(0x01, 104, 384 / 8);
+const keccak_512 = /* @__PURE__ */ gen(0x01, 72, 512 / 8);
+const genShake = (suffix, blockLen, outputLen) => (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.wrapXOFConstructorWithOpts)((opts = {}) => new Keccak(blockLen, suffix, opts.dkLen === undefined ? outputLen : opts.dkLen, true));
+const shake128 = /* @__PURE__ */ genShake(0x1f, 168, 128 / 8);
+const shake256 = /* @__PURE__ */ genShake(0x1f, 136, 256 / 8);
+//# sourceMappingURL=sha3.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@noble/hashes/esm/utils.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@noble/hashes/esm/utils.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Hash: () => (/* binding */ Hash),
+/* harmony export */   asyncLoop: () => (/* binding */ asyncLoop),
+/* harmony export */   byteSwap: () => (/* binding */ byteSwap),
+/* harmony export */   byteSwap32: () => (/* binding */ byteSwap32),
+/* harmony export */   byteSwapIfBE: () => (/* binding */ byteSwapIfBE),
+/* harmony export */   bytesToHex: () => (/* binding */ bytesToHex),
+/* harmony export */   checkOpts: () => (/* binding */ checkOpts),
+/* harmony export */   concatBytes: () => (/* binding */ concatBytes),
+/* harmony export */   createView: () => (/* binding */ createView),
+/* harmony export */   hexToBytes: () => (/* binding */ hexToBytes),
+/* harmony export */   isBytes: () => (/* binding */ isBytes),
+/* harmony export */   isLE: () => (/* binding */ isLE),
+/* harmony export */   nextTick: () => (/* binding */ nextTick),
+/* harmony export */   randomBytes: () => (/* binding */ randomBytes),
+/* harmony export */   rotl: () => (/* binding */ rotl),
+/* harmony export */   rotr: () => (/* binding */ rotr),
+/* harmony export */   toBytes: () => (/* binding */ toBytes),
+/* harmony export */   u32: () => (/* binding */ u32),
+/* harmony export */   u8: () => (/* binding */ u8),
+/* harmony export */   utf8ToBytes: () => (/* binding */ utf8ToBytes),
+/* harmony export */   wrapConstructor: () => (/* binding */ wrapConstructor),
+/* harmony export */   wrapConstructorWithOpts: () => (/* binding */ wrapConstructorWithOpts),
+/* harmony export */   wrapXOFConstructorWithOpts: () => (/* binding */ wrapXOFConstructorWithOpts)
+/* harmony export */ });
+/* harmony import */ var _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @noble/hashes/crypto */ "./node_modules/@noble/hashes/esm/crypto.js");
+/* harmony import */ var _assert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_assert.js */ "./node_modules/@noble/hashes/esm/_assert.js");
+/*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) */
+// We use WebCrypto aka globalThis.crypto, which exists in browsers and node.js 16+.
+// node.js versions earlier than v19 don't declare it in global scope.
+// For node.js, package.json#exports field mapping rewrites import
+// from `crypto` to `cryptoNode`, which imports native module.
+// Makes the utils un-importable in browsers without a bundler.
+// Once node.js 18 is deprecated (2025-04-30), we can just drop the import.
+
+
+// export { isBytes } from './_assert.js';
+// We can't reuse isBytes from _assert, because somehow this causes huge perf issues
+function isBytes(a) {
+    return a instanceof Uint8Array || (ArrayBuffer.isView(a) && a.constructor.name === 'Uint8Array');
+}
+// Cast array to different type
+const u8 = (arr) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
+const u32 = (arr) => new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4));
+// Cast array to view
+const createView = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
+// The rotate right (circular right shift) operation for uint32
+const rotr = (word, shift) => (word << (32 - shift)) | (word >>> shift);
+// The rotate left (circular left shift) operation for uint32
+const rotl = (word, shift) => (word << shift) | ((word >>> (32 - shift)) >>> 0);
+const isLE = /* @__PURE__ */ (() => new Uint8Array(new Uint32Array([0x11223344]).buffer)[0] === 0x44)();
+// The byte swap operation for uint32
+const byteSwap = (word) => ((word << 24) & 0xff000000) |
+    ((word << 8) & 0xff0000) |
+    ((word >>> 8) & 0xff00) |
+    ((word >>> 24) & 0xff);
+// Conditionally byte swap if on a big-endian platform
+const byteSwapIfBE = isLE ? (n) => n : (n) => byteSwap(n);
+// In place byte swap for Uint32Array
+function byteSwap32(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = byteSwap(arr[i]);
+    }
+}
+// Array where index 0xf0 (240) is mapped to string 'f0'
+const hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, '0'));
+/**
+ * @example bytesToHex(Uint8Array.from([0xca, 0xfe, 0x01, 0x23])) // 'cafe0123'
+ */
+function bytesToHex(bytes) {
+    (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(bytes);
+    // pre-caching improves the speed 6x
+    let hex = '';
+    for (let i = 0; i < bytes.length; i++) {
+        hex += hexes[bytes[i]];
+    }
+    return hex;
+}
+// We use optimized technique to convert hex string to byte array
+const asciis = { _0: 48, _9: 57, A: 65, F: 70, a: 97, f: 102 };
+function asciiToBase16(ch) {
+    if (ch >= asciis._0 && ch <= asciis._9)
+        return ch - asciis._0; // '2' => 50-48
+    if (ch >= asciis.A && ch <= asciis.F)
+        return ch - (asciis.A - 10); // 'B' => 66-(65-10)
+    if (ch >= asciis.a && ch <= asciis.f)
+        return ch - (asciis.a - 10); // 'b' => 98-(97-10)
+    return;
+}
+/**
+ * @example hexToBytes('cafe0123') // Uint8Array.from([0xca, 0xfe, 0x01, 0x23])
+ */
+function hexToBytes(hex) {
+    if (typeof hex !== 'string')
+        throw new Error('hex string expected, got ' + typeof hex);
+    const hl = hex.length;
+    const al = hl / 2;
+    if (hl % 2)
+        throw new Error('hex string expected, got unpadded hex of length ' + hl);
+    const array = new Uint8Array(al);
+    for (let ai = 0, hi = 0; ai < al; ai++, hi += 2) {
+        const n1 = asciiToBase16(hex.charCodeAt(hi));
+        const n2 = asciiToBase16(hex.charCodeAt(hi + 1));
+        if (n1 === undefined || n2 === undefined) {
+            const char = hex[hi] + hex[hi + 1];
+            throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
+        }
+        array[ai] = n1 * 16 + n2; // multiply first octet, e.g. 'a3' => 10*16+3 => 160 + 3 => 163
+    }
+    return array;
+}
+// There is no setImmediate in browser and setTimeout is slow.
+// call of async fn will return Promise, which will be fullfiled only on
+// next scheduler queue processing step and this is exactly what we need.
+const nextTick = async () => { };
+// Returns control to thread each 'tick' ms to avoid blocking
+async function asyncLoop(iters, tick, cb) {
+    let ts = Date.now();
+    for (let i = 0; i < iters; i++) {
+        cb(i);
+        // Date.now() is not monotonic, so in case if clock goes backwards we return return control too
+        const diff = Date.now() - ts;
+        if (diff >= 0 && diff < tick)
+            continue;
+        await nextTick();
+        ts += diff;
+    }
+}
+/**
+ * @example utf8ToBytes('abc') // new Uint8Array([97, 98, 99])
+ */
+function utf8ToBytes(str) {
+    if (typeof str !== 'string')
+        throw new Error('utf8ToBytes expected string, got ' + typeof str);
+    return new Uint8Array(new TextEncoder().encode(str)); // https://bugzil.la/1681809
+}
+/**
+ * Normalizes (non-hex) string or Uint8Array to Uint8Array.
+ * Warning: when Uint8Array is passed, it would NOT get copied.
+ * Keep in mind for future mutable operations.
+ */
+function toBytes(data) {
+    if (typeof data === 'string')
+        data = utf8ToBytes(data);
+    (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(data);
+    return data;
+}
+/**
+ * Copies several Uint8Arrays into one.
+ */
+function concatBytes(...arrays) {
+    let sum = 0;
+    for (let i = 0; i < arrays.length; i++) {
+        const a = arrays[i];
+        (0,_assert_js__WEBPACK_IMPORTED_MODULE_0__.abytes)(a);
+        sum += a.length;
+    }
+    const res = new Uint8Array(sum);
+    for (let i = 0, pad = 0; i < arrays.length; i++) {
+        const a = arrays[i];
+        res.set(a, pad);
+        pad += a.length;
+    }
+    return res;
+}
+// For runtime check if class implements interface
+class Hash {
+    // Safe version that clones internal state
+    clone() {
+        return this._cloneInto();
+    }
+}
+function checkOpts(defaults, opts) {
+    if (opts !== undefined && {}.toString.call(opts) !== '[object Object]')
+        throw new Error('Options should be object or undefined');
+    const merged = Object.assign(defaults, opts);
+    return merged;
+}
+function wrapConstructor(hashCons) {
+    const hashC = (msg) => hashCons().update(toBytes(msg)).digest();
+    const tmp = hashCons();
+    hashC.outputLen = tmp.outputLen;
+    hashC.blockLen = tmp.blockLen;
+    hashC.create = () => hashCons();
+    return hashC;
+}
+function wrapConstructorWithOpts(hashCons) {
+    const hashC = (msg, opts) => hashCons(opts).update(toBytes(msg)).digest();
+    const tmp = hashCons({});
+    hashC.outputLen = tmp.outputLen;
+    hashC.blockLen = tmp.blockLen;
+    hashC.create = (opts) => hashCons(opts);
+    return hashC;
+}
+function wrapXOFConstructorWithOpts(hashCons) {
+    const hashC = (msg, opts) => hashCons(opts).update(toBytes(msg)).digest();
+    const tmp = hashCons({});
+    hashC.outputLen = tmp.outputLen;
+    hashC.blockLen = tmp.blockLen;
+    hashC.create = (opts) => hashCons(opts);
+    return hashC;
+}
+/**
+ * Secure PRNG. Uses `crypto.getRandomValues`, which defers to OS.
+ */
+function randomBytes(bytesLength = 32) {
+    if (_noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto && typeof _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.getRandomValues === 'function') {
+        return _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.getRandomValues(new Uint8Array(bytesLength));
+    }
+    // Legacy Node.js compatibility
+    if (_noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto && typeof _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.randomBytes === 'function') {
+        return _noble_hashes_crypto__WEBPACK_IMPORTED_MODULE_1__.crypto.randomBytes(bytesLength);
+    }
+    throw new Error('crypto.getRandomValues must be defined');
+}
+//# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ "./node_modules/eventemitter3/index.mjs":
+/*!**********************************************!*\
+  !*** ./node_modules/eventemitter3/index.mjs ***!
+  \**********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   EventEmitter: () => (/* reexport default export from named module */ _index_js__WEBPACK_IMPORTED_MODULE_0__),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.js */ "./node_modules/eventemitter3/index.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_index_js__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/***/ }),
+
+/***/ "./node_modules/rpc-websockets/dist/index.browser.mjs":
+/*!************************************************************!*\
+  !*** ./node_modules/rpc-websockets/dist/index.browser.mjs ***!
+  \************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Client: () => (/* binding */ Client),
+/* harmony export */   CommonClient: () => (/* binding */ CommonClient),
+/* harmony export */   DefaultDataPack: () => (/* binding */ DefaultDataPack),
+/* harmony export */   WebSocket: () => (/* binding */ WebSocket)
+/* harmony export */ });
+/* harmony import */ var buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js");
+/* harmony import */ var eventemitter3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! eventemitter3 */ "./node_modules/eventemitter3/index.mjs");
+
+
+
+// node_modules/esbuild-plugin-polyfill-node/polyfills/buffer.js
+var WebSocketBrowserImpl = class extends eventemitter3__WEBPACK_IMPORTED_MODULE_1__.EventEmitter {
+  socket;
+  /** Instantiate a WebSocket class
+  * @constructor
+  * @param {String} address - url to a websocket server
+  * @param {(Object)} options - websocket options
+  * @param {(String|Array)} protocols - a list of protocols
+  * @return {WebSocketBrowserImpl} - returns a WebSocket instance
+  */
+  constructor(address, options, protocols) {
+    super();
+    this.socket = new window.WebSocket(address, protocols);
+    this.socket.onopen = () => this.emit("open");
+    this.socket.onmessage = (event) => this.emit("message", event.data);
+    this.socket.onerror = (error) => this.emit("error", error);
+    this.socket.onclose = (event) => {
+      this.emit("close", event.code, event.reason);
+    };
+  }
+  /**
+  * Sends data through a websocket connection
+  * @method
+  * @param {(String|Object)} data - data to be sent via websocket
+  * @param {Object} optionsOrCallback - ws options
+  * @param {Function} callback - a callback called once the data is sent
+  * @return {Undefined}
+  */
+  send(data, optionsOrCallback, callback) {
+    const cb = callback || optionsOrCallback;
+    try {
+      this.socket.send(data);
+      cb();
+    } catch (error) {
+      cb(error);
+    }
+  }
+  /**
+  * Closes an underlying socket
+  * @method
+  * @param {Number} code - status code explaining why the connection is being closed
+  * @param {String} reason - a description why the connection is closing
+  * @return {Undefined}
+  * @throws {Error}
+  */
+  close(code, reason) {
+    this.socket.close(code, reason);
+  }
+  addEventListener(type, listener, options) {
+    this.socket.addEventListener(type, listener, options);
+  }
+};
+function WebSocket(address, options) {
+  return new WebSocketBrowserImpl(address, options);
+}
+
+// src/lib/utils.ts
+var DefaultDataPack = class {
+  encode(value) {
+    return JSON.stringify(value);
+  }
+  decode(value) {
+    return JSON.parse(value);
+  }
+};
+
+// src/lib/client.ts
+var CommonClient = class extends eventemitter3__WEBPACK_IMPORTED_MODULE_1__.EventEmitter {
+  address;
+  rpc_id;
+  queue;
+  options;
+  autoconnect;
+  ready;
+  reconnect;
+  reconnect_timer_id;
+  reconnect_interval;
+  max_reconnects;
+  rest_options;
+  current_reconnects;
+  generate_request_id;
+  socket;
+  webSocketFactory;
+  dataPack;
+  /**
+  * Instantiate a Client class.
+  * @constructor
+  * @param {webSocketFactory} webSocketFactory - factory method for WebSocket
+  * @param {String} address - url to a websocket server
+  * @param {Object} options - ws options object with reconnect parameters
+  * @param {Function} generate_request_id - custom generation request Id
+  * @param {DataPack} dataPack - data pack contains encoder and decoder
+  * @return {CommonClient}
+  */
+  constructor(webSocketFactory, address = "ws://localhost:8080", {
+    autoconnect = true,
+    reconnect = true,
+    reconnect_interval = 1e3,
+    max_reconnects = 5,
+    ...rest_options
+  } = {}, generate_request_id, dataPack) {
+    super();
+    this.webSocketFactory = webSocketFactory;
+    this.queue = {};
+    this.rpc_id = 0;
+    this.address = address;
+    this.autoconnect = autoconnect;
+    this.ready = false;
+    this.reconnect = reconnect;
+    this.reconnect_timer_id = void 0;
+    this.reconnect_interval = reconnect_interval;
+    this.max_reconnects = max_reconnects;
+    this.rest_options = rest_options;
+    this.current_reconnects = 0;
+    this.generate_request_id = generate_request_id || (() => ++this.rpc_id);
+    if (!dataPack) this.dataPack = new DefaultDataPack();
+    else this.dataPack = dataPack;
+    if (this.autoconnect)
+      this._connect(this.address, {
+        autoconnect: this.autoconnect,
+        reconnect: this.reconnect,
+        reconnect_interval: this.reconnect_interval,
+        max_reconnects: this.max_reconnects,
+        ...this.rest_options
+      });
+  }
+  /**
+  * Connects to a defined server if not connected already.
+  * @method
+  * @return {Undefined}
+  */
+  connect() {
+    if (this.socket) return;
+    this._connect(this.address, {
+      autoconnect: this.autoconnect,
+      reconnect: this.reconnect,
+      reconnect_interval: this.reconnect_interval,
+      max_reconnects: this.max_reconnects,
+      ...this.rest_options
+    });
+  }
+  /**
+  * Calls a registered RPC method on server.
+  * @method
+  * @param {String} method - RPC method name
+  * @param {Object|Array} params - optional method parameters
+  * @param {Number} timeout - RPC reply timeout value
+  * @param {Object} ws_opts - options passed to ws
+  * @return {Promise}
+  */
+  call(method, params, timeout, ws_opts) {
+    if (!ws_opts && "object" === typeof timeout) {
+      ws_opts = timeout;
+      timeout = null;
+    }
+    return new Promise((resolve, reject) => {
+      if (!this.ready) return reject(new Error("socket not ready"));
+      const rpc_id = this.generate_request_id(method, params);
+      const message = {
+        jsonrpc: "2.0",
+        method,
+        params: params || void 0,
+        id: rpc_id
+      };
+      this.socket.send(this.dataPack.encode(message), ws_opts, (error) => {
+        if (error) return reject(error);
+        this.queue[rpc_id] = { promise: [resolve, reject] };
+        if (timeout) {
+          this.queue[rpc_id].timeout = setTimeout(() => {
+            delete this.queue[rpc_id];
+            reject(new Error("reply timeout"));
+          }, timeout);
+        }
+      });
+    });
+  }
+  /**
+  * Logins with the other side of the connection.
+  * @method
+  * @param {Object} params - Login credentials object
+  * @return {Promise}
+  */
+  async login(params) {
+    const resp = await this.call("rpc.login", params);
+    if (!resp) throw new Error("authentication failed");
+    return resp;
+  }
+  /**
+  * Fetches a list of client's methods registered on server.
+  * @method
+  * @return {Array}
+  */
+  async listMethods() {
+    return await this.call("__listMethods");
+  }
+  /**
+  * Sends a JSON-RPC 2.0 notification to server.
+  * @method
+  * @param {String} method - RPC method name
+  * @param {Object} params - optional method parameters
+  * @return {Promise}
+  */
+  notify(method, params) {
+    return new Promise((resolve, reject) => {
+      if (!this.ready) return reject(new Error("socket not ready"));
+      const message = {
+        jsonrpc: "2.0",
+        method,
+        params
+      };
+      this.socket.send(this.dataPack.encode(message), (error) => {
+        if (error) return reject(error);
+        resolve();
+      });
+    });
+  }
+  /**
+  * Subscribes for a defined event.
+  * @method
+  * @param {String|Array} event - event name
+  * @return {Undefined}
+  * @throws {Error}
+  */
+  async subscribe(event) {
+    if (typeof event === "string") event = [event];
+    const result = await this.call("rpc.on", event);
+    if (typeof event === "string" && result[event] !== "ok")
+      throw new Error(
+        "Failed subscribing to an event '" + event + "' with: " + result[event]
+      );
+    return result;
+  }
+  /**
+  * Unsubscribes from a defined event.
+  * @method
+  * @param {String|Array} event - event name
+  * @return {Undefined}
+  * @throws {Error}
+  */
+  async unsubscribe(event) {
+    if (typeof event === "string") event = [event];
+    const result = await this.call("rpc.off", event);
+    if (typeof event === "string" && result[event] !== "ok")
+      throw new Error("Failed unsubscribing from an event with: " + result);
+    return result;
+  }
+  /**
+  * Closes a WebSocket connection gracefully.
+  * @method
+  * @param {Number} code - socket close code
+  * @param {String} data - optional data to be sent before closing
+  * @return {Undefined}
+  */
+  close(code, data) {
+    this.socket.close(code || 1e3, data);
+  }
+  /**
+  * Enable / disable automatic reconnection.
+  * @method
+  * @param {Boolean} reconnect - enable / disable reconnection
+  * @return {Undefined}
+  */
+  setAutoReconnect(reconnect) {
+    this.reconnect = reconnect;
+  }
+  /**
+  * Set the interval between reconnection attempts.
+  * @method
+  * @param {Number} interval - reconnection interval in milliseconds
+  * @return {Undefined}
+  */
+  setReconnectInterval(interval) {
+    this.reconnect_interval = interval;
+  }
+  /**
+  * Set the maximum number of reconnection attempts.
+  * @method
+  * @param {Number} max_reconnects - maximum reconnection attempts
+  * @return {Undefined}
+  */
+  setMaxReconnects(max_reconnects) {
+    this.max_reconnects = max_reconnects;
+  }
+  /**
+  * Connection/Message handler.
+  * @method
+  * @private
+  * @param {String} address - WebSocket API address
+  * @param {Object} options - ws options object
+  * @return {Undefined}
+  */
+  _connect(address, options) {
+    clearTimeout(this.reconnect_timer_id);
+    this.socket = this.webSocketFactory(address, options);
+    this.socket.addEventListener("open", () => {
+      this.ready = true;
+      this.emit("open");
+      this.current_reconnects = 0;
+    });
+    this.socket.addEventListener("message", ({ data: message }) => {
+      if (message instanceof ArrayBuffer)
+        message = buffer__WEBPACK_IMPORTED_MODULE_0__.Buffer.from(message).toString();
+      try {
+        message = this.dataPack.decode(message);
+      } catch (error) {
+        return;
+      }
+      if (message.notification && this.listeners(message.notification).length) {
+        if (!Object.keys(message.params).length)
+          return this.emit(message.notification);
+        const args = [message.notification];
+        if (message.params.constructor === Object) args.push(message.params);
+        else
+          for (let i = 0; i < message.params.length; i++)
+            args.push(message.params[i]);
+        return Promise.resolve().then(() => {
+          this.emit.apply(this, args);
+        });
+      }
+      if (!this.queue[message.id]) {
+        if (message.method) {
+          return Promise.resolve().then(() => {
+            this.emit(message.method, message?.params);
+          });
+        }
+        return;
+      }
+      if ("error" in message === "result" in message)
+        this.queue[message.id].promise[1](
+          new Error(
+            'Server response malformed. Response must include either "result" or "error", but not both.'
+          )
+        );
+      if (this.queue[message.id].timeout)
+        clearTimeout(this.queue[message.id].timeout);
+      if (message.error) this.queue[message.id].promise[1](message.error);
+      else this.queue[message.id].promise[0](message.result);
+      delete this.queue[message.id];
+    });
+    this.socket.addEventListener("error", (error) => this.emit("error", error));
+    this.socket.addEventListener("close", ({ code, reason }) => {
+      if (this.ready)
+        setTimeout(() => this.emit("close", code, reason), 0);
+      this.ready = false;
+      this.socket = void 0;
+      if (code === 1e3) return;
+      this.current_reconnects++;
+      if (this.reconnect && (this.max_reconnects > this.current_reconnects || this.max_reconnects === 0))
+        this.reconnect_timer_id = setTimeout(
+          () => this._connect(address, options),
+          this.reconnect_interval
+        );
+    });
+  }
+};
+
+// src/index.browser.ts
+var Client = class extends CommonClient {
+  constructor(address = "ws://localhost:8080", {
+    autoconnect = true,
+    reconnect = true,
+    reconnect_interval = 1e3,
+    max_reconnects = 5
+  } = {}, generate_request_id) {
+    super(
+      WebSocket,
+      address,
+      {
+        autoconnect,
+        reconnect,
+        reconnect_interval,
+        max_reconnects
+      },
+      generate_request_id
+    );
+  }
+};
+
+
+//# sourceMappingURL=out.js.map
+//# sourceMappingURL=index.browser.mjs.map
+
+/***/ }),
+
+/***/ "./node_modules/superstruct/dist/index.mjs":
+/*!*************************************************!*\
+  !*** ./node_modules/superstruct/dist/index.mjs ***!
+  \*************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28320,6 +28942,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   array: () => (/* binding */ array),
 /* harmony export */   assert: () => (/* binding */ assert),
 /* harmony export */   assign: () => (/* binding */ assign),
+/* harmony export */   bigint: () => (/* binding */ bigint),
 /* harmony export */   boolean: () => (/* binding */ boolean),
 /* harmony export */   coerce: () => (/* binding */ coerce),
 /* harmony export */   create: () => (/* binding */ create),
@@ -28342,6 +28965,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   max: () => (/* binding */ max),
 /* harmony export */   min: () => (/* binding */ min),
 /* harmony export */   never: () => (/* binding */ never),
+/* harmony export */   nonempty: () => (/* binding */ nonempty),
 /* harmony export */   nullable: () => (/* binding */ nullable),
 /* harmony export */   number: () => (/* binding */ number),
 /* harmony export */   object: () => (/* binding */ object),
@@ -28367,7 +28991,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * A `StructFailure` represents a single specific failure in validation.
  */
-
 /**
  * `StructError` objects are thrown (or returned) when validation fails.
  *
@@ -28377,202 +29000,165 @@ __webpack_require__.r(__webpack_exports__);
  * continue validation and receive all the failures in the data.
  */
 class StructError extends TypeError {
-  constructor(failure, failures) {
-    let cached;
-    const {
-      message,
-      ...rest
-    } = failure;
-    const {
-      path
-    } = failure;
-    const msg = path.length === 0 ? message : "At path: " + path.join('.') + " -- " + message;
-    super(msg);
-    Object.assign(this, rest);
-    this.name = this.constructor.name;
-
-    this.failures = () => {
-      var _cached;
-
-      return (_cached = cached) != null ? _cached : cached = [failure, ...failures()];
-    };
-  }
-
+    constructor(failure, failures) {
+        let cached;
+        const { message, explanation, ...rest } = failure;
+        const { path } = failure;
+        const msg = path.length === 0 ? message : `At path: ${path.join('.')} -- ${message}`;
+        super(explanation ?? msg);
+        if (explanation != null)
+            this.cause = msg;
+        Object.assign(this, rest);
+        this.name = this.constructor.name;
+        this.failures = () => {
+            return (cached ?? (cached = [failure, ...failures()]));
+        };
+    }
 }
 
 /**
  * Check if a value is an iterator.
  */
 function isIterable(x) {
-  return isObject(x) && typeof x[Symbol.iterator] === 'function';
+    return isObject(x) && typeof x[Symbol.iterator] === 'function';
 }
 /**
  * Check if a value is a plain object.
  */
-
-
 function isObject(x) {
-  return typeof x === 'object' && x != null;
+    return typeof x === 'object' && x != null;
+}
+/**
+ * Check if a value is a non-array object.
+ */
+function isNonArrayObject(x) {
+    return isObject(x) && !Array.isArray(x);
 }
 /**
  * Check if a value is a plain object.
  */
-
 function isPlainObject(x) {
-  if (Object.prototype.toString.call(x) !== '[object Object]') {
-    return false;
-  }
-
-  const prototype = Object.getPrototypeOf(x);
-  return prototype === null || prototype === Object.prototype;
+    if (Object.prototype.toString.call(x) !== '[object Object]') {
+        return false;
+    }
+    const prototype = Object.getPrototypeOf(x);
+    return prototype === null || prototype === Object.prototype;
 }
 /**
  * Return a value as a printable string.
  */
-
 function print(value) {
-  return typeof value === 'string' ? JSON.stringify(value) : "" + value;
+    if (typeof value === 'symbol') {
+        return value.toString();
+    }
+    return typeof value === 'string' ? JSON.stringify(value) : `${value}`;
 }
 /**
  * Shifts (removes and returns) the first value from the `input` iterator.
  * Like `Array.prototype.shift()` but for an `Iterator`.
  */
-
 function shiftIterator(input) {
-  const {
-    done,
-    value
-  } = input.next();
-  return done ? undefined : value;
+    const { done, value } = input.next();
+    return done ? undefined : value;
 }
 /**
  * Convert a single validation result to a failure.
  */
-
 function toFailure(result, context, struct, value) {
-  if (result === true) {
-    return;
-  } else if (result === false) {
-    result = {};
-  } else if (typeof result === 'string') {
-    result = {
-      message: result
+    if (result === true) {
+        return;
+    }
+    else if (result === false) {
+        result = {};
+    }
+    else if (typeof result === 'string') {
+        result = { message: result };
+    }
+    const { path, branch } = context;
+    const { type } = struct;
+    const { refinement, message = `Expected a value of type \`${type}\`${refinement ? ` with refinement \`${refinement}\`` : ''}, but received: \`${print(value)}\``, } = result;
+    return {
+        value,
+        type,
+        refinement,
+        key: path[path.length - 1],
+        path,
+        branch,
+        ...result,
+        message,
     };
-  }
-
-  const {
-    path,
-    branch
-  } = context;
-  const {
-    type
-  } = struct;
-  const {
-    refinement,
-    message = "Expected a value of type `" + type + "`" + (refinement ? " with refinement `" + refinement + "`" : '') + ", but received: `" + print(value) + "`"
-  } = result;
-  return {
-    value,
-    type,
-    refinement,
-    key: path[path.length - 1],
-    path,
-    branch,
-    ...result,
-    message
-  };
 }
 /**
  * Convert a validation result to an iterable of failures.
  */
-
 function* toFailures(result, context, struct, value) {
-  if (!isIterable(result)) {
-    result = [result];
-  }
-
-  for (const r of result) {
-    const failure = toFailure(r, context, struct, value);
-
-    if (failure) {
-      yield failure;
+    if (!isIterable(result)) {
+        result = [result];
     }
-  }
+    for (const r of result) {
+        const failure = toFailure(r, context, struct, value);
+        if (failure) {
+            yield failure;
+        }
+    }
 }
 /**
  * Check a value against a struct, traversing deeply into nested values, and
  * returning an iterator of failures or success.
  */
-
 function* run(value, struct, options = {}) {
-  const {
-    path = [],
-    branch = [value],
-    coerce = false,
-    mask = false
-  } = options;
-  const ctx = {
-    path,
-    branch
-  };
-
-  if (coerce) {
-    value = struct.coercer(value, ctx);
-
-    if (mask && struct.type !== 'type' && isObject(struct.schema) && isObject(value) && !Array.isArray(value)) {
-      for (const key in value) {
-        if (struct.schema[key] === undefined) {
-          delete value[key];
+    const { path = [], branch = [value], coerce = false, mask = false } = options;
+    const ctx = { path, branch, mask };
+    if (coerce) {
+        value = struct.coercer(value, ctx);
+    }
+    let status = 'valid';
+    for (const failure of struct.validator(value, ctx)) {
+        failure.explanation = options.message;
+        status = 'not_valid';
+        yield [failure, undefined];
+    }
+    for (let [k, v, s] of struct.entries(value, ctx)) {
+        const ts = run(v, s, {
+            path: k === undefined ? path : [...path, k],
+            branch: k === undefined ? branch : [...branch, v],
+            coerce,
+            mask,
+            message: options.message,
+        });
+        for (const t of ts) {
+            if (t[0]) {
+                status = t[0].refinement != null ? 'not_refined' : 'not_valid';
+                yield [t[0], undefined];
+            }
+            else if (coerce) {
+                v = t[1];
+                if (k === undefined) {
+                    value = v;
+                }
+                else if (value instanceof Map) {
+                    value.set(k, v);
+                }
+                else if (value instanceof Set) {
+                    value.add(v);
+                }
+                else if (isObject(value)) {
+                    if (v !== undefined || k in value)
+                        value[k] = v;
+                }
+            }
         }
-      }
     }
-  }
-
-  let valid = true;
-
-  for (const failure of struct.validator(value, ctx)) {
-    valid = false;
-    yield [failure, undefined];
-  }
-
-  for (let [k, v, s] of struct.entries(value, ctx)) {
-    const ts = run(v, s, {
-      path: k === undefined ? path : [...path, k],
-      branch: k === undefined ? branch : [...branch, v],
-      coerce,
-      mask
-    });
-
-    for (const t of ts) {
-      if (t[0]) {
-        valid = false;
-        yield [t[0], undefined];
-      } else if (coerce) {
-        v = t[1];
-
-        if (k === undefined) {
-          value = v;
-        } else if (value instanceof Map) {
-          value.set(k, v);
-        } else if (value instanceof Set) {
-          value.add(v);
-        } else if (isObject(value)) {
-          value[k] = v;
+    if (status !== 'not_valid') {
+        for (const failure of struct.refiner(value, ctx)) {
+            failure.explanation = options.message;
+            status = 'not_refined';
+            yield [failure, undefined];
         }
-      }
     }
-  }
-
-  if (valid) {
-    for (const failure of struct.refiner(value, ctx)) {
-      valid = false;
-      yield [failure, undefined];
+    if (status === 'valid') {
+        yield [undefined, value];
     }
-  }
-
-  if (valid) {
-    yield [undefined, value];
-  }
 }
 
 /**
@@ -28580,197 +29166,164 @@ function* run(value, struct, options = {}) {
  * values. Once constructed, you use the `assert`, `is` or `validate` helpers to
  * validate unknown input data against the struct.
  */
-
 class Struct {
-  constructor(props) {
-    const {
-      type,
-      schema,
-      validator,
-      refiner,
-      coercer = value => value,
-      entries = function* () {}
-    } = props;
-    this.type = type;
-    this.schema = schema;
-    this.entries = entries;
-    this.coercer = coercer;
-
-    if (validator) {
-      this.validator = (value, context) => {
-        const result = validator(value, context);
-        return toFailures(result, context, this, value);
-      };
-    } else {
-      this.validator = () => [];
+    constructor(props) {
+        const { type, schema, validator, refiner, coercer = (value) => value, entries = function* () { }, } = props;
+        this.type = type;
+        this.schema = schema;
+        this.entries = entries;
+        this.coercer = coercer;
+        if (validator) {
+            this.validator = (value, context) => {
+                const result = validator(value, context);
+                return toFailures(result, context, this, value);
+            };
+        }
+        else {
+            this.validator = () => [];
+        }
+        if (refiner) {
+            this.refiner = (value, context) => {
+                const result = refiner(value, context);
+                return toFailures(result, context, this, value);
+            };
+        }
+        else {
+            this.refiner = () => [];
+        }
     }
-
-    if (refiner) {
-      this.refiner = (value, context) => {
-        const result = refiner(value, context);
-        return toFailures(result, context, this, value);
-      };
-    } else {
-      this.refiner = () => [];
+    /**
+     * Assert that a value passes the struct's validation, throwing if it doesn't.
+     */
+    assert(value, message) {
+        return assert(value, this, message);
     }
-  }
-  /**
-   * Assert that a value passes the struct's validation, throwing if it doesn't.
-   */
-
-
-  assert(value) {
-    return assert(value, this);
-  }
-  /**
-   * Create a value with the struct's coercion logic, then validate it.
-   */
-
-
-  create(value) {
-    return create(value, this);
-  }
-  /**
-   * Check if a value passes the struct's validation.
-   */
-
-
-  is(value) {
-    return is(value, this);
-  }
-  /**
-   * Mask a value, coercing and validating it, but returning only the subset of
-   * properties defined by the struct's schema.
-   */
-
-
-  mask(value) {
-    return mask(value, this);
-  }
-  /**
-   * Validate a value with the struct's validation logic, returning a tuple
-   * representing the result.
-   *
-   * You may optionally pass `true` for the `withCoercion` argument to coerce
-   * the value before attempting to validate it. If you do, the result will
-   * contain the coerced result when successful.
-   */
-
-
-  validate(value, options = {}) {
-    return validate(value, this, options);
-  }
-
+    /**
+     * Create a value with the struct's coercion logic, then validate it.
+     */
+    create(value, message) {
+        return create(value, this, message);
+    }
+    /**
+     * Check if a value passes the struct's validation.
+     */
+    is(value) {
+        return is(value, this);
+    }
+    /**
+     * Mask a value, coercing and validating it, but returning only the subset of
+     * properties defined by the struct's schema. Masking applies recursively to
+     * props of `object` structs only.
+     */
+    mask(value, message) {
+        return mask(value, this, message);
+    }
+    /**
+     * Validate a value with the struct's validation logic, returning a tuple
+     * representing the result.
+     *
+     * You may optionally pass `true` for the `coerce` argument to coerce
+     * the value before attempting to validate it. If you do, the result will
+     * contain the coerced result when successful. Also, `mask` will turn on
+     * masking of the unknown `object` props recursively if passed.
+     */
+    validate(value, options = {}) {
+        return validate(value, this, options);
+    }
 }
 /**
  * Assert that a value passes a struct, throwing if it doesn't.
  */
-
-function assert(value, struct) {
-  const result = validate(value, struct);
-
-  if (result[0]) {
-    throw result[0];
-  }
+function assert(value, struct, message) {
+    const result = validate(value, struct, { message });
+    if (result[0]) {
+        throw result[0];
+    }
 }
 /**
  * Create a value with the coercion logic of struct and validate it.
  */
-
-function create(value, struct) {
-  const result = validate(value, struct, {
-    coerce: true
-  });
-
-  if (result[0]) {
-    throw result[0];
-  } else {
-    return result[1];
-  }
+function create(value, struct, message) {
+    const result = validate(value, struct, { coerce: true, message });
+    if (result[0]) {
+        throw result[0];
+    }
+    else {
+        return result[1];
+    }
 }
 /**
  * Mask a value, returning only the subset of properties defined by a struct.
  */
-
-function mask(value, struct) {
-  const result = validate(value, struct, {
-    coerce: true,
-    mask: true
-  });
-
-  if (result[0]) {
-    throw result[0];
-  } else {
-    return result[1];
-  }
+function mask(value, struct, message) {
+    const result = validate(value, struct, { coerce: true, mask: true, message });
+    if (result[0]) {
+        throw result[0];
+    }
+    else {
+        return result[1];
+    }
 }
 /**
  * Check if a value passes a struct.
  */
-
 function is(value, struct) {
-  const result = validate(value, struct);
-  return !result[0];
+    const result = validate(value, struct);
+    return !result[0];
 }
 /**
  * Validate a value against a struct, returning an error if invalid, or the
  * value (with potential coercion) if valid.
  */
-
 function validate(value, struct, options = {}) {
-  const tuples = run(value, struct, options);
-  const tuple = shiftIterator(tuples);
-
-  if (tuple[0]) {
-    const error = new StructError(tuple[0], function* () {
-      for (const t of tuples) {
-        if (t[0]) {
-          yield t[0];
-        }
-      }
-    });
-    return [error, undefined];
-  } else {
-    const v = tuple[1];
-    return [undefined, v];
-  }
+    const tuples = run(value, struct, options);
+    const tuple = shiftIterator(tuples);
+    if (tuple[0]) {
+        const error = new StructError(tuple[0], function* () {
+            for (const t of tuples) {
+                if (t[0]) {
+                    yield t[0];
+                }
+            }
+        });
+        return [error, undefined];
+    }
+    else {
+        const v = tuple[1];
+        return [undefined, v];
+    }
 }
 
 function assign(...Structs) {
-  const schemas = Structs.map(s => s.schema);
-  const schema = Object.assign({}, ...schemas);
-  return object(schema);
+    const isType = Structs[0].type === 'type';
+    const schemas = Structs.map((s) => s.schema);
+    const schema = Object.assign({}, ...schemas);
+    return isType ? type(schema) : object(schema);
 }
 /**
  * Define a new struct type with a custom validation function.
  */
-
 function define(name, validator) {
-  return new Struct({
-    type: name,
-    schema: null,
-    validator
-  });
+    return new Struct({ type: name, schema: null, validator });
 }
 /**
  * Create a new struct based on an existing struct, but the value is allowed to
  * be `undefined`. `log` will be called if the value is not `undefined`.
  */
-
 function deprecated(struct, log) {
-  return new Struct({ ...struct,
-    refiner: (value, ctx) => value === undefined || struct.refiner(value, ctx),
-
-    validator(value, ctx) {
-      if (value === undefined) {
-        return true;
-      } else {
-        log(value, ctx);
-        return struct.validator(value, ctx);
-      }
-    }
-
-  });
+    return new Struct({
+        ...struct,
+        refiner: (value, ctx) => value === undefined || struct.refiner(value, ctx),
+        validator(value, ctx) {
+            if (value === undefined) {
+                return true;
+            }
+            else {
+                log(value, ctx);
+                return struct.validator(value, ctx);
+            }
+        },
+    });
 }
 /**
  * Create a struct with dynamic validation logic.
@@ -28779,28 +29332,27 @@ function deprecated(struct, log) {
  * return a struct object to validate it with. This can be useful to model
  * validation logic that changes based on its input.
  */
-
 function dynamic(fn) {
-  return new Struct({
-    type: 'dynamic',
-    schema: null,
-
-    *entries(value, ctx) {
-      const struct = fn(value, ctx);
-      yield* struct.entries(value, ctx);
-    },
-
-    validator(value, ctx) {
-      const struct = fn(value, ctx);
-      return struct.validator(value, ctx);
-    },
-
-    coercer(value, ctx) {
-      const struct = fn(value, ctx);
-      return struct.coercer(value, ctx);
-    }
-
-  });
+    return new Struct({
+        type: 'dynamic',
+        schema: null,
+        *entries(value, ctx) {
+            const struct = fn(value, ctx);
+            yield* struct.entries(value, ctx);
+        },
+        validator(value, ctx) {
+            const struct = fn(value, ctx);
+            return struct.validator(value, ctx);
+        },
+        coercer(value, ctx) {
+            const struct = fn(value, ctx);
+            return struct.coercer(value, ctx);
+        },
+        refiner(value, ctx) {
+            const struct = fn(value, ctx);
+            return struct.refiner(value, ctx);
+        },
+    });
 }
 /**
  * Create a struct with lazily evaluated validation logic.
@@ -28810,35 +29362,28 @@ function dynamic(fn) {
  * want to have self-referential structs for nested data structures to avoid a
  * circular definition problem.
  */
-
 function lazy(fn) {
-  let struct;
-  return new Struct({
-    type: 'lazy',
-    schema: null,
-
-    *entries(value, ctx) {
-      var _struct;
-
-      (_struct = struct) != null ? _struct : struct = fn();
-      yield* struct.entries(value, ctx);
-    },
-
-    validator(value, ctx) {
-      var _struct2;
-
-      (_struct2 = struct) != null ? _struct2 : struct = fn();
-      return struct.validator(value, ctx);
-    },
-
-    coercer(value, ctx) {
-      var _struct3;
-
-      (_struct3 = struct) != null ? _struct3 : struct = fn();
-      return struct.coercer(value, ctx);
-    }
-
-  });
+    let struct;
+    return new Struct({
+        type: 'lazy',
+        schema: null,
+        *entries(value, ctx) {
+            struct ?? (struct = fn());
+            yield* struct.entries(value, ctx);
+        },
+        validator(value, ctx) {
+            struct ?? (struct = fn());
+            return struct.validator(value, ctx);
+        },
+        coercer(value, ctx) {
+            struct ?? (struct = fn());
+            return struct.coercer(value, ctx);
+        },
+        refiner(value, ctx) {
+            struct ?? (struct = fn());
+            return struct.refiner(value, ctx);
+        },
+    });
 }
 /**
  * Create a new struct based on an existing object struct, but excluding
@@ -28846,19 +29391,18 @@ function lazy(fn) {
  *
  * Like TypeScript's `Omit` utility.
  */
-
 function omit(struct, keys) {
-  const {
-    schema
-  } = struct;
-  const subschema = { ...schema
-  };
-
-  for (const key of keys) {
-    delete subschema[key];
-  }
-
-  return object(subschema);
+    const { schema } = struct;
+    const subschema = { ...schema };
+    for (const key of keys) {
+        delete subschema[key];
+    }
+    switch (struct.type) {
+        case 'type':
+            return type(subschema);
+        default:
+            return object(subschema);
+    }
 }
 /**
  * Create a new struct based on an existing object struct, but with all of its
@@ -28866,17 +29410,16 @@ function omit(struct, keys) {
  *
  * Like TypeScript's `Partial` utility.
  */
-
 function partial(struct) {
-  const schema = struct instanceof Struct ? { ...struct.schema
-  } : { ...struct
-  };
-
-  for (const key in schema) {
-    schema[key] = optional(schema[key]);
-  }
-
-  return object(schema);
+    const isStruct = struct instanceof Struct;
+    const schema = isStruct ? { ...struct.schema } : { ...struct };
+    for (const key in schema) {
+        schema[key] = optional(schema[key]);
+    }
+    if (isStruct && struct.type === 'type') {
+        return type(schema);
+    }
+    return object(schema);
 }
 /**
  * Create a new struct based on an existing object struct, but only including
@@ -28884,68 +29427,70 @@ function partial(struct) {
  *
  * Like TypeScript's `Pick` utility.
  */
-
 function pick(struct, keys) {
-  const {
-    schema
-  } = struct;
-  const subschema = {};
-
-  for (const key of keys) {
-    subschema[key] = schema[key];
-  }
-
-  return object(subschema);
+    const { schema } = struct;
+    const subschema = {};
+    for (const key of keys) {
+        subschema[key] = schema[key];
+    }
+    switch (struct.type) {
+        case 'type':
+            return type(subschema);
+        default:
+            return object(subschema);
+    }
 }
 /**
  * Define a new struct type with a custom validation function.
  *
  * @deprecated This function has been renamed to `define`.
  */
-
 function struct(name, validator) {
-  console.warn('superstruct@0.11 - The `struct` helper has been renamed to `define`.');
-  return define(name, validator);
+    console.warn('superstruct@0.11 - The `struct` helper has been renamed to `define`.');
+    return define(name, validator);
 }
 
 /**
  * Ensure that any value passes validation.
  */
-
 function any() {
-  return define('any', () => true);
+    return define('any', () => true);
 }
 function array(Element) {
-  return new Struct({
-    type: 'array',
-    schema: Element,
-
-    *entries(value) {
-      if (Element && Array.isArray(value)) {
-        for (const [i, v] of value.entries()) {
-          yield [i, v, Element];
-        }
-      }
-    },
-
-    coercer(value) {
-      return Array.isArray(value) ? value.slice() : value;
-    },
-
-    validator(value) {
-      return Array.isArray(value) || "Expected an array value, but received: " + print(value);
-    }
-
-  });
+    return new Struct({
+        type: 'array',
+        schema: Element,
+        *entries(value) {
+            if (Element && Array.isArray(value)) {
+                for (const [i, v] of value.entries()) {
+                    yield [i, v, Element];
+                }
+            }
+        },
+        coercer(value) {
+            return Array.isArray(value) ? value.slice() : value;
+        },
+        validator(value) {
+            return (Array.isArray(value) ||
+                `Expected an array value, but received: ${print(value)}`);
+        },
+    });
+}
+/**
+ * Ensure that a value is a bigint.
+ */
+function bigint() {
+    return define('bigint', (value) => {
+        return typeof value === 'bigint';
+    });
 }
 /**
  * Ensure that a value is a boolean.
  */
-
 function boolean() {
-  return define('boolean', value => {
-    return typeof value === 'boolean';
-  });
+    return define('boolean', (value) => {
+        return typeof value === 'boolean';
+    });
 }
 /**
  * Ensure that a value is a valid `Date`.
@@ -28953,187 +29498,186 @@ function boolean() {
  * Note: this also ensures that the value is *not* an invalid `Date` object,
  * which can occur when parsing a date fails but still returns a `Date`.
  */
-
 function date() {
-  return define('date', value => {
-    return value instanceof Date && !isNaN(value.getTime()) || "Expected a valid `Date` object, but received: " + print(value);
-  });
+    return define('date', (value) => {
+        return ((value instanceof Date && !isNaN(value.getTime())) ||
+            `Expected a valid \`Date\` object, but received: ${print(value)}`);
+    });
 }
 function enums(values) {
-  const schema = {};
-  const description = values.map(v => print(v)).join();
-
-  for (const key of values) {
-    schema[key] = key;
-  }
-
-  return new Struct({
-    type: 'enums',
-    schema,
-
-    validator(value) {
-      return values.includes(value) || "Expected one of `" + description + "`, but received: " + print(value);
+    const schema = {};
+    const description = values.map((v) => print(v)).join();
+    for (const key of values) {
+        schema[key] = key;
     }
-
-  });
+    return new Struct({
+        type: 'enums',
+        schema,
+        validator(value) {
+            return (values.includes(value) ||
+                `Expected one of \`${description}\`, but received: ${print(value)}`);
+        },
+    });
 }
 /**
  * Ensure that a value is a function.
  */
-
 function func() {
-  return define('func', value => {
-    return typeof value === 'function' || "Expected a function, but received: " + print(value);
-  });
+    return define('func', (value) => {
+        return (typeof value === 'function' ||
+            `Expected a function, but received: ${print(value)}`);
+    });
 }
 /**
  * Ensure that a value is an instance of a specific class.
  */
-
 function instance(Class) {
-  return define('instance', value => {
-    return value instanceof Class || "Expected a `" + Class.name + "` instance, but received: " + print(value);
-  });
+    return define('instance', (value) => {
+        return (value instanceof Class ||
+            `Expected a \`${Class.name}\` instance, but received: ${print(value)}`);
+    });
 }
 /**
  * Ensure that a value is an integer.
  */
-
 function integer() {
-  return define('integer', value => {
-    return typeof value === 'number' && !isNaN(value) && Number.isInteger(value) || "Expected an integer, but received: " + print(value);
-  });
+    return define('integer', (value) => {
+        return ((typeof value === 'number' && !isNaN(value) && Number.isInteger(value)) ||
+            `Expected an integer, but received: ${print(value)}`);
+    });
 }
+/**
+ * Ensure that a value matches all of a set of types.
+ */
 function intersection(Structs) {
-  return new Struct({
-    type: 'intersection',
-    schema: null,
-
-    *entries(value, ctx) {
-      for (const S of Structs) {
-        yield* S.entries(value, ctx);
-      }
-    },
-
-    *validator(value, ctx) {
-      for (const S of Structs) {
-        yield* S.validator(value, ctx);
-      }
-    },
-
-    *refiner(value, ctx) {
-      for (const S of Structs) {
-        yield* S.refiner(value, ctx);
-      }
-    }
-
-  });
+    return new Struct({
+        type: 'intersection',
+        schema: null,
+        *entries(value, ctx) {
+            for (const S of Structs) {
+                yield* S.entries(value, ctx);
+            }
+        },
+        *validator(value, ctx) {
+            for (const S of Structs) {
+                yield* S.validator(value, ctx);
+            }
+        },
+        *refiner(value, ctx) {
+            for (const S of Structs) {
+                yield* S.refiner(value, ctx);
+            }
+        },
+    });
 }
 function literal(constant) {
-  const description = print(constant);
-  const t = typeof constant;
-  return new Struct({
-    type: 'literal',
-    schema: t === 'string' || t === 'number' || t === 'boolean' ? constant : null,
-
-    validator(value) {
-      return value === constant || "Expected the literal `" + description + "`, but received: " + print(value);
-    }
-
-  });
+    const description = print(constant);
+    const t = typeof constant;
+    return new Struct({
+        type: 'literal',
+        schema: t === 'string' || t === 'number' || t === 'boolean' ? constant : null,
+        validator(value) {
+            return (value === constant ||
+                `Expected the literal \`${description}\`, but received: ${print(value)}`);
+        },
+    });
 }
 function map(Key, Value) {
-  return new Struct({
-    type: 'map',
-    schema: null,
-
-    *entries(value) {
-      if (Key && Value && value instanceof Map) {
-        for (const [k, v] of value.entries()) {
-          yield [k, k, Key];
-          yield [k, v, Value];
-        }
-      }
-    },
-
-    coercer(value) {
-      return value instanceof Map ? new Map(value) : value;
-    },
-
-    validator(value) {
-      return value instanceof Map || "Expected a `Map` object, but received: " + print(value);
-    }
-
-  });
+    return new Struct({
+        type: 'map',
+        schema: null,
+        *entries(value) {
+            if (Key && Value && value instanceof Map) {
+                for (const [k, v] of value.entries()) {
+                    yield [k, k, Key];
+                    yield [k, v, Value];
+                }
+            }
+        },
+        coercer(value) {
+            return value instanceof Map ? new Map(value) : value;
+        },
+        validator(value) {
+            return (value instanceof Map ||
+                `Expected a \`Map\` object, but received: ${print(value)}`);
+        },
+    });
 }
 /**
  * Ensure that no value ever passes validation.
  */
-
 function never() {
-  return define('never', () => false);
+    return define('never', () => false);
 }
 /**
  * Augment an existing struct to allow `null` values.
  */
-
 function nullable(struct) {
-  return new Struct({ ...struct,
-    validator: (value, ctx) => value === null || struct.validator(value, ctx),
-    refiner: (value, ctx) => value === null || struct.refiner(value, ctx)
-  });
+    return new Struct({
+        ...struct,
+        validator: (value, ctx) => value === null || struct.validator(value, ctx),
+        refiner: (value, ctx) => value === null || struct.refiner(value, ctx),
+    });
 }
 /**
  * Ensure that a value is a number.
  */
-
 function number() {
-  return define('number', value => {
-    return typeof value === 'number' && !isNaN(value) || "Expected a number, but received: " + print(value);
-  });
+    return define('number', (value) => {
+        return ((typeof value === 'number' && !isNaN(value)) ||
+            `Expected a number, but received: ${print(value)}`);
+    });
 }
 function object(schema) {
-  const knowns = schema ? Object.keys(schema) : [];
-  const Never = never();
-  return new Struct({
-    type: 'object',
-    schema: schema ? schema : null,
-
-    *entries(value) {
-      if (schema && isObject(value)) {
-        const unknowns = new Set(Object.keys(value));
-
-        for (const key of knowns) {
-          unknowns.delete(key);
-          yield [key, value[key], schema[key]];
-        }
-
-        for (const key of unknowns) {
-          yield [key, value[key], Never];
-        }
-      }
-    },
-
-    validator(value) {
-      return isObject(value) || "Expected an object, but received: " + print(value);
-    },
-
-    coercer(value) {
-      return isObject(value) ? { ...value
-      } : value;
-    }
-
-  });
+    const knowns = schema ? Object.keys(schema) : [];
+    const Never = never();
+    return new Struct({
+        type: 'object',
+        schema: schema ? schema : null,
+        *entries(value) {
+            if (schema && isObject(value)) {
+                const unknowns = new Set(Object.keys(value));
+                for (const key of knowns) {
+                    unknowns.delete(key);
+                    yield [key, value[key], schema[key]];
+                }
+                for (const key of unknowns) {
+                    yield [key, value[key], Never];
+                }
+            }
+        },
+        validator(value) {
+            return (isNonArrayObject(value) ||
+                `Expected an object, but received: ${print(value)}`);
+        },
+        coercer(value, ctx) {
+            if (!isNonArrayObject(value)) {
+                return value;
+            }
+            const coerced = { ...value };
+            // The `object` struct has special behaviour enabled by the mask flag.
+            // When masking, properties that are not in the schema are deleted from
+            // the coerced object instead of eventually failing validaiton.
+            if (ctx.mask && schema) {
+                for (const key in coerced) {
+                    if (schema[key] === undefined) {
+                        delete coerced[key];
+                    }
+                }
+            }
+            return coerced;
+        },
+    });
 }
 /**
  * Augment a struct to allow `undefined` values.
  */
-
 function optional(struct) {
-  return new Struct({ ...struct,
-    validator: (value, ctx) => value === undefined || struct.validator(value, ctx),
-    refiner: (value, ctx) => value === undefined || struct.refiner(value, ctx)
-  });
+    return new Struct({
+        ...struct,
+        validator: (value, ctx) => value === undefined || struct.validator(value, ctx),
+        refiner: (value, ctx) => value === undefined || struct.refiner(value, ctx),
+    });
 }
 /**
  * Ensure that a value is an object with keys and values of specific types, but
@@ -29141,27 +29685,27 @@ function optional(struct) {
  *
  * Like TypeScript's `Record` utility.
  */
-
 function record(Key, Value) {
-  return new Struct({
-    type: 'record',
-    schema: null,
-
-    *entries(value) {
-      if (isObject(value)) {
-        for (const k in value) {
-          const v = value[k];
-          yield [k, k, Key];
-          yield [k, v, Value];
-        }
-      }
-    },
-
-    validator(value) {
-      return isObject(value) || "Expected an object, but received: " + print(value);
-    }
-
-  });
+    return new Struct({
+        type: 'record',
+        schema: null,
+        *entries(value) {
+            if (isObject(value)) {
+                for (const k in value) {
+                    const v = value[k];
+                    yield [k, k, Key];
+                    yield [k, v, Value];
+                }
+            }
+        },
+        validator(value) {
+            return (isNonArrayObject(value) ||
+                `Expected an object, but received: ${print(value)}`);
+        },
+        coercer(value) {
+            return isNonArrayObject(value) ? { ...value } : value;
+        },
+    });
 }
 /**
  * Ensure that a value is a `RegExp`.
@@ -29169,65 +29713,65 @@ function record(Key, Value) {
  * Note: this does not test the value against the regular expression! For that
  * you need to use the `pattern()` refinement.
  */
-
 function regexp() {
-  return define('regexp', value => {
-    return value instanceof RegExp;
-  });
+    return define('regexp', (value) => {
+        return value instanceof RegExp;
+    });
 }
 function set(Element) {
-  return new Struct({
-    type: 'set',
-    schema: null,
-
-    *entries(value) {
-      if (Element && value instanceof Set) {
-        for (const v of value) {
-          yield [v, v, Element];
-        }
-      }
-    },
-
-    coercer(value) {
-      return value instanceof Set ? new Set(value) : value;
-    },
-
-    validator(value) {
-      return value instanceof Set || "Expected a `Set` object, but received: " + print(value);
-    }
-
-  });
+    return new Struct({
+        type: 'set',
+        schema: null,
+        *entries(value) {
+            if (Element && value instanceof Set) {
+                for (const v of value) {
+                    yield [v, v, Element];
+                }
+            }
+        },
+        coercer(value) {
+            return value instanceof Set ? new Set(value) : value;
+        },
+        validator(value) {
+            return (value instanceof Set ||
+                `Expected a \`Set\` object, but received: ${print(value)}`);
+        },
+    });
 }
 /**
  * Ensure that a value is a string.
  */
-
 function string() {
-  return define('string', value => {
-    return typeof value === 'string' || "Expected a string, but received: " + print(value);
-  });
+    return define('string', (value) => {
+        return (typeof value === 'string' ||
+            `Expected a string, but received: ${print(value)}`);
+    });
 }
-function tuple(Elements) {
-  const Never = never();
-  return new Struct({
-    type: 'tuple',
-    schema: null,
-
-    *entries(value) {
-      if (Array.isArray(value)) {
-        const length = Math.max(Elements.length, value.length);
-
-        for (let i = 0; i < length; i++) {
-          yield [i, value[i], Elements[i] || Never];
-        }
-      }
-    },
-
-    validator(value) {
-      return Array.isArray(value) || "Expected an array, but received: " + print(value);
-    }
-
-  });
+/**
+ * Ensure that a value is a tuple of a specific length, and that each of its
+ * elements is of a specific type.
+ */
+function tuple(Structs) {
+    const Never = never();
+    return new Struct({
+        type: 'tuple',
+        schema: null,
+        *entries(value) {
+            if (Array.isArray(value)) {
+                const length = Math.max(Structs.length, value.length);
+                for (let i = 0; i < length; i++) {
+                    yield [i, value[i], Structs[i] || Never];
+                }
+            }
+        },
+        validator(value) {
+            return (Array.isArray(value) ||
+                `Expected an array, but received: ${print(value)}`);
+        },
+        coercer(value) {
+            return Array.isArray(value) ? value.slice() : value;
+        },
+    });
 }
 /**
  * Ensure that a value has a set of known properties of specific types.
@@ -29235,62 +29779,75 @@ function tuple(Elements) {
  * Note: Unrecognized properties are allowed and untouched. This is similar to
  * how TypeScript's structural typing works.
  */
-
 function type(schema) {
-  const keys = Object.keys(schema);
-  return new Struct({
-    type: 'type',
-    schema,
-
-    *entries(value) {
-      if (isObject(value)) {
-        for (const k of keys) {
-          yield [k, value[k], schema[k]];
-        }
-      }
-    },
-
-    validator(value) {
-      return isObject(value) || "Expected an object, but received: " + print(value);
-    }
-
-  });
-}
-function union(Structs) {
-  const description = Structs.map(s => s.type).join(' | ');
-  return new Struct({
-    type: 'union',
-    schema: null,
-
-    validator(value, ctx) {
-      const failures = [];
-
-      for (const S of Structs) {
-        const [...tuples] = run(value, S, ctx);
-        const [first] = tuples;
-
-        if (!first[0]) {
-          return [];
-        } else {
-          for (const [failure] of tuples) {
-            if (failure) {
-              failures.push(failure);
+    const keys = Object.keys(schema);
+    return new Struct({
+        type: 'type',
+        schema,
+        *entries(value) {
+            if (isObject(value)) {
+                for (const k of keys) {
+                    yield [k, value[k], schema[k]];
+                }
             }
-          }
-        }
-      }
-
-      return ["Expected the value to satisfy a union of `" + description + "`, but received: " + print(value), ...failures];
-    }
-
-  });
+        },
+        validator(value) {
+            return (isNonArrayObject(value) ||
+                `Expected an object, but received: ${print(value)}`);
+        },
+        coercer(value) {
+            return isNonArrayObject(value) ? { ...value } : value;
+        },
+    });
+}
+/**
+ * Ensure that a value matches one of a set of types.
+ */
+function union(Structs) {
+    const description = Structs.map((s) => s.type).join(' | ');
+    return new Struct({
+        type: 'union',
+        schema: null,
+        coercer(value, ctx) {
+            for (const S of Structs) {
+                const [error, coerced] = S.validate(value, {
+                    coerce: true,
+                    mask: ctx.mask,
+                });
+                if (!error) {
+                    return coerced;
+                }
+            }
+            return value;
+        },
+        validator(value, ctx) {
+            const failures = [];
+            for (const S of Structs) {
+                const [...tuples] = run(value, S, ctx);
+                const [first] = tuples;
+                if (!first[0]) {
+                    return [];
+                }
+                else {
+                    for (const [failure] of tuples) {
+                        if (failure) {
+                            failures.push(failure);
+                        }
+                    }
+                }
+            }
+            return [
+                `Expected the value to satisfy a union of \`${description}\`, but received: ${print(value)}`,
+                ...failures,
+            ];
+        },
+    });
 }
 /**
  * Ensure that any value passes validation, without widening its type to `any`.
  */
-
 function unknown() {
-  return define('unknown', () => true);
+    return define('unknown', () => true);
 }
 
 /**
@@ -29303,13 +29860,15 @@ function unknown() {
  * Note: You must use `create(value, Struct)` on the value to have the coercion
  * take effect! Using simply `assert()` or `is()` will not use coercion.
  */
-
 function coerce(struct, condition, coercer) {
-  return new Struct({ ...struct,
-    coercer: (value, ctx) => {
-      return is(value, condition) ? struct.coercer(coercer(value, ctx), ctx) : struct.coercer(value, ctx);
-    }
-  });
+    return new Struct({
+        ...struct,
+        coercer: (value, ctx) => {
+            return is(value, condition)
+                ? struct.coercer(coercer(value, ctx), ctx)
+                : struct.coercer(value, ctx);
+        },
+    });
 }
 /**
  * Augment a struct to replace `undefined` values with a default.
@@ -29317,34 +29876,27 @@ function coerce(struct, condition, coercer) {
  * Note: You must use `create(value, Struct)` on the value to have the coercion
  * take effect! Using simply `assert()` or `is()` will not use coercion.
  */
-
 function defaulted(struct, fallback, options = {}) {
-  return coerce(struct, unknown(), x => {
-    const f = typeof fallback === 'function' ? fallback() : fallback;
-
-    if (x === undefined) {
-      return f;
-    }
-
-    if (!options.strict && isPlainObject(x) && isPlainObject(f)) {
-      const ret = { ...x
-      };
-      let changed = false;
-
-      for (const key in f) {
-        if (ret[key] === undefined) {
-          ret[key] = f[key];
-          changed = true;
+    return coerce(struct, unknown(), (x) => {
+        const f = typeof fallback === 'function' ? fallback() : fallback;
+        if (x === undefined) {
+            return f;
         }
-      }
-
-      if (changed) {
-        return ret;
-      }
-    }
-
-    return x;
-  });
+        if (!options.strict && isPlainObject(x) && isPlainObject(f)) {
+            const ret = { ...x };
+            let changed = false;
+            for (const key in f) {
+                if (ret[key] === undefined) {
+                    ret[key] = f[key];
+                    changed = true;
+                }
+            }
+            if (changed) {
+                return ret;
+            }
+        }
+        return x;
+    });
 }
 /**
  * Augment a struct to trim string inputs.
@@ -29352,86 +29904,92 @@ function defaulted(struct, fallback, options = {}) {
  * Note: You must use `create(value, Struct)` on the value to have the coercion
  * take effect! Using simply `assert()` or `is()` will not use coercion.
  */
-
 function trimmed(struct) {
-  return coerce(struct, string(), x => x.trim());
+    return coerce(struct, string(), (x) => x.trim());
 }
 
 /**
  * Ensure that a string, array, map, or set is empty.
  */
-
 function empty(struct) {
-  const expected = "Expected an empty " + struct.type;
-  return refine(struct, 'empty', value => {
+    return refine(struct, 'empty', (value) => {
+        const size = getSize(value);
+        return (size === 0 ||
+            `Expected an empty ${struct.type} but received one with a size of \`${size}\``);
+    });
+}
+function getSize(value) {
     if (value instanceof Map || value instanceof Set) {
-      const {
-        size
-      } = value;
-      return size === 0 || expected + " but received one with a size of `" + size + "`";
-    } else {
-      const {
-        length
-      } = value;
-      return length === 0 || expected + " but received one with a length of `" + length + "`";
+        return value.size;
     }
-  });
+    else {
+        return value.length;
+    }
 }
 /**
  * Ensure that a number or date is below a threshold.
  */
-
 function max(struct, threshold, options = {}) {
-  const {
-    exclusive
-  } = options;
-  return refine(struct, 'max', value => {
-    return exclusive ? value < threshold : value <= threshold || "Expected a " + struct.type + " greater than " + (exclusive ? '' : 'or equal to ') + threshold + " but received `" + value + "`";
-  });
+    const { exclusive } = options;
+    return refine(struct, 'max', (value) => {
+        return exclusive
+            ? value < threshold
+            : value <= threshold ||
+                `Expected a ${struct.type} less than ${exclusive ? '' : 'or equal to '}${threshold} but received \`${value}\``;
+    });
 }
 /**
  * Ensure that a number or date is above a threshold.
  */
-
 function min(struct, threshold, options = {}) {
-  const {
-    exclusive
-  } = options;
-  return refine(struct, 'min', value => {
-    return exclusive ? value > threshold : value >= threshold || "Expected a " + struct.type + " greater than " + (exclusive ? '' : 'or equal to ') + threshold + " but received `" + value + "`";
-  });
+    const { exclusive } = options;
+    return refine(struct, 'min', (value) => {
+        return exclusive
+            ? value > threshold
+            : value >= threshold ||
+                `Expected a ${struct.type} greater than ${exclusive ? '' : 'or equal to '}${threshold} but received \`${value}\``;
+    });
+}
+/**
+ * Ensure that a string, array, map or set is not empty.
+ */
+function nonempty(struct) {
+    return refine(struct, 'nonempty', (value) => {
+        const size = getSize(value);
+        return (size > 0 || `Expected a nonempty ${struct.type} but received an empty one`);
+    });
 }
 /**
  * Ensure that a string matches a regular expression.
  */
-
 function pattern(struct, regexp) {
-  return refine(struct, 'pattern', value => {
-    return regexp.test(value) || "Expected a " + struct.type + " matching `/" + regexp.source + "/` but received \"" + value + "\"";
-  });
+    return refine(struct, 'pattern', (value) => {
+        return (regexp.test(value) ||
+            `Expected a ${struct.type} matching \`/${regexp.source}/\` but received "${value}"`);
+    });
 }
 /**
  * Ensure that a string, array, number, date, map, or set has a size (or length, or time) between `min` and `max`.
  */
-
 function size(struct, min, max = min) {
-  const expected = "Expected a " + struct.type;
-  const of = min === max ? "of `" + min + "`" : "between `" + min + "` and `" + max + "`";
-  return refine(struct, 'size', value => {
-    if (typeof value === 'number' || value instanceof Date) {
-      return min <= value && value <= max || expected + " " + of + " but received `" + value + "`";
-    } else if (value instanceof Map || value instanceof Set) {
-      const {
-        size
-      } = value;
-      return min <= size && size <= max || expected + " with a size " + of + " but received one with a size of `" + size + "`";
-    } else {
-      const {
-        length
-      } = value;
-      return min <= length && length <= max || expected + " with a length " + of + " but received one with a length of `" + length + "`";
-    }
-  });
+    const expected = `Expected a ${struct.type}`;
+    const of = min === max ? `of \`${min}\`` : `between \`${min}\` and \`${max}\``;
+    return refine(struct, 'size', (value) => {
+        if (typeof value === 'number' || value instanceof Date) {
+            return ((min <= value && value <= max) ||
+                `${expected} ${of} but received \`${value}\``);
+        }
+        else if (value instanceof Map || value instanceof Set) {
+            const { size } = value;
+            return ((min <= size && size <= max) ||
+                `${expected} with a size ${of} but received one with a size of \`${size}\``);
+        }
+        else {
+            const { length } = value;
+            return ((min <= length && length <= max) ||
+                `${expected} with a length ${of} but received one with a length of \`${length}\``);
+        }
+    });
 }
 /**
  * Augment a `Struct` to add an additional refinement to the validation.
@@ -29440,27 +29998,22 @@ function size(struct, min, max = min) {
  * because the struct's existing validation will already have passed. This
  * allows you to layer additional validation on top of existing structs.
  */
-
 function refine(struct, name, refiner) {
-  return new Struct({ ...struct,
-
-    *refiner(value, ctx) {
-      yield* struct.refiner(value, ctx);
-      const result = refiner(value, ctx);
-      const failures = toFailures(result, ctx, struct, value);
-
-      for (const failure of failures) {
-        yield { ...failure,
-          refinement: name
-        };
-      }
-    }
-
-  });
+    return new Struct({
+        ...struct,
+        *refiner(value, ctx) {
+            yield* struct.refiner(value, ctx);
+            const result = refiner(value, ctx);
+            const failures = toFailures(result, ctx, struct, value);
+            for (const failure of failures) {
+                yield { ...failure, refinement: name };
+            }
+        },
+    });
 }
 
 
-//# sourceMappingURL=index.es.js.map
+//# sourceMappingURL=index.mjs.map
 
 
 /***/ })

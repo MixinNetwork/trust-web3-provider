@@ -1,17 +1,17 @@
 {
-  "name": "@trustwallet/web3-provider",
+  "name": "@mixinwallet/web3-provider",
   "version": "1.0.0",
-  "description": "Trust Web3 Provider",
+  "description": "Mixin Web3 Provider",
   "main": "dist/mixin-min.js",
   "files": [
     "dist/mixin-min.js"
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/TrustWallet/trust-web3-provider.git"
+    "url": "git+ssh://git@github.com/MixinNetwork/mixin-web3-provider.git"
   },
   "keywords": [],
-  "author": "Trust <support@trustwalletapp.com>",
+  "author": "",
   "license": "MIT",
   "scripts": {
     "prebuild": "cd ../adapter && npm i && npm run build && mv ./dist/index.js ../src/adapter.js",
