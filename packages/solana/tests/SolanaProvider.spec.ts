@@ -126,6 +126,7 @@ test('Solana Provider → signIn -> payload and response are correct', async () 
   }).registerProvider(Solana);
 
   const input = { domain: 'mixin.one' };
+  const { accounts } = await window.wallet.features[StandardConnect].connect();
   const [result] = await window.wallet.features[SolanaSignIn].signIn(input);
 
   expect(handler).toHaveBeenCalledWith(
@@ -136,6 +137,8 @@ test('Solana Provider → signIn -> payload and response are correct', async () 
     }),
   );
   expect(result.account.address).toBe(account);
+  expect(result.account.chains).toEqual(accounts[0].chains);
+  expect(result.account.features).toEqual(accounts[0].features);
   expect(result.signature).toEqual(new Uint8Array(bs58.decode(signature)));
   expect(result.signedMessage).toEqual(
     new Uint8Array(bs58.decode(signedMessage)),

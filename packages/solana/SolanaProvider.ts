@@ -18,6 +18,7 @@ import {
   Connection,
 } from '@solana/web3.js';
 import initialize from './adapter/initialize';
+import { TrustWalletAccount } from './adapter/account';
 import { TrustWallet } from './adapter/wallet';
 import { isVersionedTransaction } from './adapter/solana';
 import * as bs58 from 'bs58';
@@ -213,14 +214,11 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     });
     const output = SolanaProvider.messageToBuffer(response).toString('utf8');
     const result = JSON.parse(output);
+    const address = result.account.publicKey;
+    const publicKey = new Uint8Array(bs58.decode(address));
 
     return {
-      account: {
-        address: result.account.publicKey,
-        publicKey: new Uint8Array(bs58.decode(result.account.publicKey)),
-        chains: [],
-        features: [],
-      },
+      account: new TrustWalletAccount({ address, publicKey }),
       signature: new Uint8Array(bs58.decode(result.signature)),
       signedMessage: new Uint8Array(bs58.decode(result.signedMessage)),
     };
