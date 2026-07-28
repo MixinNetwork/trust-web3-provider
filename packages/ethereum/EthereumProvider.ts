@@ -129,7 +129,9 @@ export class EthereumProvider
       case 'eth_coinbase':
       case 'net_version':
       case 'eth_chainId':
-        response.result = this.handleStaticRequests(payload) as any;
+        response.result = this.handleStaticRequests({
+          method: 'eth_accounts',
+        }) as any;
         break;
 
       default:
@@ -150,9 +152,11 @@ export class EthereumProvider
       typeof methodOrPayload === 'string' &&
       (!callbackOrArgs || Array.isArray(callbackOrArgs))
     ) {
+      const context = this;
+
       return new Promise((resolve, reject) => {
         try {
-          const req = this.request({
+          const req = context.request({
             method: methodOrPayload,
             params: callbackOrArgs as unknown[],
           });
@@ -230,9 +234,8 @@ export class EthereumProvider
           : undefined) as unknown as unknown as T;
       case 'eth_chainId':
         return this.#chainId as unknown as T;
-      case 'eth_coinbase':
-        return (this.#address || null) as unknown as T;
       case 'eth_accounts':
+      case 'eth_coinbase':
         return (this.#address ? [this.#address] : []) as unknown as T;
     }
     if (next) {
@@ -275,27 +278,8 @@ export class EthereumProvider
     return true;
   }
 
-  isConnected(): boolean {
-    return true;
-  }
-
   get isMetaMask(): boolean {
     return this.#overwriteMetamask;
-  }
-
-  get chainId(): string {
-    return this.#chainId;
-  }
-
-  get networkVersion(): string | undefined {
-    const networkVersion = this.getNetworkVersion();
-    return typeof networkVersion === 'undefined'
-      ? undefined
-      : String(networkVersion);
-  }
-
-  get selectedAddress(): string | null {
-    return this.#address || null;
   }
 
   getChainId() {
@@ -304,7 +288,7 @@ export class EthereumProvider
 
   getNetworkVersion() {
     return this.handleStaticRequests({
-      method: 'net_version',
+      method: 'net_version ',
     }) as number | undefined;
   }
 
