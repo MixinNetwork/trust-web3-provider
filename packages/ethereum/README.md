@@ -19,7 +19,7 @@ const config: {
   supportedMethods?: string[];
   unsupportedMethods?: string[];
   disableMobileAdapter?: boolean;
-  isTrust?: boolean;
+  isMixin?: boolean;
 } = {};
 ```
 

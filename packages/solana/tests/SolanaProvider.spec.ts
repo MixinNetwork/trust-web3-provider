@@ -11,7 +11,9 @@ import {
   VersionedTransaction,
 } from '@solana/web3.js';
 import { StandardConnect } from '@wallet-standard/features';
+import * as bs58 from 'bs58';
 import {
+  SolanaSignIn,
   SolanaSignMessage,
   SolanaSignTransaction,
 } from '@solana/wallet-standard-features';
@@ -42,6 +44,13 @@ function transaction() {
 
 afterEach(() => {
   Solana = new SolanaProvider();
+});
+
+test('Solana Provider → exposes Mixin wallet identity', () => {
+  expect(Solana.isMixin).toBeTrue();
+  expect(Solana.isMixinWallet).toBeTrue();
+  expect(window.wallet.name).toBe('Mixin');
+  expect(window.wallet.features['mixin:']).toBeDefined();
 });
 
 test('Solana Provider → connect -> payload is correct', async () => {
@@ -94,6 +103,42 @@ test('Solana Provider → signMessage -> payload is correct', async () => {
         originalMethod: 'signMessage',
       },
     }),
+  );
+});
+
+test('Solana Provider → signIn -> payload and response are correct', async () => {
+  const signedMessage = bs58.encode(Buffer.from('mixin-sign-in'));
+  const handler = jest.fn((params: IHandlerParams) => {
+    if (params.name === 'signIn') {
+      const response = JSON.stringify({
+        account: { publicKey: account },
+        signature,
+        signedMessage,
+      });
+      return Promise.resolve(`0x${Buffer.from(response).toString('hex')}`);
+    }
+    return Promise.resolve([account]);
+  });
+
+  new Web3Provider({
+    strategy: AdapterStrategy.PROMISES,
+    handler,
+  }).registerProvider(Solana);
+
+  const input = { domain: 'mixin.one' };
+  const [result] = await window.wallet.features[SolanaSignIn].signIn(input);
+
+  expect(handler).toHaveBeenCalledWith(
+    expect.objectContaining({
+      name: 'signIn',
+      network: 'solana',
+      params: { data: input },
+    }),
+  );
+  expect(result.account.address).toBe(account);
+  expect(result.signature).toEqual(new Uint8Array(bs58.decode(signature)));
+  expect(result.signedMessage).toEqual(
+    new Uint8Array(bs58.decode(signedMessage)),
   );
 });
 

@@ -29,7 +29,7 @@ function createConfig(packageName) {
       input,
       plugins,
       output: {
-        file: '../../android/lib/src/main/res/raw/trust_min.js',
+        file: '../../android/lib/src/main/res/raw/mixin_min.js',
         format: 'umd',
         name: packageName,
         sourcemap: false,

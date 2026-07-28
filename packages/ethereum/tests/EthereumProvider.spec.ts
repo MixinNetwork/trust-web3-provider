@@ -107,6 +107,44 @@ test('Ethereum Provider → Static Request → eth_chainId → should return cha
   );
 });
 
+test('Ethereum Provider → MetaMask compatibility fields reflect current state', () => {
+  const ethereum = new EthereumProvider({ chainId: '0x9' });
+
+  expect(ethereum.chainId).toEqual('0x9');
+  expect(ethereum.networkVersion).toEqual('9');
+  expect(ethereum.selectedAddress).toEqual(null);
+  expect(ethereum.isConnected()).toEqual(true);
+
+  ethereum.setAddress(account);
+  ethereum.setChainId('0x1');
+
+  expect(ethereum.chainId).toEqual('0x1');
+  expect(ethereum.networkVersion).toEqual('1');
+  expect(ethereum.selectedAddress).toEqual(account);
+});
+
+test('Ethereum Provider → legacy send returns chain and account state', () => {
+  const ethereum = new EthereumProvider({ chainId: '0x9' });
+  ethereum.setAddress(account);
+
+  expect(ethereum.send({ method: 'eth_chainId' })).toEqual({
+    jsonrpc: '2.0',
+    result: '0x9',
+  });
+  expect(ethereum.send({ method: 'net_version' })).toEqual({
+    jsonrpc: '2.0',
+    result: 9,
+  });
+  expect(ethereum.send({ method: 'eth_accounts' })).toEqual({
+    jsonrpc: '2.0',
+    result: [account],
+  });
+  expect(ethereum.send({ method: 'eth_coinbase' })).toEqual({
+    jsonrpc: '2.0',
+    result: account,
+  });
+});
+
 test('Ethereum Provider → Mobile Adapter → eth_sign → should adapt to signPersonalMessage', async () => {
   const handler = jest.fn((_params: IHandlerParams) => Promise.resolve());
 

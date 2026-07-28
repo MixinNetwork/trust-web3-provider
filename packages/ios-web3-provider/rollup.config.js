@@ -41,14 +41,24 @@ function createConfig(
     {
       input,
       plugins,
-      output: {
-        file: './swift/trust-min.js',
-        format: 'umd',
-        exports: 'named',
-        name: packageName,
-        sourcemap: false,
-        ...umd,
-      },
+      output: [
+        {
+          file: './swift/mixin-min.js',
+          format: 'umd',
+          exports: 'named',
+          name: packageName,
+          sourcemap: false,
+          ...umd,
+        },
+        {
+          file: '../../dist/mixin-min.js',
+          format: 'umd',
+          exports: 'named',
+          name: packageName,
+          sourcemap: false,
+          ...umd,
+        },
+      ],
     },
   ];
 }

@@ -1,5 +1,5 @@
 export interface ITronProviderConfig {
-  isTrust?: boolean;
+  isMixin?: boolean;
   nodeURL: string;
 }
 

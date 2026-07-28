@@ -17,7 +17,7 @@ export interface IEthereumProviderConfig {
   supportedMethods?: string[];
   unsupportedMethods?: string[];
   disableMobileAdapter?: boolean;
-  isTrust?: boolean;
+  isMixin?: boolean;
 }
 
 /**
@@ -26,7 +26,15 @@ export interface IEthereumProviderConfig {
  * https://eips.ethereum.org/EIPS/eip-1193
  */
 export default interface IEthereumProvider {
+  readonly chainId: string;
+
+  readonly networkVersion: string | undefined;
+
+  readonly selectedAddress: string | null;
+
   request(args: IRequestArguments): Promise<unknown>;
+
+  isConnected(): boolean;
 
   setChainId(chainId: string): void;
 

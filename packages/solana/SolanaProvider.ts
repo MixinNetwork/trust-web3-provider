@@ -36,9 +36,9 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
 
   publicKey!: PublicKey | null;
 
-  isTrust: boolean = true;
+  isMixin: boolean = true;
 
-  isTrustWallet: boolean = true;
+  isMixinWallet: boolean = true;
 
   #useLegacySign = false;
 
@@ -81,9 +81,9 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
         this.#useLegacySign = config.useLegacySign;
       }
 
-      if (typeof config.isTrust !== 'undefined') {
-        this.isTrust = config.isTrust;
-        this.isTrustWallet = config.isTrust;
+      if (typeof config.isMixin !== 'undefined') {
+        this.isMixin = config.isMixin;
+        this.isMixinWallet = config.isMixin;
       }
     }
 
@@ -192,7 +192,7 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
       method: 'signMessage',
       params: {
         data,
-        originalMethod: 'signMessage'
+        originalMethod: 'signMessage',
       },
     });
 
@@ -204,8 +204,26 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     };
   }
 
-  signIn(input?: SolanaSignInInput | undefined): Promise<SolanaSignInOutput> {
-    throw new Error('Method not implemented.');
+  async signIn(
+    input?: SolanaSignInInput | undefined,
+  ): Promise<SolanaSignInOutput> {
+    const response = await this.#privateRequest<string>({
+      method: 'signIn',
+      params: { data: input },
+    });
+    const output = SolanaProvider.messageToBuffer(response).toString('utf8');
+    const result = JSON.parse(output);
+
+    return {
+      account: {
+        address: result.account.publicKey,
+        publicKey: new Uint8Array(bs58.decode(result.account.publicKey)),
+        chains: [],
+        features: [],
+      },
+      signature: new Uint8Array(bs58.decode(result.signature)),
+      signedMessage: new Uint8Array(bs58.decode(result.signedMessage)),
+    };
   }
 
   getNetwork(): string {

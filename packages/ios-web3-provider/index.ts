@@ -31,7 +31,7 @@ const ethereum = (config: IEthereumProviderConfig) =>
   new EthereumProvider(config);
 
 // Factory for the native-bridge-backed RPC so the injector can plug it in with
-// a single line: `ethereum.setRPC(trustwallet.nativeRpc(ethereum))`. Routes
+// a single line: `ethereum.setRPC(mixinwallet.nativeRpc(ethereum))`. Routes
 // JSON-RPC reads through the native bridge instead of fetch(), bypassing the
 // page's connect-src CSP.
 const nativeRpc = (provider: EthereumProvider) => new NativeRPC(provider);
@@ -45,7 +45,7 @@ const tonBridge = (config: ITonBridgeConfig, provider: TonProvider) =>
 
 const tron = (config: ITronProviderConfig) => new TronProvider(config);
 
-window.trustwallet = {
+window.mixinwallet = {
   core,
   solana,
   cosmos,

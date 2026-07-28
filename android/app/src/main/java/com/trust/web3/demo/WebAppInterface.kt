@@ -37,8 +37,8 @@ class WebAppInterface(
                     message = "${dappUrl} requests your address"
                     okButton {
                         val address = if (network == "solana") pubKey else addr
-                        val setAddress = "window.$network.setAddress(\"$address\");"
-                        val callback = "window.$network.sendResponse($id, [\"$address\"])"
+                        val setAddress = "mixinwallet.$network.setAddress(\"$address\");"
+                        val callback = "mixinwallet.$network.sendResponse($id, [\"$address\"])"
                         webView.post {
                             webView.evaluateJavascript(setAddress) {
                                 // ignore

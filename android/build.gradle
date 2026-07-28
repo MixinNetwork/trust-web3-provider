@@ -15,19 +15,27 @@ buildscript {
 }
 
 allprojects {
+    def localProperties = new Properties()
+    def localPropertiesFile = project.rootProject.file('local.properties')
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.newDataInputStream())
+    }
+    def githubUser = project.findProperty('gpr.user') ?: localProperties.getProperty('gpr.user')
+    def githubToken = project.findProperty('gpr.key') ?: localProperties.getProperty('gpr.key')
+
     repositories {
         google()
         mavenCentral()
 
         maven { url 'https://jitpack.io' }
 
-        maven {
-            url = uri("https://maven.pkg.github.com/trustwallet/wallet-core")
-            Properties properties = new Properties()
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
-            credentials {
-                username = properties.getProperty("gpr.user")
-                password = properties.getProperty("gpr.key")
+        if (githubUser && githubToken) {
+            maven {
+                url = uri("https://maven.pkg.github.com/trustwallet/wallet-core")
+                credentials {
+                    username = githubUser
+                    password = githubToken
+                }
             }
         }
     }

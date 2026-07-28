@@ -119,6 +119,8 @@ out
 
 .nuxt
 dist
+!/dist/
+!/dist/mixin-min.js
 
 # Gatsby files
 
@@ -173,6 +175,8 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+/adapter/
+/.build/
 android/build
 android/app/build/*
 android/lib/build/*

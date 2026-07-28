@@ -17,7 +17,7 @@ let package = Package(
             dependencies: [],
             path: "swift",
             resources: [
-                .process("trust-min.js", localization: .none)
+                .process("mixin-min.js", localization: .none)
             ]
         )
     ]
