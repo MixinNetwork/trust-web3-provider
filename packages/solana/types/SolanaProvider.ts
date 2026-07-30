@@ -13,7 +13,7 @@ import { TrustEventEmitter } from '../adapter/window';
 import { TrustWallet } from '../adapter/wallet';
 
 export interface ISolanaProviderConfig {
-  isTrust?: boolean;
+  isMixin?: boolean;
   enableAdapter?: boolean;
   cluster?: string;
   disableMobileAdapter?: boolean;

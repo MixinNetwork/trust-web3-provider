@@ -5,7 +5,13 @@ export default [
   { languageOptions: { globals: globals.browser } },
   ...tseslint.configs.recommended,
   {
-    ignores: ['templates/', '**/dist'],
+    ignores: [
+      'templates/**',
+      '**/dist/**',
+      'android/**/build/**',
+      'android/lib/src/main/res/raw/**',
+      'packages/ios-web3-provider/swift/*.js',
+    ],
   },
   {
     rules: {

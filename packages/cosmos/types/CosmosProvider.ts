@@ -57,5 +57,5 @@ export interface ICosmosProvider {
 export interface ICosmosProviderConfig {
   disableMobileAdapter?: boolean;
   isKeplr?: boolean;
-  isTrust?: boolean;
+  isMixin?: boolean;
 }

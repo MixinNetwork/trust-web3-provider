@@ -22,7 +22,7 @@ public extension WKWebView {
 
 public extension TypeWrapper where T == WKWebView {
     func set(network: String, address: String) {
-        let script = String(format: "trustwallet.\(network).setAddress(\"%@\");", address.lowercased())
+        let script = String(format: "mixinwallet.\(network).setAddress(\"%@\");", address.lowercased())
         value.evaluateJavaScript(script)
     }
 
@@ -42,17 +42,17 @@ public extension TypeWrapper where T == WKWebView {
 
     func emitChange(chainId: Int) {
         let string = "0x" + String(chainId, radix: 16)
-        let script = String(format: "trustwallet.ethereum.emitChainChanged(\"%@\");", string)
+        let script = String(format: "mixinwallet.ethereum.emitChainChanged(\"%@\");", string)
         value.evaluateJavaScript(script)
     }
 
     func send(network: ProviderNetwork, error: String, to id: Int64) {
-        let script = String(format: "trustwallet.\(network.rawValue).sendError(%ld, \"%@\")", id, error)
+        let script = String(format: "mixinwallet.\(network.rawValue).sendError(%ld, \"%@\")", id, error)
         value.evaluateJavaScript(script)
     }
 
     func send(network: ProviderNetwork, result: String, to id: Int64) {
-        let script = String(format: "trustwallet.\(network.rawValue).sendResponse(%ld, \'%@\')", id, result)
+        let script = String(format: "mixinwallet.\(network.rawValue).sendResponse(%ld, \'%@\')", id, result)
         value.evaluateJavaScript(script)
     }
 
@@ -61,18 +61,18 @@ public extension TypeWrapper where T == WKWebView {
     // (nativeRpc) so callers get the same JS type they would have received from
     // `await fetch(...).json()`.
     func sendRaw(network: ProviderNetwork, rawValue: String, to id: Int64) {
-        let script = "trustwallet.\(network.rawValue).sendResponse(\(id), \(rawValue))"
+        let script = "mixinwallet.\(network.rawValue).sendResponse(\(id), \(rawValue))"
         value.evaluateJavaScript(script)
     }
 
     func sendNull(network: ProviderNetwork, id: Int64) {
-        let script = String(format: "trustwallet.\(network.rawValue).sendResponse(%ld, null)", id)
+        let script = String(format: "mixinwallet.\(network.rawValue).sendResponse(%ld, null)", id)
         value.evaluateJavaScript(script)
     }
 
     func send(network: ProviderNetwork, results: [String], to id: Int64) {
         let array = results.map { String(format: "\"%@\"", $0) }
-        let script = String(format: "trustwallet.\(network.rawValue).sendResponse(%ld, [%@])", id, array.joined(separator: ","))
+        let script = String(format: "mixinwallet.\(network.rawValue).sendResponse(%ld, [%@])", id, array.joined(separator: ","))
         value.evaluateJavaScript(script)
     }
 

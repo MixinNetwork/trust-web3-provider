@@ -17,7 +17,7 @@ export interface IEthereumProviderConfig {
   supportedMethods?: string[];
   unsupportedMethods?: string[];
   disableMobileAdapter?: boolean;
-  isTrust?: boolean;
+  isMixin?: boolean;
 }
 
 /**

@@ -15,7 +15,7 @@
 
 ```typescript
 const config: {
-  isTrust?: boolean;
+  isMixin?: boolean;
   enableAdapter?: boolean;
   cluster?: string;
   disableMobileAdapter?: boolean;

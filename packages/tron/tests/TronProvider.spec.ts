@@ -5,6 +5,7 @@ import { AdapterStrategy } from '@trustwallet/web3-provider-core/adapter/Adapter
 
 let Tron = new TronProvider();
 const account = '0x0000000000000000000000000000000000000000';
+const tronAccount = 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb';
 
 afterEach(() => {
   Tron = new TronProvider();
@@ -27,6 +28,8 @@ test('constructor with nodeURL creates the TronWeb instance', () => {
   const provider = new TronProvider({ nodeURL: 'https://foo.baz' });
 
   expect(provider.tronWeb).toBeDefined();
+  expect(provider.tronWeb.defaultAddress).toBeUndefined();
+  expect(provider.ready).toBeFalse();
   expect(provider.getNetwork()).toEqual('tron');
 });
 
@@ -37,6 +40,50 @@ test('constructor without config leaves TronWeb unset until setNode', () => {
 
   provider.setNode('https://foo.baz');
   expect(provider.tronWeb).toBeDefined();
+  expect(provider.tronWeb.defaultAddress).toBeUndefined();
+});
+
+test('exposes the default address only after connecting', async () => {
+  const provider = new TronProvider({ nodeURL: 'https://foo.baz' });
+  const postMessage = jest.fn();
+  const originalWindow = globalThis.window;
+
+  Object.defineProperty(globalThis, 'window', {
+    configurable: true,
+    value: { postMessage },
+  });
+
+  try {
+    new Web3Provider({
+      strategy: AdapterStrategy.PROMISES,
+      handler: () => Promise.resolve([tronAccount]),
+    }).registerProvider(provider);
+
+    expect(provider.tronWeb.defaultAddress).toBeUndefined();
+
+    const result = await provider.request({
+      method: 'tron_requestAccounts',
+    });
+
+    expect(result).toEqual({ code: 200 });
+    expect(provider.ready).toBeTrue();
+    expect((provider.tronWeb as { ready?: boolean }).ready).toBeTrue();
+    expect(provider.tronWeb.defaultAddress.base58).toEqual(tronAccount);
+    expect(postMessage).toHaveBeenCalledWith(
+      {
+        message: {
+          action: 'connect',
+          data: {},
+        },
+      },
+      '*',
+    );
+  } finally {
+    Object.defineProperty(globalThis, 'window', {
+      configurable: true,
+      value: originalWindow,
+    });
+  }
 });
 
 test('sign re-hydrates a string response into the signed-tx object', async () => {

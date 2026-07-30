@@ -17,7 +17,7 @@
 
 ```typescript
 const config: {
-  isTrust?: boolean;
+  isMixin?: boolean;
   network?: string;
   chainId?: string | null;
 } = {};

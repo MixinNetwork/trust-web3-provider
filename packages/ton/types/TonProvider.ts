@@ -1,5 +1,5 @@
 export interface ITonProviderConfig {
-  isTrust?: boolean;
+  isMixin?: boolean;
   disableMobileAdapter?: boolean;
   version?: string;
 }

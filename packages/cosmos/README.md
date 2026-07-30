@@ -17,7 +17,7 @@
 const config: {
   disableMobileAdapter?: boolean;
   isKeplr?: boolean;
-  isTrust?: boolean;
+  isMixin?: boolean;
 } = {};
 ```
 

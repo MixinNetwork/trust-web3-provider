@@ -16,7 +16,7 @@
 
 ```typescript
 const config: {
-  isTrust?: boolean;
+  isMixin?: boolean;
   disableMobileAdapter?: boolean;
   version?: string;
 } = {};

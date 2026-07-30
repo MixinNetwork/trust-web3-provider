@@ -24,9 +24,9 @@ export class CosmosProvider extends BaseProvider implements ICosmosProvider {
    */
   isKeplr: boolean = true;
 
-  isTrust: boolean = true;
+  isMixin: boolean = true;
 
-  isTrustWallet: boolean = true;
+  isMixinWallet: boolean = true;
 
   constructor(config?: ICosmosProviderConfig) {
     super();
@@ -40,9 +40,9 @@ export class CosmosProvider extends BaseProvider implements ICosmosProvider {
         this.isKeplr = config.isKeplr;
       }
 
-      if (typeof config.isTrust !== 'undefined') {
-        this.isTrust = config.isTrust;
-        this.isTrustWallet = config.isTrust;
+      if (typeof config.isMixin !== 'undefined') {
+        this.isMixin = config.isMixin;
+        this.isMixinWallet = config.isMixin;
       }
     }
 

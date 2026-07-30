@@ -24,6 +24,10 @@ export abstract class BaseProvider
   extends EventEmitter
   implements IBaseProvider
 {
+  isMixin: boolean = true;
+
+  isMixinWallet: boolean = true;
+
   adapter!: CallbackAdapter | PromiseAdapter;
 
   setAdapter(adapter: CallbackAdapter | PromiseAdapter) {

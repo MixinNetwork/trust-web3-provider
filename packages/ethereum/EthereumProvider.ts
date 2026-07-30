@@ -35,9 +35,9 @@ export class EthereumProvider
   // fetch() and trip the page CSP.
   #customRpc: boolean = false;
 
-  isTrust: boolean = true;
+  isMixin: boolean = true;
 
-  isTrustWallet: boolean = true;
+  isMixinWallet: boolean = true;
 
   providers: object[] | undefined;
 
@@ -62,9 +62,9 @@ export class EthereumProvider
         this.#disableMobileAdapter = config.disableMobileAdapter;
       }
 
-      if (typeof config.isTrust !== 'undefined') {
-        this.isTrust = config.isTrust;
-        this.isTrustWallet = config.isTrust;
+      if (typeof config.isMixin !== 'undefined') {
+        this.isMixin = config.isMixin;
+        this.isMixinWallet = config.isMixin;
       }
 
       this.#rpc = new RPCServer(this.#rpcUrl);
@@ -137,7 +137,7 @@ export class EthereumProvider
       default:
         throw new RPCError(
           4200,
-          `Trust does not support calling ${payload.method} synchronously without a callback. Please provide a callback parameter to call ${payload.method} asynchronously.`,
+          `Mixin does not support calling ${payload.method} synchronously without a callback. Please provide a callback parameter to call ${payload.method} asynchronously.`,
         );
     }
 

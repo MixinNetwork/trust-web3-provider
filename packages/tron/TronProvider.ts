@@ -37,6 +37,7 @@ export class TronProvider extends BaseProvider implements ITronProvider {
 
     this.on('accountsChanged', (accounts: string[]) => {
       if (accounts.length === 0) {
+        this.markDisconnected();
         window.postMessage(
           {
             message: {
@@ -87,6 +88,28 @@ export class TronProvider extends BaseProvider implements ITronProvider {
   setNode(url: string) {
     this.#node = url;
     this.tronWeb = new TronWeb({ fullHost: url });
+    this.markDisconnected();
+  }
+
+  private markDisconnected() {
+    this.ready = false;
+
+    if (!this.tronWeb) {
+      return;
+    }
+
+    (this.tronWeb as { ready?: boolean }).ready = false;
+
+    // TronWeb initializes defaultAddress as a truthy object containing false
+    // values. tronwallet-adapter's mobile detector treats any truthy
+    // defaultAddress as an already connected wallet, then emits connect with
+    // an empty address. Keep the property absent until requestAccounts returns
+    // a real address; TronWeb.setAddress restores it on successful connection.
+    delete (
+      this.tronWeb as unknown as {
+        defaultAddress?: unknown;
+      }
+    ).defaultAddress;
   }
 
   // Both readiness flags are part of the TronLink-compat surface: dapps gate

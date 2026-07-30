@@ -25,6 +25,8 @@ import type { ITonProviderConfig } from '@trustwallet/web3-provider-ton/types/To
 import type { ITonBridgeConfig } from '@trustwallet/web3-provider-ton/types/TonBridge';
 import { TronProvider } from '@trustwallet/web3-provider-tron';
 import type { ITronProviderConfig } from '@trustwallet/web3-provider-tron/types/TronProvider';
+import { BitcoinProvider } from '@trustwallet/web3-provider-bitcoin';
+import type { IBitcoinProviderConfig } from '@trustwallet/web3-provider-bitcoin/types/BitcoinProvider';
 
 const core = (strategy: AdapterStrategyType, handler?: IHandler) =>
   new Web3Provider({ strategy, handler });
@@ -37,7 +39,7 @@ const ethereum = (config: IEthereumProviderConfig) =>
   new EthereumProvider(config);
 
 // Factory for the native-bridge-backed RPC so the injector can plug it in with
-// a single line: `ethereum.setRPC(trustwallet.nativeRpc(ethereum))`.
+// a single line: `ethereum.setRPC(mixinwallet.nativeRpc(ethereum))`.
 const nativeRpc = (provider: EthereumProvider) => new NativeRPC(provider);
 
 const aptos = (config: IAptosProviderConfig) => new AptosProvider(config);
@@ -49,7 +51,10 @@ const tonBridge = (config: ITonBridgeConfig, provider: TonProvider) =>
 
 const tron = (config: ITronProviderConfig) => new TronProvider(config);
 
-window.trustwallet = {
+const bitcoin = (config?: IBitcoinProviderConfig) =>
+  new BitcoinProvider(config);
+
+window.mixinwallet = {
   core,
   solana,
   cosmos,
@@ -58,6 +63,7 @@ window.trustwallet = {
   ton,
   tonBridge,
   tron,
+  bitcoin,
   nativeRpc,
   randomUUID: () => uuidv4(),
 };

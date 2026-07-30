@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             domStorageEnabled = true
         }
         WebAppInterface(this, webview, DAPP_URL).run {
-            webview.addJavascriptInterface(this, "_tw_")
+            webview.addJavascriptInterface(this, "_mw_")
 
             val webViewClient = object : WebViewClient() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -57,30 +57,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadProviderJs(): String {
-        return resources.openRawResource(R.raw.trust_min).bufferedReader().use { it.readText() }
+        return resources.openRawResource(R.raw.mixin_min).bufferedReader().use { it.readText() }
     }
 
     private fun loadInitJs(chainId: Int, rpcUrl: String): String {
+        val hexChainId = "0x${chainId.toString(16)}"
         val source = """
         (function() {
-            var config = {                
+            const config = {
                 ethereum: {
-                    chainId: $chainId,
+                    chainId: "$hexChainId",
                     rpcUrl: "$rpcUrl"
                 },
                 solana: {
                     cluster: "mainnet-beta",
                 },
-                isDebug: true
             };
-            trustwallet.ethereum = new trustwallet.Provider(config);
-            trustwallet.solana = new trustwallet.SolanaProvider(config);
-            trustwallet.postMessage = (json) => {
-                window._tw_.postMessage(JSON.stringify(json));
-            }
-            window.ethereum = trustwallet.ethereum;
+
+            const core = mixinwallet.core('CALLBACK', (params) => {
+                window._mw_.postMessage(JSON.stringify(params));
+            });
+            const ethereum = mixinwallet.ethereum(config.ethereum);
+            const solana = mixinwallet.solana(config.solana);
+
+            core.registerProviders([ethereum, solana].map(provider => {
+                provider.sendResponse = core.sendResponse.bind(core);
+                provider.sendError = core.sendError.bind(core);
+                return provider;
+            }));
+
+            mixinwallet.ethereum = ethereum;
+            mixinwallet.solana = solana;
+            window.ethereum = ethereum;
+            window.solana = solana;
         })();
         """
-        return  source
+        return source
     }
 }

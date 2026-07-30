@@ -1,5 +1,4 @@
 import { TrustWallet } from '../../adapter/wallet';
-export let provider = null;
 
 export const window = {
   wallet: null,

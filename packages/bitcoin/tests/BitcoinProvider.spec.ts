@@ -3,6 +3,7 @@ import { Web3Provider } from '@trustwallet/web3-provider-core';
 import { BitcoinProvider } from '../BitcoinProvider';
 import { AdapterStrategy } from '@trustwallet/web3-provider-core/adapter/Adapter';
 import type { BtcAccount } from '../types/BitcoinProvider';
+import { TrustBitcoinWallet } from '../adapter/wallet';
 
 let bitcoin = new BitcoinProvider();
 const mockAccount: BtcAccount = {
@@ -62,6 +63,15 @@ test('Bitcoin -> requestAccounts()', async () => {
 
 test('Bitcoin -> getNetwork()', () => {
   expect(bitcoin.getNetwork()).toBe('bitcoin');
+});
+
+test('Bitcoin adapter identifies as Mixin', () => {
+  const wallet = new TrustBitcoinWallet(
+    new BitcoinProvider({ enableAdapter: false }),
+  );
+
+  expect(wallet.name).toBe('Mixin');
+  expect(wallet.icon).toStartWith('data:image/svg+xml;base64,');
 });
 
 test('Bitcoin -> signMessage() with string', async () => {
