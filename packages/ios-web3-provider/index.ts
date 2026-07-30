@@ -19,6 +19,8 @@ import { ITonBridgeConfig } from '@trustwallet/web3-provider-ton/types/TonBridge
 import { TonBridge, TonProvider } from '@trustwallet/web3-provider-ton';
 import { TronProvider } from '@trustwallet/web3-provider-tron';
 import { ITronProviderConfig } from '@trustwallet/web3-provider-tron/types/TronProvider';
+import { BitcoinProvider } from '@trustwallet/web3-provider-bitcoin';
+import type { IBitcoinProviderConfig } from '@trustwallet/web3-provider-bitcoin/types/BitcoinProvider';
 
 const core = (strategy: AdapterStrategyType, handler?: IHandler) =>
   new Web3Provider({ strategy, handler });
@@ -45,6 +47,9 @@ const tonBridge = (config: ITonBridgeConfig, provider: TonProvider) =>
 
 const tron = (config: ITronProviderConfig) => new TronProvider(config);
 
+const bitcoin = (config?: IBitcoinProviderConfig) =>
+  new BitcoinProvider(config);
+
 window.mixinwallet = {
   core,
   solana,
@@ -54,5 +59,6 @@ window.mixinwallet = {
   ton,
   tonBridge,
   tron,
+  bitcoin,
   nativeRpc,
 };

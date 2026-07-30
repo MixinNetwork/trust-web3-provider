@@ -11,4 +11,5 @@ public enum ProviderNetwork: String, Decodable {
     case aptos
     case ton
     case tron
+    case bitcoin
 }
