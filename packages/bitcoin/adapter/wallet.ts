@@ -143,7 +143,7 @@ export class TrustBitcoinWallet implements Wallet {
     [E in StandardEventsNames]?: StandardEventsListeners[E][];
   } = {};
   readonly #version = '1.0.0' as const;
-  readonly #name = 'Trust' as const;
+  readonly #name = 'Mixin' as const;
   readonly #icon = icon;
   #accounts: TrustBitcoinWalletAccount[] = [];
   readonly #trust: IBitcoinProvider;
