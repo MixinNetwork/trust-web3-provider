@@ -36,7 +36,7 @@
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-terser": "0.4.4",
     "@types/uuid": "9.0.8",
-    "rollup-plugin-corejs": "1.0.0",
+    "rollup-plugin-corejs": "1.0.2",
     "rollup-plugin-polyfill-node": "0.13.0"
   }
 }
