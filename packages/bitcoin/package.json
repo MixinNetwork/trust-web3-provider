@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@trustwallet/web3-provider-core": "workspace:*",
-    "@wallet-standard/base": "1.1.0",
+    "@wallet-standard/base": "1.1.1",
     "@wallet-standard/features": "1.0.3"
   }
 }
