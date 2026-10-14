@@ -34,6 +34,7 @@ export class MobileAdapter {
 
   async signTransaction<T extends Transaction | VersionedTransaction>(
     tx: T,
+    broadcast = false,
   ): Promise<T> {
     if (this.useLegacySign) {
       return (await this.legacySign<T>(tx)) as T;
@@ -62,6 +63,7 @@ export class MobileAdapter {
         raw,
         rawMessage,
         version,
+        broadcast,
       },
     });
 

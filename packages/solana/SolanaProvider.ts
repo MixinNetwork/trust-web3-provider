@@ -23,6 +23,14 @@ import { TrustWallet } from './adapter/wallet';
 import { isVersionedTransaction } from './adapter/solana';
 import * as bs58 from 'bs58';
 import { MobileAdapter } from './MobileAdapter';
+import {
+  address,
+  assertIsFullySignedTransaction,
+  getCompiledTransactionMessageDecoder,
+  getTransactionDecoder,
+  getTransactionEncoder,
+  type SignatureBytes,
+} from '@solana/kit';
 
 export class SolanaProvider extends BaseProvider implements ISolanaProvider {
   static NETWORK = 'solana';
@@ -42,6 +50,10 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
   isMixinWallet: boolean = true;
 
   #useLegacySign = false;
+
+  readonly supportsV1Transactions: boolean;
+
+  private readonly nativeTransactionBroadcast: boolean;
 
   static bufferToHex(buffer: Buffer | Uint8Array | string) {
     return '0x' + Buffer.from(buffer).toString('hex');
@@ -64,6 +76,15 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
 
   constructor(config?: ISolanaProviderConfig) {
     super();
+
+    // Legacy bridges expect a different wire format and cannot sign V1 bytes.
+    this.supportsV1Transactions =
+      config?.supportsV1Transactions === true &&
+      !config?.useLegacySign &&
+      !config?.disableMobileAdapter;
+
+    this.nativeTransactionBroadcast = config?.nativeTransactionBroadcast === true &&
+      !config.useLegacySign && !config.disableMobileAdapter;
 
     if (config) {
       if (typeof config.enableAdapter !== 'undefined') {
@@ -126,7 +147,13 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     transaction: T,
     options?: SendOptions | undefined,
   ): Promise<{ signature: string }> {
-    const signedTx = await this.signTransaction(transaction);
+    this.validateNativeSendOptions(options);
+    const signedTx = this.nativeTransactionBroadcast
+      ? await this.mobileAdapter.signTransaction(transaction, true)
+      : await this.signTransaction(transaction);
+    if (this.nativeTransactionBroadcast) {
+      return { signature: this.transactionSignature(signedTx.serialize()) };
+    }
 
     const signature = await this.connection.sendRawTransaction(
       signedTx.serialize(),
@@ -134,6 +161,101 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     );
 
     return { signature: signature };
+  }
+
+  async signV1Transaction(bytes: Uint8Array, broadcast = false): Promise<Uint8Array> {
+    if (!this.supportsV1Transactions) {
+      throw new Error(
+        'V1 transactions are not supported by this native signer',
+      );
+    }
+    if (!this.publicKey) throw new Error('not connected');
+    if (bytes[0] !== 0x81 || bytes.length > 4096) {
+      throw new Error('invalid V1 transaction');
+    }
+
+    // Copy the input before awaiting native approval so callers cannot change
+    // the message after the signer has inspected it.
+    const transaction = getTransactionDecoder().decode(new Uint8Array(bytes));
+    const [message, messageEnd] = getCompiledTransactionMessageDecoder().read(
+      transaction.messageBytes,
+      0,
+    );
+    if (
+      message.version !== 1 ||
+      messageEnd !== transaction.messageBytes.length
+    ) {
+      throw new Error('invalid V1 transaction message');
+    }
+    const signer = address(this.publicKey.toBase58());
+    if (!Object.prototype.hasOwnProperty.call(transaction.signatures, signer)) {
+      throw new Error('connected account is not a required signer');
+    }
+
+    const signatureEncoded = await this.internalRequest<string>({
+      method: 'signRawTransaction',
+      params: {
+        raw: Buffer.from(getTransactionEncoder().encode(transaction)).toString(
+          'base64',
+        ),
+        rawMessage: Buffer.from(transaction.messageBytes).toString('base64'),
+        version: 1,
+        broadcast,
+      },
+    });
+    const signature = new Uint8Array(bs58.decode(signatureEncoded));
+    if (signature.length !== 64 || signature.every((byte) => byte === 0)) {
+      throw new Error('invalid V1 transaction signature');
+    }
+
+    // Preserve the original message and every other signer's signature.
+    return new Uint8Array(
+      getTransactionEncoder().encode({
+        ...transaction,
+        signatures: {
+          ...transaction.signatures,
+          [signer]: signature as SignatureBytes,
+        },
+      }),
+    );
+  }
+
+  async signAndSendV1Transaction(
+    transaction: Uint8Array,
+    options?: SendOptions,
+  ): Promise<{ signature: string }> {
+    this.validateNativeSendOptions(options);
+    const signedTransaction = await this.signV1Transaction(transaction, this.nativeTransactionBroadcast);
+    if (this.nativeTransactionBroadcast) {
+      return { signature: this.transactionSignature(signedTransaction) };
+    }
+    assertIsFullySignedTransaction(
+      getTransactionDecoder().decode(signedTransaction),
+    );
+    const signature = await this.connection.sendRawTransaction(
+      signedTransaction,
+      options,
+    );
+    return { signature };
+  }
+
+  private validateNativeSendOptions(options?: SendOptions): void {
+    if (!this.nativeTransactionBroadcast || !options) return;
+    const customOptions = Object.keys(options).filter(
+      (key) => options[key as keyof SendOptions] !== undefined,
+    );
+    if (customOptions.length) {
+      // Route currently owns submission policy; reject before native signing can send.
+      throw new Error(
+        `Native Route broadcast does not support custom RPC options: ${customOptions.join(', ')}`,
+      );
+    }
+  }
+
+  private transactionSignature(bytes: Uint8Array): string {
+    const transaction = getTransactionDecoder().decode(bytes);
+    assertIsFullySignedTransaction(transaction);
+    return bs58.encode(Object.values(transaction.signatures)[0]!);
   }
 
   signTransaction<T extends Transaction | VersionedTransaction>(

@@ -96,12 +96,16 @@ export class TrustWallet implements Wallet {
       },
       [SolanaSignAndSendTransaction]: {
         version: '1.0.0',
-        supportedTransactionVersions: ['legacy', 0],
+        supportedTransactionVersions: this.#trust.supportsV1Transactions
+          ? ['legacy', 0, 1]
+          : ['legacy', 0],
         signAndSendTransaction: this.#signAndSendTransaction,
       },
       [SolanaSignTransaction]: {
         version: '1.0.0',
-        supportedTransactionVersions: ['legacy', 0],
+        supportedTransactionVersions: this.#trust.supportsV1Transactions
+          ? ['legacy', 0, 1]
+          : ['legacy', 0],
         signTransaction: this.#signTransaction,
       },
       [SolanaSignMessage]: {
@@ -219,15 +223,19 @@ export class TrustWallet implements Wallet {
       if (account !== this.#account) throw new Error('invalid account');
       if (!isSolanaChain(chain)) throw new Error('invalid chain');
 
-      const { signature } = await this.#trust.signAndSendTransaction(
-        VersionedTransaction.deserialize(transaction),
-        {
-          preflightCommitment,
-          minContextSlot,
-          maxRetries,
-          skipPreflight,
-        },
-      );
+      const sendOptions = {
+        preflightCommitment,
+        minContextSlot,
+        maxRetries,
+        skipPreflight,
+      };
+      const { signature } =
+        transaction[0] === 0x81
+          ? await this.#trust.signAndSendV1Transaction(transaction, sendOptions)
+          : await this.#trust.signAndSendTransaction(
+              VersionedTransaction.deserialize(transaction),
+              sendOptions,
+            );
 
       outputs.push({ signature: new Uint8Array(bs58.decode(signature)) });
     } else if (inputs.length > 1) {
@@ -248,6 +256,14 @@ export class TrustWallet implements Wallet {
       const { transaction, account, chain } = inputs[0]!;
       if (account !== this.#account) throw new Error('invalid account');
       if (chain && !isSolanaChain(chain)) throw new Error('invalid chain');
+
+      if (transaction[0] === 0x81) {
+        return [
+          {
+            signedTransaction: await this.#trust.signV1Transaction(transaction),
+          },
+        ];
+      }
 
       const signedTransaction = await this.#trust.signTransaction(
         VersionedTransaction.deserialize(transaction),
@@ -277,13 +293,24 @@ export class TrustWallet implements Wallet {
         }
       }
 
+      if (inputs.some(({ transaction }) => transaction[0] === 0x81)) {
+        if (!this.#trust.supportsV1Transactions) {
+          throw new Error(
+            'V1 transactions are not supported by this native signer',
+          );
+        }
+        for (const input of inputs) {
+          outputs.push(...(await this.#signTransaction(input)));
+        }
+        return outputs;
+      }
+
       const transactions = inputs.map(({ transaction }) =>
         VersionedTransaction.deserialize(transaction),
       );
 
-      const signedTransactions = await this.#trust.signAllTransactions(
-        transactions,
-      );
+      const signedTransactions =
+        await this.#trust.signAllTransactions(transactions);
 
       outputs.push(
         ...signedTransactions.map((signedTransaction) => {

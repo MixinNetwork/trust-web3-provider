@@ -18,6 +18,10 @@ export interface ISolanaProviderConfig {
   cluster?: string;
   disableMobileAdapter?: boolean;
   useLegacySign?: boolean;
+  /** Enable only when the native signer can parse, display and sign V1 transactions. */
+  supportsV1Transactions?: boolean;
+  /** Native bridge honors the broadcast flag and sends through Route. */
+  nativeTransactionBroadcast?: boolean;
 }
 
 export interface ConnectOptions {
@@ -26,6 +30,12 @@ export interface ConnectOptions {
 
 export default interface ISolanaProvider extends TrustEventEmitter {
   publicKey: PublicKey | null;
+  readonly supportsV1Transactions: boolean;
+  signV1Transaction(transaction: Uint8Array): Promise<Uint8Array>;
+  signAndSendV1Transaction(
+    transaction: Uint8Array,
+    options?: SendOptions,
+  ): Promise<{ signature: TransactionSignature }>;
   connect(options?: {
     onlyIfTrusted?: boolean;
   }): Promise<{ publicKey: PublicKey }>;
