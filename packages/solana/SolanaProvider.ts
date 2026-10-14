@@ -53,6 +53,8 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
 
   readonly supportsV1Transactions: boolean;
 
+  private readonly nativeTransactionBroadcast: boolean;
+
   static bufferToHex(buffer: Buffer | Uint8Array | string) {
     return '0x' + Buffer.from(buffer).toString('hex');
   }
@@ -80,6 +82,9 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
       config?.supportsV1Transactions === true &&
       !config?.useLegacySign &&
       !config?.disableMobileAdapter;
+
+    this.nativeTransactionBroadcast = config?.nativeTransactionBroadcast === true &&
+      !config.useLegacySign && !config.disableMobileAdapter;
 
     if (config) {
       if (typeof config.enableAdapter !== 'undefined') {
@@ -142,7 +147,13 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     transaction: T,
     options?: SendOptions | undefined,
   ): Promise<{ signature: string }> {
-    const signedTx = await this.signTransaction(transaction);
+    this.validateNativeSendOptions(options);
+    const signedTx = this.nativeTransactionBroadcast
+      ? await this.mobileAdapter.signTransaction(transaction, true)
+      : await this.signTransaction(transaction);
+    if (this.nativeTransactionBroadcast) {
+      return { signature: this.transactionSignature(signedTx.serialize()) };
+    }
 
     const signature = await this.connection.sendRawTransaction(
       signedTx.serialize(),
@@ -152,7 +163,7 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     return { signature: signature };
   }
 
-  async signV1Transaction(bytes: Uint8Array): Promise<Uint8Array> {
+  async signV1Transaction(bytes: Uint8Array, broadcast = false): Promise<Uint8Array> {
     if (!this.supportsV1Transactions) {
       throw new Error(
         'V1 transactions are not supported by this native signer',
@@ -189,6 +200,7 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
         ),
         rawMessage: Buffer.from(transaction.messageBytes).toString('base64'),
         version: 1,
+        broadcast,
       },
     });
     const signature = new Uint8Array(bs58.decode(signatureEncoded));
@@ -212,7 +224,11 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
     transaction: Uint8Array,
     options?: SendOptions,
   ): Promise<{ signature: string }> {
-    const signedTransaction = await this.signV1Transaction(transaction);
+    this.validateNativeSendOptions(options);
+    const signedTransaction = await this.signV1Transaction(transaction, this.nativeTransactionBroadcast);
+    if (this.nativeTransactionBroadcast) {
+      return { signature: this.transactionSignature(signedTransaction) };
+    }
     assertIsFullySignedTransaction(
       getTransactionDecoder().decode(signedTransaction),
     );
@@ -221,6 +237,25 @@ export class SolanaProvider extends BaseProvider implements ISolanaProvider {
       options,
     );
     return { signature };
+  }
+
+  private validateNativeSendOptions(options?: SendOptions): void {
+    if (!this.nativeTransactionBroadcast || !options) return;
+    const customOptions = Object.keys(options).filter(
+      (key) => options[key as keyof SendOptions] !== undefined,
+    );
+    if (customOptions.length) {
+      // Route currently owns submission policy; reject before native signing can send.
+      throw new Error(
+        `Native Route broadcast does not support custom RPC options: ${customOptions.join(', ')}`,
+      );
+    }
+  }
+
+  private transactionSignature(bytes: Uint8Array): string {
+    const transaction = getTransactionDecoder().decode(bytes);
+    assertIsFullySignedTransaction(transaction);
+    return bs58.encode(Object.values(transaction.signatures)[0]!);
   }
 
   signTransaction<T extends Transaction | VersionedTransaction>(

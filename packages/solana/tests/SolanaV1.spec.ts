@@ -215,6 +215,7 @@ test('V1 signs a transaction larger than V0 without changing its message or othe
       network: 'solana',
       params: {
         version: 1,
+        broadcast: false,
         raw: Buffer.from(bytes).toString('base64'),
         rawMessage: Buffer.from(original.messageBytes).toString('base64'),
       },
@@ -389,3 +390,72 @@ test('V1 snapshots message bytes and signer while native approval is pending', a
     ),
   ).toBeTrue();
 });
+
+
+for (const version of ['legacy', 0, 1] as const) {
+  test(`Native ${version} distinguishes sign-only from send and never broadcasts twice`, async () => {
+    const { provider, wallet, handler, connectedAccount } = await setup({
+      supportsV1Transactions: true,
+      nativeTransactionBroadcast: true,
+    });
+    const sendRawTransaction = jest.fn();
+    provider.connection = { sendRawTransaction } as unknown as typeof provider.connection;
+    const input = version === 1 ? v1Transaction() : oldTransaction(version);
+    const before = getTransactionDecoder().decode(input);
+    const [signed] = await wallet.features[SolanaSignTransaction].signTransaction({
+      account: connectedAccount, transaction: input, chain: 'solana:mainnet',
+    });
+    const decoded = getTransactionDecoder().decode(signed.signedTransaction);
+    expect(decoded.messageBytes).toEqual(before.messageBytes);
+    expect(verify(null, decoded.messageBytes, key.publicKey, decoded.signatures[account]!)).toBeTrue();
+    expect(handler.mock.calls).toHaveLength(1);
+    expect(handler.mock.calls[0][0].params).toEqual(expect.objectContaining({ broadcast: false }));
+    handler.mockClear();
+    const [sent] = await wallet.features[SolanaSignAndSendTransaction].signAndSendTransaction({
+      account: connectedAccount, transaction: input, chain: 'solana:mainnet',
+    });
+    expect(handler.mock.calls).toHaveLength(1);
+    expect(handler.mock.calls[0][0].name).toBe('signRawTransaction');
+    expect(handler.mock.calls[0][0].params).toEqual(expect.objectContaining({ broadcast: true }));
+    expect(sent.signature).toEqual(decoded.signatures[account]!);
+    expect(sendRawTransaction).not.toHaveBeenCalled();
+  });
+}
+
+test('Native send failures are propagated without a public RPC retry', async () => {
+  const { provider, handler } = await setup({ supportsV1Transactions: true, nativeTransactionBroadcast: true });
+  const sendRawTransaction = jest.fn();
+  provider.connection = { sendRawTransaction } as unknown as typeof provider.connection;
+  handler.mockRejectedValueOnce(new Error('Route broadcast failed'));
+  await expect(provider.signAndSendV1Transaction(v1Transaction())).rejects.toThrow('Route broadcast failed');
+  expect(sendRawTransaction).not.toHaveBeenCalled();
+});
+
+
+for (const version of ['legacy', 0, 1] as const) {
+  test(`Native ${version} rejects custom RPC options before signing or sending`, async () => {
+    const { provider, wallet, handler, connectedAccount } = await setup({
+      supportsV1Transactions: true, nativeTransactionBroadcast: true,
+    });
+    const sendRawTransaction = jest.fn();
+    provider.connection = { sendRawTransaction } as unknown as typeof provider.connection;
+    const transaction = version === 1 ? v1Transaction() : oldTransaction(version);
+    for (const options of [
+      { skipPreflight: true }, { skipPreflight: false },
+      { preflightCommitment: 'confirmed' as const },
+      { minContextSlot: 42 }, { maxRetries: 2 },
+    ]) {
+      await expect(wallet.features[SolanaSignAndSendTransaction].signAndSendTransaction({
+        account: connectedAccount, transaction, chain: 'solana:mainnet', options,
+      })).rejects.toThrow('does not support custom RPC options');
+    }
+    expect(handler).not.toHaveBeenCalled();
+    expect(sendRawTransaction).not.toHaveBeenCalled();
+    await wallet.features[SolanaSignAndSendTransaction].signAndSendTransaction({
+      account: connectedAccount, transaction, chain: 'solana:mainnet',
+      options: { skipPreflight: undefined, maxRetries: undefined },
+    });
+    expect(handler.mock.calls).toHaveLength(1);
+    expect(handler.mock.calls[0][0].params).toEqual(expect.objectContaining({ broadcast: true }));
+  });
+}

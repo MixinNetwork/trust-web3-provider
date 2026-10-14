@@ -20,6 +20,8 @@ export interface ISolanaProviderConfig {
   useLegacySign?: boolean;
   /** Enable only when the native signer can parse, display and sign V1 transactions. */
   supportsV1Transactions?: boolean;
+  /** Native bridge honors the broadcast flag and sends through Route. */
+  nativeTransactionBroadcast?: boolean;
 }
 
 export interface ConnectOptions {
